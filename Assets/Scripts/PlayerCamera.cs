@@ -1,50 +1,46 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerCamera : MonoBehaviour
 {
-    // “ü—Í
-    private float horizontalInput;
-    private float verticalInput;
+    private Vector2 input;              // å…¥åŠ›
 
-    [Header("ƒvƒŒƒCƒ„[‚ÌTransform")]
-    public Transform playerTransform;   // ƒvƒŒƒCƒ„[‚ÌTransform
+    [Header("ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®Transform")]
+    public Transform playerTransform;   // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®Transform
 
-    [Header("ƒJƒƒ‰‚Ì‰ñ“]‘¬“x")]
-    public float lookSpeed = 2f;        // ƒJƒƒ‰‚Ì‰ñ“]‘¬“x
+    [Header("ã‚«ãƒ¡ãƒ©ã®å›è»¢é€Ÿåº¦")]
+    public float lookSpeed = 2f;        // ã‚«ãƒ¡ãƒ©ã®å›è»¢é€Ÿåº¦
 
-    [Header("ƒJƒƒ‰‚ÌŠp“x§ŒÀ")]
-    public float maxPitch = 50f;        // ƒsƒbƒ`‚ÌÅ‘å’liãŒü‚«j
-    public float minPitch = -25f;       // ƒsƒbƒ`‚ÌÅ¬’li‰ºŒü‚«j
+    [Header("ã‚«ãƒ¡ãƒ©ã®è§’åº¦åˆ¶é™")]
+    public float maxPitch = 50f;        // ãƒ”ãƒƒãƒã®æœ€å¤§å€¤ï¼ˆä¸Šå‘ãï¼‰
+    public float minPitch = -25f;       // ãƒ”ãƒƒãƒã®æœ€å°å€¤ï¼ˆä¸‹å‘ãï¼‰
 
-    private float pitch = 0;            // ƒJƒƒ‰‚Ìã‰º‚ÌŠp“x
-    private float yaw = 0;              // ƒJƒƒ‰‚Ì¶‰E‚ÌŠp“x
+    private float pitch = 0;            // ã‚«ãƒ¡ãƒ©ã®ä¸Šä¸‹ã®è§’åº¦
+    private float yaw = 0;              // ã‚«ãƒ¡ãƒ©ã®å·¦å³ã®è§’åº¦
 
     void Start()
     {
-        // ƒvƒŒƒCƒ„[‚ÌŒü‚«‚ğ‰Šú’l‚Éİ’è
+        // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å‘ãã‚’åˆæœŸå€¤ã«è¨­å®š
         yaw = playerTransform.eulerAngles.y;
     }
 
     void LateUpdate()
     {
-        // ƒJƒƒ‰‚ÌŠp“x‚ğXV
-        yaw += horizontalInput * lookSpeed;
-        pitch -= verticalInput * lookSpeed;
+        // ã‚«ãƒ¡ãƒ©ã®è§’åº¦ã‚’æ›´æ–°
+        yaw += input.x * lookSpeed;
+        pitch -= input.y * lookSpeed;
 
-        // ƒsƒbƒ`Šp“x‚Ì§ŒÀ
+        // ãƒ”ãƒƒãƒè§’åº¦ã®åˆ¶é™
         pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
 
-        // ƒJƒƒ‰‚ğƒvƒŒƒCƒ„[‚ÌŒã‚ë‚É‰ñ“]‚³‚¹‚é
+        // ã‚«ãƒ¡ãƒ©ã‚’ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å¾Œã‚ã«å›è»¢ã•ã›ã‚‹
         transform.eulerAngles = new Vector3(pitch, yaw, 0f);
-        transform.position = playerTransform.position - transform.forward * 5f + Vector3.up * 2f; // ‹——£‚â‚‚³‚Í’²®
+        transform.position = playerTransform.position - transform.forward * 5f + Vector3.up * 2f; // è·é›¢ã‚„é«˜ã•ã¯èª¿æ•´
     }
 
-    // InputSystem‚ÌOnLookƒƒ\ƒbƒh
+    // InputSystemã®OnLookãƒ¡ã‚½ãƒƒãƒ‰
     public void OnLook(InputAction.CallbackContext context)
     {
-        Vector2 input = context.ReadValue<Vector2>();
-        horizontalInput = input.x;
-        verticalInput = input.y;
+        input = context.ReadValue<Vector2>();
     }
 }
