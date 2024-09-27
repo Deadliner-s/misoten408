@@ -5,9 +5,6 @@ public class PlayerCamera : MonoBehaviour
 {
     private Vector2 input;              // 入力
 
-    [Header("プレイヤーのTransform")]
-    public Transform playerTransform;   // プレイヤーのTransform
-
     [Header("カメラの回転速度")]
     public float lookSpeed = 2f;        // カメラの回転速度
 
@@ -15,13 +12,15 @@ public class PlayerCamera : MonoBehaviour
     public float maxPitch = 50f;        // ピッチの最大値（上向き）
     public float minPitch = -25f;       // ピッチの最小値（下向き）
 
+    private Transform playerTransform;  // プレイヤーのTransform
+
     private float pitch = 0;            // カメラの上下の角度
     private float yaw = 0;              // カメラの左右の角度
 
     void Start()
     {
-        // プレイヤーの向きを初期値に設定
-        yaw = playerTransform.eulerAngles.y;
+        playerTransform = GameObject.Find("Player").transform;    // プレイヤーのTransformを取得
+        yaw = playerTransform.eulerAngles.y;                      // プレイヤーの向きを初期値に設定
     }
 
     void LateUpdate()

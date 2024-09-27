@@ -5,6 +5,13 @@ public class Player : MonoBehaviour
 {
     private Vector2 input;              // 入力
 
+    // プレイヤーの状態
+    public enum PlayerState
+    {
+        Driving,    // 自転車に乗っている状態
+        Walking,    // 歩いている状態
+    }
+
     [Header("移動速度")]
     public float driveSpeed = 5f;       // 自転車の移動速度
     public float boostSpeed = 10f;      // ブースト中の移動速度
@@ -17,25 +24,16 @@ public class Player : MonoBehaviour
     [Header("ジャンプの高さ")]
     public float jumpHeight = 2f;       // ジャンプの高さ
 
-    [Header("カメラのTransform")]
-    public Transform cameraTransform;   // カメラのTransform
-
     [Header("Boostの最大容量(秒)")]
     public float maxBoost = 100f;       // Boostの最大容量
 
     [Header("Boostの回復速度(1秒間にnずつ)")]
     public float boostRecoverySpeed = 4f;    // Boostの回復速度
 
-    // プレイヤーの状態
-    public enum PlayerState
-    {
-        Driving,    // 自転車に乗っている状態
-        Walking,    // 歩いている状態
-    }
-
     [Header("プレイヤーの状態")]
     public PlayerState playerState = PlayerState.Driving;   // 現在のプレイヤーの状態
 
+    private Transform cameraTransform;  // カメラのTransform
 
     private bool isGrounded = true;     // 地面にいるかどうか
     private Vector3 inputDirection;     // 入力方向
@@ -48,9 +46,10 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();         // Rigidbodyを取得
-        currentBoost = maxBoost;                // Boostを最大容量に設定
-        playerState = PlayerState.Driving;      // プレイヤーの状態をDrivingに設定
+        cameraTransform = Camera.main.transform;    // カメラのTransformを取得
+        rb = GetComponent<Rigidbody>();             // Rigidbodyを取得
+        currentBoost = maxBoost;                    // Boostを最大容量に設定
+        playerState = PlayerState.Driving;          // プレイヤーの状態をDrivingに設定
     }
 
     void Update()
