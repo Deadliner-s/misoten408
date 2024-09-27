@@ -1,122 +1,161 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    // “ü—Í
-    private float horizontalInput;
-    private float verticalInput;
+    private Vector2 input;              // å…¥åŠ›
 
-    [Header("ˆÚ“®‘¬“x")]
-    public float moveSpeed = 5f;        // ©“]Ô‚ÌˆÚ“®‘¬“x
-    public float boostSpeed = 10f;      // ƒu[ƒXƒg’†‚ÌˆÚ“®‘¬“x
+    // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®çŠ¶æ…‹
+    public enum PlayerState
+    {
+        Driving,    // è‡ªè»¢è»Šã«ä¹—ã£ã¦ã„ã‚‹çŠ¶æ…‹
+        Walking,    // æ­©ã„ã¦ã„ã‚‹çŠ¶æ…‹
+    }
 
-    [Header("ù‰ñ‘¬“x")]
-    public float turnSpeed = 150f;      // ©“]Ô‚Ìù‰ñ‘¬“x
+    [Header("ç§»å‹•é€Ÿåº¦")]
+    public float driveSpeed = 5f;       // è‡ªè»¢è»Šã®ç§»å‹•é€Ÿåº¦
+    public float boostSpeed = 10f;      // ãƒ–ãƒ¼ã‚¹ãƒˆä¸­ã®ç§»å‹•é€Ÿåº¦
+    public float walkSpeed = 2f;        // æ­©è¡Œä¸­ã®ç§»å‹•é€Ÿåº¦
 
-    [Header("ƒWƒƒƒ“ƒv‚Ì‚‚³")]
-    public float jumpHeight = 2f;       // ƒWƒƒƒ“ƒv‚Ì‚‚³
+    [Header("æ—‹å›é€Ÿåº¦")]
+    public float driveTurnSpeed = 150f; // è‡ªè»¢è»Šã®æ—‹å›é€Ÿåº¦
+    public float walkTurnSpeed = 10f;   // æ­©è¡Œä¸­ã®æ—‹å›é€Ÿåº¦
 
-    [Header("ƒJƒƒ‰‚ÌTransform")]
-    public Transform cameraTransform;   // ƒJƒƒ‰‚ÌTransform
+    [Header("ã‚¸ãƒ£ãƒ³ãƒ—ã®é«˜ã•")]
+    public float jumpHeight = 2f;       // ã‚¸ãƒ£ãƒ³ãƒ—ã®é«˜ã•
 
-    [Header("Boost‚ÌÅ‘å—e—Ê(•b)")]
-    public float maxBoost = 100f;       // Boost‚ÌÅ‘å—e—Ê
+    [Header("Boostã®æœ€å¤§å®¹é‡(ç§’)")]
+    public float maxBoost = 100f;       // Boostã®æœ€å¤§å®¹é‡
 
+    [Header("Boostã®å›å¾©é€Ÿåº¦(1ç§’é–“ã«nãšã¤)")]
+    public float boostRecoverySpeed = 4f;    // Boostã®å›å¾©é€Ÿåº¦
 
-    private bool isGrounded = true;     // ’n–Ê‚É‚¢‚é‚©‚Ç‚¤‚©
-    private Vector3 inputDirection;     // “ü—Í•ûŒü
+    [Header("ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®çŠ¶æ…‹")]
+    public PlayerState playerState = PlayerState.Driving;   // ç¾åœ¨ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®çŠ¶æ…‹
 
-    private float currentBoost;         // Œ»İ‚ÌBoost—Ê
+    private Transform cameraTransform;  // ã‚«ãƒ¡ãƒ©ã®Transform
 
-    private Rigidbody rb;               // Rigidbody‚ÌQÆ
+    private bool isGrounded = true;     // åœ°é¢ã«ã„ã‚‹ã‹ã©ã†ã‹
+    private Vector3 inputDirection;     // å…¥åŠ›æ–¹å‘
 
-    private bool isBoosting = false;    // ƒu[ƒXƒg’†‚©‚Ç‚¤‚©
+    private float currentBoost;         // ç¾åœ¨ã®Boosté‡
+
+    private Rigidbody rb;               // Rigidbodyã®å‚ç…§
+
+    private bool isBoosting = false;    // ãƒ–ãƒ¼ã‚¹ãƒˆä¸­ã‹ã©ã†ã‹
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>(); // Rigidbody‚ğæ“¾
-        currentBoost = maxBoost;        // Boost‚ğÅ‘å—e—Ê‚Éİ’è
+        cameraTransform = Camera.main.transform;    // ã‚«ãƒ¡ãƒ©ã®Transformã‚’å–å¾—
+        rb = GetComponent<Rigidbody>();             // Rigidbodyã‚’å–å¾—
+        currentBoost = maxBoost;                    // Boostã‚’æœ€å¤§å®¹é‡ã«è¨­å®š
+        playerState = PlayerState.Driving;          // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®çŠ¶æ…‹ã‚’Drivingã«è¨­å®š
     }
 
     void Update()
     {
-        // ƒJƒƒ‰‚É‘Î‚·‚é“ü—Í•ûŒü‚ğŒvZ
+        // ã‚«ãƒ¡ãƒ©ã«å¯¾ã™ã‚‹å…¥åŠ›æ–¹å‘ã‚’è¨ˆç®—
         Vector3 forward = cameraTransform.forward;
         Vector3 right = cameraTransform.right;
 
-        // ƒJƒƒ‰‚ÌY•ûŒü‚ğ–³‹
+        // ã‚«ãƒ¡ãƒ©ã®Yæ–¹å‘ã‚’ç„¡è¦–
         forward.y = 0;
         right.y = 0;
         forward.Normalize();
         right.Normalize();
 
-        // “ü—Í‚ÉŠî‚Ã‚­•ûŒü‚ğŒˆ’è
-        inputDirection = forward * verticalInput + right * horizontalInput;
+        // å…¥åŠ›ã«åŸºã¥ãæ–¹å‘ã‚’æ±ºå®š
+        inputDirection = forward * input.y + right * input.x;
 
-        // “ü—Í‚ª‚ ‚éê‡iƒWƒƒƒ“ƒv’†‚àˆÚ“®‚Å‚«‚é‚æ‚¤‚É‚·‚éj
-        if (inputDirection.sqrMagnitude > 0.01f)
+        // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®çŠ¶æ…‹ã«å¿œã˜ã¦ç§»å‹•å‡¦ç†ã‚’è¡Œã†
+        if (playerState == PlayerState.Driving)
         {
-            // ƒvƒŒƒCƒ„[‚Ì‘O•ûŒü‚ğ“ü—Í•ûŒü‚É‡‚í‚¹‚Ä‰ñ“]
-            Quaternion targetRotation = Quaternion.LookRotation(inputDirection);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
-
-            // ƒu[ƒXƒg’†‚ÌˆÚ“®‘¬“x‚ğg—p
-            float currentSpeed = isBoosting ? boostSpeed : moveSpeed;
-            transform.Translate(Vector3.forward * currentSpeed * Time.deltaTime);
-
-            // ƒu[ƒXƒg’†‚Ìê‡‚ÍBoost‚ğÁ”ï
-            if (isBoosting)
+            // å…¥åŠ›ãŒã‚ã‚‹å ´åˆï¼ˆã‚¸ãƒ£ãƒ³ãƒ—ä¸­ã‚‚ç§»å‹•ã§ãã‚‹ã‚ˆã†ã«ã™ã‚‹ï¼‰
+            if (inputDirection.sqrMagnitude > 0.01f)
             {
-                currentBoost = Mathf.Max(0, currentBoost - Time.deltaTime);
+                // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å‰æ–¹å‘ã‚’å…¥åŠ›æ–¹å‘ã«åˆã‚ã›ã¦å›è»¢
+                Quaternion targetRotation = Quaternion.LookRotation(inputDirection);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, driveTurnSpeed * Time.deltaTime);
+
+                // ãƒ–ãƒ¼ã‚¹ãƒˆä¸­ã®ç§»å‹•é€Ÿåº¦ã‚’ä½¿ç”¨
+                float currentSpeed = isBoosting ? boostSpeed : driveSpeed;
+                transform.Translate(Vector3.forward * currentSpeed * Time.deltaTime);
+
+                // ãƒ–ãƒ¼ã‚¹ãƒˆä¸­ã®å ´åˆã¯Boostã‚’æ¶ˆè²»
+                if (isBoosting)
+                {
+                    currentBoost = Mathf.Max(0, currentBoost - Time.deltaTime);
+                }
+            }
+        }
+        else if (playerState == PlayerState.Walking)
+        {
+            // ç§»å‹•æ–¹å‘ã‚’è¨ˆç®—
+            Vector3 moveDirection = (forward * input.y + right * input.x).normalized;
+
+            if (moveDirection.sqrMagnitude > 0.01f)
+            {
+                // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å‘ãã‚’ç§»å‹•æ–¹å‘ã«å‘ã‘ã‚‹
+                Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, walkTurnSpeed * Time.deltaTime);
+
+                // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’ç§»å‹•
+                transform.position += moveDirection * walkSpeed * Time.deltaTime;
+            }
+
+            // Boostã‚’å›å¾©(1ç§’é–“ã«boostRecoverySpeedãšã¤å›å¾©)
+            currentBoost = Mathf.Min(maxBoost, currentBoost + boostRecoverySpeed * Time.deltaTime);
+            if (currentBoost >= maxBoost)
+            {
+                currentBoost = maxBoost;
             }
         }
     }
 
-    // ’n–Ê‚ÉÚG‚µ‚½‚Ìˆ—
+    // åœ°é¢ã«æ¥è§¦ã—ãŸæ™‚ã®å‡¦ç†
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
+            // åœ°é¢ã«æ¥è§¦ã—ãŸã‚‰ã‚¸ãƒ£ãƒ³ãƒ—å¯èƒ½
             isGrounded = true;
         }
     }
 
-    // ˆÚ“®‚Ì“ü—Í
+    // ç§»å‹•ã®å…¥åŠ›
     public void OnMove(InputAction.CallbackContext context)
     {
-        Vector2 input = context.ReadValue<Vector2>();
-        horizontalInput = input.x;
-        verticalInput = input.y;
+        input = context.ReadValue<Vector2>();
     }
 
-    // ƒWƒƒƒ“ƒv‚Ì“ü—Í
+    // ã‚¸ãƒ£ãƒ³ãƒ—ã®å…¥åŠ›
     public void OnJump(InputAction.CallbackContext context)
     {
-        // ƒu[ƒXƒg’†‚ÍƒWƒƒƒ“ƒv‚Å‚«‚È‚¢
-        if (context.performed && isGrounded && !isBoosting)
+        // ãƒ–ãƒ¼ã‚¹ãƒˆä¸­ã¯ã‚¸ãƒ£ãƒ³ãƒ—ã§ããªã„ã€wakingä¸­ã¯ã‚¸ãƒ£ãƒ³ãƒ—ã§ããªã„
+        if (context.performed && isGrounded && !isBoosting && playerState == PlayerState.Driving)
         {
             rb.AddForce(Vector3.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y), ForceMode.VelocityChange);
             isGrounded = false;
         }
     }
 
-    // Boost‚Ì“ü—Í
+    // Boostã®å…¥åŠ›
     public void OnBoost(InputAction.CallbackContext context)
     {
-        if (context.performed && isGrounded && currentBoost > 0.0f) // ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚Æ‚« & ƒWƒƒƒ“ƒv’†‚Å‚È‚¢‚Æ‚« & Boost‚ªc‚Á‚Ä‚¢‚é‚Æ‚«
+        // ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã¨ã & ã‚¸ãƒ£ãƒ³ãƒ—ä¸­ã§ãªã„ã¨ã & BoostãŒæ®‹ã£ã¦ã„ã‚‹ã¨ã & walkingä¸­ã§ãªã„ã¨ã
+        if (context.performed && isGrounded && currentBoost > 0.0f && playerState == PlayerState.Driving)
         {
-            // ƒu[ƒXƒgŠJn
+            // ãƒ–ãƒ¼ã‚¹ãƒˆé–‹å§‹
             isBoosting = true;
         }
-        else if (context.canceled) // ƒ{ƒ^ƒ“‚ª—£‚³‚ê‚½‚Æ‚«
+        else if (context.canceled) // ãƒœã‚¿ãƒ³ãŒé›¢ã•ã‚ŒãŸã¨ã
         {
-            // ƒu[ƒXƒgI—¹
+            // ãƒ–ãƒ¼ã‚¹ãƒˆçµ‚äº†
             isBoosting = false;
         }
     }
 
-    // Œˆ’èƒ{ƒ^ƒ“‚Ì“ü—Í
+    // æ±ºå®šãƒœã‚¿ãƒ³ã®å…¥åŠ›
     public void OnInteract(InputAction.CallbackContext context)
     {
         Debug.Log("Interact");
