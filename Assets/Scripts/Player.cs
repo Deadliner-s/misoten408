@@ -23,6 +23,9 @@ public class Player : MonoBehaviour
     [Header("Boostの最大容量(秒)")]
     public float maxBoost = 100f;       // Boostの最大容量
 
+    [Header("Boostの回復速度(1秒間にnずつ)")]
+    public float boostRecoverySpeed = 4f;    // Boostの回復速度
+
     // プレイヤーの状態
     public enum PlayerState
     {
@@ -100,6 +103,13 @@ public class Player : MonoBehaviour
                 // プレイヤーを移動
                 transform.position += moveDirection * walkSpeed * Time.deltaTime;
             }
+
+            // Boostを回復(1秒間にboostRecoverySpeedずつ回復)
+            currentBoost = Mathf.Min(maxBoost, currentBoost + boostRecoverySpeed * Time.deltaTime);
+            if (currentBoost >= maxBoost)
+            {
+                currentBoost = maxBoost;
+            }
         }
     }
 
@@ -150,12 +160,5 @@ public class Player : MonoBehaviour
     public void OnInteract(InputAction.CallbackContext context)
     {
         Debug.Log("Interact");
-    }
-
-
-    // チェックポイントに到達するとBoostが回復する
-    public void RecoverBoost()
-    {
-        currentBoost = maxBoost;
     }
 }
