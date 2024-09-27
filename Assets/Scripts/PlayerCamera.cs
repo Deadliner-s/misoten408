@@ -3,55 +3,48 @@ using UnityEngine.InputSystem;
 
 public class PlayerCamera : MonoBehaviour
 {
-    public Transform target;  // カメラが追従するターゲット
-    public float distance = 5.0f;  // ターゲットからの距離
-    public float mouseSensitivity = 2.0f;  // マウス感度
-    public float controllerSensitivity = 100.0f;  // コントローラー感度
-    public Vector2 pitchLimits = new Vector2(-40, 85);  // 上下の角度制限
+    // 入力
+    private float horizontalInput;
+    private float verticalInput;
 
-    private float pitch = 0.0f;  // 上下の角度
-    private float yaw = 0.0f;  // 左右の角度
+    [Header("プレイヤーのTransform")]
+    public Transform playerTransform;   // プレイヤーのTransform
+
+    [Header("カメラの回転速度")]
+    public float lookSpeed = 2f;        // カメラの回転速度
+
+    [Header("カメラの角度制限")]
+    public float maxPitch = 50f;        // ピッチの最大値（上向き）
+    public float minPitch = -25f;       // ピッチの最小値（下向き）
+
+    private float pitch = 0;            // カメラの上下の角度
+    private float yaw = 0;              // カメラの左右の角度
 
     void Start()
     {
-        // 初期の向きを設定
-        yaw = transform.eulerAngles.y;
-        pitch = transform.eulerAngles.x;
+        // プレイヤーの向きを初期値に設定
+        yaw = playerTransform.eulerAngles.y;
     }
 
     void LateUpdate()
     {
-        //// マウスまたはコントローラーでカメラの回転を制御
-        //float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
-        //float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
+        // カメラの角度を更新
+        yaw += horizontalInput * lookSpeed;
+        pitch -= verticalInput * lookSpeed;
 
-        //float controllerX = Input.GetAxis("RightStickHorizontal") * controllerSensitivity * Time.deltaTime;
-        //float controllerY = Input.GetAxis("RightStickVertical") * controllerSensitivity * Time.deltaTime;
+        // ピッチ角度の制限
+        pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
 
-        //yaw += mouseX + controllerX;
-        //pitch -= mouseY + controllerY;
-
-        //// 上下の角度を制限
-        //pitch = Mathf.Clamp(pitch, pitchLimits.x, pitchLimits.y);
-
-        // カメラの位置と回転をターゲットに基づいて更新
-        Vector3 targetPosition = target.position - new Vector3(0, 0, distance);
-        transform.position = targetPosition;
-
-        transform.rotation = Quaternion.Euler(pitch, yaw, 0);
-        transform.position = target.position - transform.forward * distance;
+        // カメラをプレイヤーの後ろに回転させる
+        transform.eulerAngles = new Vector3(pitch, yaw, 0f);
+        transform.position = playerTransform.position - transform.forward * 5f + Vector3.up * 2f; // 距離や高さは調整
     }
 
+    // InputSystemのOnLookメソッド
     public void OnLook(InputAction.CallbackContext context)
     {
-        Vector2 moveInput = context.ReadValue<Vector2>();
-        yaw += moveInput.x * controllerSensitivity * Time.deltaTime;
-        pitch -= moveInput.y * controllerSensitivity * Time.deltaTime;
-
-        pitch = Mathf.Clamp(pitch, pitchLimits.x, pitchLimits.y);
+        Vector2 input = context.ReadValue<Vector2>();
+        horizontalInput = input.x;
+        verticalInput = input.y;
     }
-
-
-
-
 }
