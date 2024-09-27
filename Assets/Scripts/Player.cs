@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
 
     [Header("移動速度")]
     public float moveSpeed = 5f;        // 自転車の移動速度
+    public float boostSpeed = 10f;      // ブースト中の移動速度
 
     [Header("旋回速度")]
     public float turnSpeed = 150f;      // 自転車の旋回速度
@@ -19,14 +20,23 @@ public class Player : MonoBehaviour
     [Header("カメラのTransform")]
     public Transform cameraTransform;   // カメラのTransform
 
+    [Header("Boostの最大容量(秒)")]
+    public float maxBoost = 100f;       // Boostの最大容量
+
+
     private bool isGrounded = true;     // 地面にいるかどうか
     private Vector3 inputDirection;     // 入力方向
 
+    private float currentBoost;         // 現在のBoost量
+
     private Rigidbody rb;               // Rigidbodyの参照
+
+    private bool isBoosting = false;    // ブースト中かどうか
 
     void Start()
     {
         rb = GetComponent<Rigidbody>(); // Rigidbodyを取得
+        currentBoost = maxBoost;        // Boostを最大容量に設定
     }
 
     void Update()
@@ -51,19 +61,15 @@ public class Player : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(inputDirection);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
 
-            // プレイヤーを前進させる（地面にいるかどうかに関係なく移動できる）
-            transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
-        }
-    }
+            // ブースト中の移動速度を使用
+            float currentSpeed = isBoosting ? boostSpeed : moveSpeed;
+            transform.Translate(Vector3.forward * currentSpeed * Time.deltaTime);
 
-    // ジャンプ入力処理
-    public void OnJump(InputAction.CallbackContext context)
-    {
-        if (context.performed && isGrounded)
-        {
-            Debug.Log("Jump");
-            rb.AddForce(Vector3.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y), ForceMode.VelocityChange);
-            isGrounded = false;
+            // ブースト中の場合はBoostを消費
+            if (isBoosting)
+            {
+                currentBoost = Mathf.Max(0, currentBoost - Time.deltaTime);
+            }
         }
     }
 
@@ -76,7 +82,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    // InputSystemのOnMoveメソッド
+    // 移動の入力
     public void OnMove(InputAction.CallbackContext context)
     {
         Vector2 input = context.ReadValue<Vector2>();
@@ -84,11 +90,33 @@ public class Player : MonoBehaviour
         verticalInput = input.y;
     }
 
-    public void OnBoost(InputAction.CallbackContext context)
+    // ジャンプの入力
+    public void OnJump(InputAction.CallbackContext context)
     {
-        Debug.Log("Boost");
+        // ブースト中はジャンプできない
+        if (context.performed && isGrounded && !isBoosting)
+        {
+            rb.AddForce(Vector3.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y), ForceMode.VelocityChange);
+            isGrounded = false;
+        }
     }
 
+    // Boostの入力
+    public void OnBoost(InputAction.CallbackContext context)
+    {
+        if (context.performed && isGrounded && currentBoost > 0.0f) // ボタンが押されたとき & ジャンプ中でないとき & Boostが残っているとき
+        {
+            // ブースト開始
+            isBoosting = true;
+        }
+        else if (context.canceled) // ボタンが離されたとき
+        {
+            // ブースト終了
+            isBoosting = false;
+        }
+    }
+
+    // 決定ボタンの入力
     public void OnInteract(InputAction.CallbackContext context)
     {
         Debug.Log("Interact");
