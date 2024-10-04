@@ -1,57 +1,45 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerCamera : MonoBehaviour
 {
-    public Transform target;  // ƒJƒƒ‰‚ª’Ç]‚·‚éƒ^[ƒQƒbƒg
-    public float distance = 5.0f;  // ƒ^[ƒQƒbƒg‚©‚ç‚Ì‹——£
-    public float mouseSensitivity = 2.0f;  // ƒ}ƒEƒXŠ´“x
-    public float controllerSensitivity = 100.0f;  // ƒRƒ“ƒgƒ[ƒ‰[Š´“x
-    public Vector2 pitchLimits = new Vector2(-40, 85);  // ã‰º‚ÌŠp“x§ŒÀ
+    private Vector2 input;              // å…¥åŠ›
 
-    private float pitch = 0.0f;  // ã‰º‚ÌŠp“x
-    private float yaw = 0.0f;  // ¶‰E‚ÌŠp“x
+    [Header("ã‚«ãƒ¡ãƒ©ã®å›è»¢é€Ÿåº¦")]
+    public float lookSpeed = 2f;        // ã‚«ãƒ¡ãƒ©ã®å›è»¢é€Ÿåº¦
+
+    [Header("ã‚«ãƒ¡ãƒ©ã®è§’åº¦åˆ¶é™")]
+    public float maxPitch = 50f;        // ãƒ”ãƒƒãƒã®æœ€å¤§å€¤ï¼ˆä¸Šå‘ãï¼‰
+    public float minPitch = -25f;       // ãƒ”ãƒƒãƒã®æœ€å°å€¤ï¼ˆä¸‹å‘ãï¼‰
+
+    private Transform playerTransform;  // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®Transform
+
+    private float pitch = 0;            // ã‚«ãƒ¡ãƒ©ã®ä¸Šä¸‹ã®è§’åº¦
+    private float yaw = 0;              // ã‚«ãƒ¡ãƒ©ã®å·¦å³ã®è§’åº¦
 
     void Start()
     {
-        // ‰Šú‚ÌŒü‚«‚ğİ’è
-        yaw = transform.eulerAngles.y;
-        pitch = transform.eulerAngles.x;
+        playerTransform = GameObject.Find("Player").transform;    // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®Transformã‚’å–å¾—
+        yaw = playerTransform.eulerAngles.y;                      // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å‘ãã‚’åˆæœŸå€¤ã«è¨­å®š
     }
 
     void LateUpdate()
     {
-        //// ƒ}ƒEƒX‚Ü‚½‚ÍƒRƒ“ƒgƒ[ƒ‰[‚ÅƒJƒƒ‰‚Ì‰ñ“]‚ğ§Œä
-        //float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
-        //float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
+        // ã‚«ãƒ¡ãƒ©ã®è§’åº¦ã‚’æ›´æ–°
+        yaw += input.x * lookSpeed;
+        pitch -= input.y * lookSpeed;
 
-        //float controllerX = Input.GetAxis("RightStickHorizontal") * controllerSensitivity * Time.deltaTime;
-        //float controllerY = Input.GetAxis("RightStickVertical") * controllerSensitivity * Time.deltaTime;
+        // ãƒ”ãƒƒãƒè§’åº¦ã®åˆ¶é™
+        pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
 
-        //yaw += mouseX + controllerX;
-        //pitch -= mouseY + controllerY;
-
-        //// ã‰º‚ÌŠp“x‚ğ§ŒÀ
-        //pitch = Mathf.Clamp(pitch, pitchLimits.x, pitchLimits.y);
-
-        // ƒJƒƒ‰‚ÌˆÊ’u‚Æ‰ñ“]‚ğƒ^[ƒQƒbƒg‚ÉŠî‚Ã‚¢‚ÄXV
-        Vector3 targetPosition = target.position - new Vector3(0, 0, distance);
-        transform.position = targetPosition;
-
-        transform.rotation = Quaternion.Euler(pitch, yaw, 0);
-        transform.position = target.position - transform.forward * distance;
+        // ã‚«ãƒ¡ãƒ©ã‚’ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å¾Œã‚ã«å›è»¢ã•ã›ã‚‹
+        transform.eulerAngles = new Vector3(pitch, yaw, 0f);
+        transform.position = playerTransform.position - transform.forward * 5f + Vector3.up * 2f; // è·é›¢ã‚„é«˜ã•ã¯èª¿æ•´
     }
 
+    // InputSystemã®OnLookãƒ¡ã‚½ãƒƒãƒ‰
     public void OnLook(InputAction.CallbackContext context)
     {
-        Vector2 moveInput = context.ReadValue<Vector2>();
-        yaw += moveInput.x * controllerSensitivity * Time.deltaTime;
-        pitch -= moveInput.y * controllerSensitivity * Time.deltaTime;
-
-        pitch = Mathf.Clamp(pitch, pitchLimits.x, pitchLimits.y);
+        input = context.ReadValue<Vector2>();
     }
-
-
-
-
 }

@@ -1,47 +1,163 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    public float moveSpeed = 5f;  // �v���C���[�̈ړ����x
-    public float rotationSpeed = 720f;  // �v���C���[�̉�]���x
-    public Transform cameraTransform;  // �J������Transform
+    private Vector2 input;              // 入力
 
-    private Rigidbody playerRigidbody;
+    // プレイヤーの状態
+    public enum PlayerState
+    {
+        Driving,    // 自転車に乗っている状態
+        Walking,    // 歩いている状態
+    }
 
-    // ���͎擾 (WASD����L�[)
-    float horizontal;// = Input.GetAxis("Horizontal");  // ���E�̈ړ�
-    float vertical;// = Input.GetAxis("Vertical");      // �O��̈ړ�
+    [Header("移動速度")]
+    public float driveSpeed = 5f;       // 自転車の移動速度
+    public float boostSpeed = 10f;      // ブースト中の移動速度
+    public float walkSpeed = 2f;        // 歩行中の移動速度
+
+    [Header("旋回速度")]
+    public float driveTurnSpeed = 150f; // 自転車の旋回速度
+    public float walkTurnSpeed = 10f;   // 歩行中の旋回速度
+
+    [Header("ジャンプの高さ")]
+    public float jumpHeight = 2f;       // ジャンプの高さ
+
+    [Header("Boostの最大容量(秒)")]
+    public float maxBoost = 100f;       // Boostの最大容量
+
+    [Header("Boostの回復速度(1秒間にnずつ)")]
+    public float boostRecoverySpeed = 4f;    // Boostの回復速度
+
+    [Header("プレイヤーの状態")]
+    public PlayerState playerState = PlayerState.Driving;   // 現在のプレイヤーの状態
+
+    private Transform cameraTransform;  // カメラのTransform
+
+    private bool isGrounded = true;     // 地面にいるかどうか
+    private Vector3 inputDirection;     // 入力方向
+
+    private float currentBoost;         // 現在のBoost量
+
+    private Rigidbody rb;               // Rigidbodyの参照
+
+    private bool isBoosting = false;    // ブースト中かどうか
 
     void Start()
     {
-        // Rigidbody�R���|�[�l���g���擾
-        playerRigidbody = GetComponent<Rigidbody>();
+        cameraTransform = Camera.main.transform;    // カメラのTransformを取得
+        rb = GetComponent<Rigidbody>();             // Rigidbodyを取得
+        currentBoost = maxBoost;                    // Boostを最大容量に設定
+        playerState = PlayerState.Driving;          // プレイヤーの状態をDrivingに設定
     }
 
     void Update()
     {
-        // �J�����Ɋ�Â����ړ��������v�Z
-        Vector3 moveDirection = (cameraTransform.forward * vertical) + (cameraTransform.right * horizontal);
-        moveDirection.y = 0;  // �����ړ������ɂ���
+        // カメラに対する入力方向を計算
+        Vector3 forward = cameraTransform.forward;
+        Vector3 right = cameraTransform.right;
 
-        // �v���C���[�����������ɉ�]����
-        if (moveDirection.magnitude > 0.1f)
+        // カメラのY方向を無視
+        forward.y = 0;
+        right.y = 0;
+        forward.Normalize();
+        right.Normalize();
+
+        // 入力に基づく方向を決定
+        inputDirection = forward * input.y + right * input.x;
+
+        // プレイヤーの状態に応じて移動処理を行う
+        if (playerState == PlayerState.Driving)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            // 入力がある場合（ジャンプ中も移動できるようにする）
+            if (inputDirection.sqrMagnitude > 0.01f)
+            {
+                // プレイヤーの前方向を入力方向に合わせて回転
+                Quaternion targetRotation = Quaternion.LookRotation(inputDirection);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, driveTurnSpeed * Time.deltaTime);
+
+                // ブースト中の移動速度を使用
+                float currentSpeed = isBoosting ? boostSpeed : driveSpeed;
+                transform.Translate(Vector3.forward * currentSpeed * Time.deltaTime);
+
+                // ブースト中の場合はBoostを消費
+                if (isBoosting)
+                {
+                    currentBoost = Mathf.Max(0, currentBoost - Time.deltaTime);
+                }
+            }
         }
+        else if (playerState == PlayerState.Walking)
+        {
+            // 移動方向を計算
+            Vector3 moveDirection = (forward * input.y + right * input.x).normalized;
 
-        // �v���C���[�̈ړ�����
-        Vector3 movement = moveDirection.normalized * moveSpeed * Time.deltaTime;
-        playerRigidbody.MovePosition(transform.position + movement);
+            if (moveDirection.sqrMagnitude > 0.01f)
+            {
+                // プレイヤーの向きを移動方向に向ける
+                Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, walkTurnSpeed * Time.deltaTime);
+
+                // プレイヤーを移動
+                transform.position += moveDirection * walkSpeed * Time.deltaTime;
+            }
+
+            // Boostを回復(1秒間にboostRecoverySpeedずつ回復)
+            currentBoost = Mathf.Min(maxBoost, currentBoost + boostRecoverySpeed * Time.deltaTime);
+            if (currentBoost >= maxBoost)
+            {
+                currentBoost = maxBoost;
+            }
+        }
     }
 
-    public void OnMove(InputAction.CallbackContext context) 
+    // 地面に接触した時の処理
+    private void OnCollisionEnter(Collision collision)
     {
-        Vector2 moveInput = context.ReadValue<Vector2>();
-        horizontal = moveInput.x;
-        vertical = moveInput.y;
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            // 地面に接触したらジャンプ可能
+            isGrounded = true;
+        }
     }
 
+    // 移動の入力
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        input = context.ReadValue<Vector2>();
+    }
+
+    // ジャンプの入力
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        // ブースト中はジャンプできない、waking中はジャンプできない
+        if (context.performed && isGrounded && !isBoosting && playerState == PlayerState.Driving)
+        {
+            rb.AddForce(Vector3.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y), ForceMode.VelocityChange);
+            isGrounded = false;
+        }
+    }
+
+    // Boostの入力
+    public void OnBoost(InputAction.CallbackContext context)
+    {
+        // ボタンが押されたとき & ジャンプ中でないとき & Boostが残っているとき & walking中でないとき
+        if (context.performed && isGrounded && currentBoost > 0.0f && playerState == PlayerState.Driving)
+        {
+            // ブースト開始
+            isBoosting = true;
+        }
+        else if (context.canceled) // ボタンが離されたとき
+        {
+            // ブースト終了
+            isBoosting = false;
+        }
+    }
+
+    // 決定ボタンの入力
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        Debug.Log("Interact");
+    }
 }
