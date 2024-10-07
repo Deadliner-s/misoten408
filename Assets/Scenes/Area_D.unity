@@ -525,7 +525,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 148a5244d23c06f4c9e8f232869f00e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 1287528586}
   lookSpeed: 2
   maxPitch: 50
   minPitch: -25
@@ -1261,7 +1260,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!154 &437344408
 TerrainCollider:
   m_ObjectHideFlags: 0
@@ -2323,6 +2322,87 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 757848576}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &759133461
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 3f5e577ed22180c43a53d053c0fa6504, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 7.12
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3f5e577ed22180c43a53d053c0fa6504, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 7.12
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3f5e577ed22180c43a53d053c0fa6504, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 7.12
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3f5e577ed22180c43a53d053c0fa6504, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 942
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3f5e577ed22180c43a53d053c0fa6504, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -213
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3f5e577ed22180c43a53d053c0fa6504, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1031
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3f5e577ed22180c43a53d053c0fa6504, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3f5e577ed22180c43a53d053c0fa6504, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3f5e577ed22180c43a53d053c0fa6504, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3f5e577ed22180c43a53d053c0fa6504, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3f5e577ed22180c43a53d053c0fa6504, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3f5e577ed22180c43a53d053c0fa6504, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3f5e577ed22180c43a53d053c0fa6504, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3f5e577ed22180c43a53d053c0fa6504, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3029032871660112297, guid: 3f5e577ed22180c43a53d053c0fa6504, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3f5e577ed22180c43a53d053c0fa6504, type: 3}
+      propertyPath: m_Name
+      value: d_model
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3f5e577ed22180c43a53d053c0fa6504, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3f5e577ed22180c43a53d053c0fa6504, type: 3}
 --- !u!1 &849091516
 GameObject:
   m_ObjectHideFlags: 0
@@ -3742,12 +3822,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71e54c7831c2629488c51a0dcdad75fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  driveSpeed: 5
   boostSpeed: 10
-  turnSpeed: 150
+  walkSpeed: 2
+  driveTurnSpeed: 150
+  walkTurnSpeed: 10
   jumpHeight: 2
-  cameraTransform: {fileID: 177194155}
   maxBoost: 100
+  boostRecoverySpeed: 4
+  playerState: 0
 --- !u!54 &1287528588
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5922,3 +6005,4 @@ SceneRoots:
   - {fileID: 1049678116}
   - {fileID: 594377582}
   - {fileID: 1635243292}
+  - {fileID: 759133461}
