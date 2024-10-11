@@ -12,15 +12,12 @@ public class PlayerCamera : MonoBehaviour
     public float maxPitch = 50f;        // ピッチの最大値（上向き）
     public float minPitch = -25f;       // ピッチの最小値（下向き）
 
-    private Transform playerTransform;  // プレイヤーのTransform
-
     private float pitch = 0;            // カメラの上下の角度
     private float yaw = 0;              // カメラの左右の角度
 
     void Start()
     {
-        playerTransform = GameObject.Find("Player").transform;    // プレイヤーのTransformを取得
-        yaw = playerTransform.eulerAngles.y;                      // プレイヤーの向きを初期値に設定
+        yaw = this.transform.eulerAngles.y;                      // プレイヤーの向きを初期値に設定
     }
 
     void LateUpdate()
@@ -33,8 +30,8 @@ public class PlayerCamera : MonoBehaviour
         pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
 
         // カメラをプレイヤーの後ろに回転させる
-        transform.eulerAngles = new Vector3(pitch, yaw, 0f);
-        transform.position = playerTransform.position - transform.forward * 5f + Vector3.up * 2f; // 距離や高さは調整
+        Camera.main.transform.eulerAngles = new Vector3(pitch, yaw, 0f);
+        Camera.main.transform.position = this.transform.position - Camera.main.transform.forward * 5f + Vector3.up * 2f; // 距離や高さは調整
     }
 
     // InputSystemのOnLookメソッド
