@@ -9,6 +9,9 @@ public class SceneTransitionManager : MonoBehaviour
     public GameObject loadingScreen;    // ロード画面のUI（プレハブなどをアタッチ）
     public Slider progressBar;          // ロード中の進捗を表示するスライダー
 
+    [SerializeField]
+    private Vector3 playerStartPos = new Vector3(500.0f, 100.0f, 0.0f);
+
     private void Awake()
     {
         // シングルトンパターンの実装
@@ -34,6 +37,12 @@ public class SceneTransitionManager : MonoBehaviour
     {
         StartCoroutine(LoadSceneAsyncCoroutine(sceneName));
     }
+    public void LoadSceneAsyncPlayerSetpos(string sceneName, GameObject SpawnPos)
+    {
+        playerStartPos = SpawnPos.transform.position;
+        StartCoroutine(LoadSceneAsyncCoroutine(sceneName));
+
+    }
 
     private IEnumerator LoadSceneAsyncCoroutine(string sceneName)
     {
@@ -54,4 +63,23 @@ public class SceneTransitionManager : MonoBehaviour
         // ロードが完了したらロード画面を非表示
         loadingScreen.SetActive(false);
     }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        GameObject player = GameObject.FindWithTag("Player");
+        if(player != null)
+        {
+            player.transform.position = playerStartPos;
+        }
+    }
+
 }
