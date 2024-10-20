@@ -47,16 +47,11 @@ public class Player : MonoBehaviour
     private bool isTalkArea = false;                        // TalkAreaに入っているかどうか
     private bool isTalking = false;                         // 会話中かどうか
 
-    private GameObject road;                                // RoadのGameObject
-    private Vector3 firstPos;                               // 初期位置
-
     void Start()
     {
         cameraTransform = Camera.main.transform;            // カメラのTransformを取得
         currentBoost = maxBoost;                            // Boostを最大容量に設定
         playerState = PlayerState.Driving;                  // プレイヤーの状態をDrivingに設定
-        road = GameObject.FindGameObjectWithTag("Ground");  // RoadのGameObjectを取得
-        firstPos = transform.position;                      // 初期位置を取得
     }
 
     void Update()
@@ -134,14 +129,6 @@ public class Player : MonoBehaviour
                 currentBoost = maxBoost;
             }
         }
-
-        // マップ外に落ちてしまった時の処理(roadより下に落ちたら初期位置に戻す)
-        if (transform.position.y < road.transform.position.y - 1.0f)
-        {
-            transform.position = firstPos;
-        }
-
-
     }
 
     // 地面に接触した時の処理
