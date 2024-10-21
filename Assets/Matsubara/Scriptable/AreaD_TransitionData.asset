@@ -14,6 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   areaName: 
   transitions:
-  - direction: 
-    targetScene: 
+  - SceneInitial: C
+    targetScene: Area_C
     spawnPosition: {x: 0, y: 0, z: 0}
+    transform: {fileID: 6882305788485721241, guid: 3eac6d17077c22a4da1c950f16167fc1, type: 3}
+  - SceneInitial: E
+    targetScene: Area_E
+    spawnPosition: {x: 0, y: 0, z: 0}
+    transform: {fileID: 6446792143622624443, guid: 17934844de2b1da44bc42ad205863210, type: 3}
