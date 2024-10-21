@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1000830610153166734}
   m_Layer: 0
-  m_Name: SpawnPosA
+  m_Name: AreaB_SpawnPosA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
