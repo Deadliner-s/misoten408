@@ -1,4 +1,7 @@
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GameCheckPointManager : MonoBehaviour
 {
@@ -6,6 +9,9 @@ public class GameCheckPointManager : MonoBehaviour
     [Header("現在のステージ番号")]
     public int currentStageNum = 0;
     public StageCheckPointManager[] stageCheckPointManagers;
+    [Header("UIPrefab")]
+    public GameObject cp_UI;
+    GameObject checkpointUI;
     bool canCreateAll = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -60,5 +66,34 @@ public class GameCheckPointManager : MonoBehaviour
 
         // フラグの切り替え
         canCreateAll = true;
+    }
+
+    /// <summary>
+    /// チェックポイントUIの生成
+    /// </summary>
+    /// <param name="stageNum">ステージ番号</param>
+    /// <param name="indexNum">配列添え字</param>
+    public void CreateUI(int stageNum, int indexNum)
+    {
+        // UI作成に必要な情報の取得
+        string description = stageCheckPointManagers[stageNum].checkPoints[indexNum].cp_description;
+        string name = stageCheckPointManagers[stageNum].checkPoints[indexNum].cp_name;
+
+        // UIの生成
+        checkpointUI = Instantiate(cp_UI);
+        checkpointUI.transform.Find("backGround1/Description").GetComponent<TextMeshProUGUI>().text = description;
+        checkpointUI.transform.Find("backGround2/checkPointName").GetComponent<TextMeshProUGUI>().text = name;
+    }
+
+    /// <summary>
+    /// チェックポイントUIの削除
+    /// </summary>
+    public void DestroyUI()
+    {
+        if (checkpointUI != null)
+        {
+            // 削除処理
+            Destroy(checkpointUI);
+        }
     }
 }
