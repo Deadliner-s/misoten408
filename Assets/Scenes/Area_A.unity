@@ -4333,6 +4333,10 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 422248136}
+    - target: {fileID: 7449424866284677355, guid: 3c5a7fc6eed4c7941a8cc128359aec6a, type: 3}
+      propertyPath: playerObject
+      value: 
+      objectReference: {fileID: 2007786582}
     - target: {fileID: 8805121588497430201, guid: 3c5a7fc6eed4c7941a8cc128359aec6a, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -10396,6 +10400,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2006675690}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2007786582 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1802766375104278680, guid: 8be6f8c6914e6044397e0789b2bc6cb8, type: 3}
+  m_PrefabInstance: {fileID: 1695583881}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2009303287
 GameObject:
   m_ObjectHideFlags: 0
@@ -11245,6 +11254,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 3797911183665538671}
+  - {fileID: 1477373203}
   - {fileID: 1442301462}
   - {fileID: 437344410}
   - {fileID: 316206960}
@@ -11254,7 +11264,6 @@ SceneRoots:
   - {fileID: 1100797745}
   - {fileID: 1015115362}
   - {fileID: 220082119}
-  - {fileID: 1477373203}
   - {fileID: 1695583881}
   - {fileID: 694469888}
   - {fileID: 646929221}
