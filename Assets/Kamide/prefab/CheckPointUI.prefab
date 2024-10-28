@@ -85,7 +85,6 @@ GameObject:
   - component: {fileID: 9128963622810871880}
   - component: {fileID: 1942646512980910650}
   - component: {fileID: 8676864741325706607}
-  - component: {fileID: 2973286259955821113}
   m_Layer: 5
   m_Name: CheckPointUI
   m_TagString: Untagged
@@ -177,18 +176,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &2973286259955821113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2333349213526674072}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c4414bca93c03d47b7f49f71e98e323, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3215266534076071563
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,8 +316,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f7fc4f35ac4f6e1409b812a0935c6e22, type: 2}
-  m_sharedMaterial: {fileID: 9007006942658632721, guid: f7fc4f35ac4f6e1409b812a0935c6e22, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -465,8 +452,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f7fc4f35ac4f6e1409b812a0935c6e22, type: 2}
-  m_sharedMaterial: {fileID: 9007006942658632721, guid: f7fc4f35ac4f6e1409b812a0935c6e22, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

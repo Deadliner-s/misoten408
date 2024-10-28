@@ -4,9 +4,9 @@ public class StageCheckPointManager : MonoBehaviour
 {
     // 変数宣言
     [Header("チェックポイントPrefab")]
-    public GameObject obj;       
+    public GameObject obj;              // Prefab用変数
     public CheckPoint[] checkPoints;    // チェックポイントクラス配列        
-
+    public int stage = 0;               // ステージ番号
 
     void Start()
     {
@@ -16,12 +16,7 @@ public class StageCheckPointManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            
-            
-        }
+    {        
     }
 
     /// <summary>
@@ -85,9 +80,13 @@ public class StageCheckPointManager : MonoBehaviour
                 checkPoints[i].cp_position.y,
                 checkPoints[i].cp_position.z),
                 Quaternion.Euler(90, 0, 0));
-       
+
+            // 大きさの調整
+            checkpoint.GetComponent<Transform>().localScale *= 0.3f;
+
             // 値の代入
             checkpoint.GetComponent<checkPoint>().cp_num = checkPoints[i].cp_num;
+            checkpoint.GetComponent<checkPoint>().stage = stage;
         }
     }
 
