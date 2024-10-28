@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     {
         Driving,                                            // 自転車に乗っている状態
         Walking,                                            // 歩いている状態
+        Debug,                                              // デバッグ中
     }
 
     [Header("移動速度")]
@@ -50,6 +51,9 @@ public class Player : MonoBehaviour
     private GameObject road;                                // RoadのGameObject
     private Vector3 firstPos;                               // 初期位置
 
+    [Header("デバッグ用(F1押すとクリエみたいになる、自転車乗ってる時だけ)")]
+    public bool isDebug = false;                            // デバッグモードかどうか
+
     void Start()
     {
         cameraTransform = Camera.main.transform;            // カメラのTransformを取得
@@ -82,6 +86,7 @@ public class Player : MonoBehaviour
             {
                 // プレイヤーの前方向を入力方向に合わせて回転
                 Quaternion targetRotation = Quaternion.LookRotation(inputDirection);
+                targetRotation = Quaternion.Euler(this.transform.eulerAngles.x, targetRotation.eulerAngles.y, this.transform.eulerAngles.z); // X軸の回転をゼロに設定
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, driveTurnSpeed * Time.deltaTime);
 
                 // ブースト中の移動速度を使用
@@ -134,6 +139,43 @@ public class Player : MonoBehaviour
                 currentBoost = maxBoost;
             }
         }
+        // Debug用
+        else if (playerState == PlayerState.Debug)
+        {
+            Vector3 moveDirection = (forward * input.y + right * input.x).normalized;
+
+            if (moveDirection.sqrMagnitude > 0.01f)
+            {
+                // プレイヤーの向きを移動方向に向ける
+                Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 100 * Time.deltaTime);
+
+                // プレイヤーを移動
+                transform.position += moveDirection * 100 * Time.deltaTime;
+            }
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                transform.position += Vector3.down * 50 * Time.deltaTime;
+            }
+            if (Input.GetKey(KeyCode.Space))
+            {
+                transform.position += Vector3.up * 50 * Time.deltaTime;
+            }
+        }
+
+        // ひっくり返らないようにする傾きを制限するX(-45度～45度),Z(0度～0度)
+        Vector3 angles = transform.eulerAngles;
+        if (angles.x > 180.0f)
+        {
+            angles.x -= 360.0f;
+        }
+        angles.x = Mathf.Clamp(angles.x, -45.0f, 45.0f);
+        if (angles.z > 180.0f)
+        {
+            angles.z -= 360.0f;
+        }
+        angles.z = Mathf.Clamp(angles.z, 0.0f, 0.0f);
+        transform.eulerAngles = angles;
 
         // マップ外に落ちてしまった時の処理(roadより下に落ちたら初期位置に戻す)
         if (transform.position.y < road.transform.position.y - 1.0f)
@@ -141,7 +183,16 @@ public class Player : MonoBehaviour
             transform.position = firstPos;
         }
 
-
+        // F1を押すとDebugモードに切り替え
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            isDebug = !isDebug;
+            playerState = isDebug ? PlayerState.Debug : PlayerState.Driving;
+            // Gravityを無効にする
+            this.GetComponent<Rigidbody>().useGravity = !isDebug;
+            // Dragを無効にする
+            this.GetComponent<Rigidbody>().linearDamping = isDebug ? 10 : 0;
+        }
     }
 
     // 地面に接触した時の処理
