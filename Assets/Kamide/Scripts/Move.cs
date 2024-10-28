@@ -13,6 +13,7 @@ public class Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.D))
         {
             Debug.Log("D");
@@ -30,5 +31,6 @@ public class Move : MonoBehaviour
             Debug.Log("S");
             GameObject.Find("GameCheckPointManager").GetComponent<GameCheckPointManager>().ChangeFlag(0, 0, true);
         }
+        */
     }
 }

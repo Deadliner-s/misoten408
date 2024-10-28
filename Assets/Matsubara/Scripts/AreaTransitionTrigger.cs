@@ -15,7 +15,6 @@ public class AreaTransitionTrigger : MonoBehaviour
         scene = SceneTransitionManager.instance;
     }
 
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
