@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 685c9de43350daa4aab28edd759fe26e, type: 3}
+  m_Name: AreaC_TransitionData
+  m_EditorClassIdentifier: 
+  areaName: 
+  transitions:
+  - SceneInitial: B
+    targetScene: Area_B
+    spawnPosition: {x: 0, y: 0, z: 0}
+    transform: {fileID: 5388310962858376111, guid: f03a9fe7a5149b24595140c01f81e6c6, type: 3}
+  - SceneInitial: D
+    targetScene: Area_D
+    spawnPosition: {x: 0, y: 0, z: 0}
+    transform: {fileID: 2825174495668042767, guid: f59699562c32fbc4092eab845797dc5f, type: 3}

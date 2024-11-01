@@ -7,7 +7,11 @@ public class SceneTransitionManager : MonoBehaviour
 {
     public static SceneTransitionManager instance;
     public GameObject loadingScreen;    // ロード画面のUI（プレハブなどをアタッチ）
-    public Slider progressBar;          // ロード中の進捗を表示するスライダー
+    public Slider progressBar;          // ロード中の進捗を表示するスライダー   
+
+    [SerializeField]
+    private Vector3 playerStartPos = new Vector3(500.0f, 100.0f, 0.0f);
+    private GameCheckPointManager gameCheckPointManager;
 
     private void Awake()
     {
@@ -16,6 +20,9 @@ public class SceneTransitionManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);  // シーン間でオブジェクトが破棄されないようにする
+
+            // GameCheckPointManager取得
+            gameCheckPointManager =  GameObject.Find("GameCheckPointManager").GetComponent<GameCheckPointManager>();
         }
         else
         {
@@ -34,6 +41,12 @@ public class SceneTransitionManager : MonoBehaviour
     {
         StartCoroutine(LoadSceneAsyncCoroutine(sceneName));
     }
+    public void LoadSceneAsyncPlayerSetpos(string sceneName, GameObject SpawnPos)
+    {
+        playerStartPos = SpawnPos.transform.position;
+        StartCoroutine(LoadSceneAsyncCoroutine(sceneName));
+
+    }
 
     private IEnumerator LoadSceneAsyncCoroutine(string sceneName)
     {
@@ -42,7 +55,7 @@ public class SceneTransitionManager : MonoBehaviour
 
         // シーンを非同期でロード
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
-
+  
         // ロード中の進捗を更新
         while (!operation.isDone)
         {
@@ -51,7 +64,29 @@ public class SceneTransitionManager : MonoBehaviour
             yield return null;
         }
 
+        // 次のシーンを格納
+        gameCheckPointManager.ChangeStage(sceneName);
+
         // ロードが完了したらロード画面を非表示
         loadingScreen.SetActive(false);
     }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        GameObject player = GameObject.FindWithTag("Player");
+        if(player != null)
+        {
+            player.transform.position = playerStartPos;
+        }
+    }
+
 }
