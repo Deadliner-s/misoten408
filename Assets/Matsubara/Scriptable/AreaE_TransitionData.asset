@@ -15,6 +15,6 @@ MonoBehaviour:
   areaName: 
   transitions:
   - SceneInitial: D
-    targetScene: Scene_D
+    targetScene: Area_D
     spawnPosition: {x: 0, y: 0, z: 0}
     transform: {fileID: 6778250683066188044, guid: 62a38d21ccf3dd94683e0e1d54132b1d, type: 3}
