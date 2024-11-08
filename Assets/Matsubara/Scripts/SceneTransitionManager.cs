@@ -8,9 +8,9 @@ public class SceneTransitionManager : MonoBehaviour
     public static SceneTransitionManager instance;
     public GameObject loadingScreen;    // ロード画面のUI（プレハブなどをアタッチ）
     public Slider progressBar;          // ロード中の進捗を表示するスライダー   
-    //[SerializeField]
+                                        //[SerializeField]
     public GameObject fadePanel;        // フェードに使うパネル
-    // [SerializeField]
+                                        // [SerializeField]
     FadeManager fadeManager;
 
     [SerializeField]
@@ -39,14 +39,14 @@ public class SceneTransitionManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);  // シーン間でオブジェクトが破棄されないようにする
 
             // GameCheckPointManager取得
-           gameCheckPointManager =  GameObject.Find("GameCheckPointManager").GetComponent<GameCheckPointManager>();
-            
+            gameCheckPointManager = GameObject.Find("GameCheckPointManager").GetComponent<GameCheckPointManager>();
+
         }
         else
         {
             Destroy(gameObject);
         }
-        
+
     }
 
     void Update()
@@ -98,7 +98,7 @@ public class SceneTransitionManager : MonoBehaviour
             yield return null;
         }
 
- 
+
         // 次のシーンを格納
         gameCheckPointManager.ChangeStage(sceneName);
 
@@ -109,23 +109,31 @@ public class SceneTransitionManager : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log("OnEnable");
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
     private void OnDisable()
     {
-        Debug.Log("OnDisable");
         // SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("load");
         GameObject player = GameObject.FindWithTag("Player");
-        if(player != null)
+        if (player != null)
         {
             player.transform.position = playerStartPos;
         }
-    }
 
+        // Areaと名のつくシーンに遷移した場合ゲームスタート
+        if (scene.name.Contains("Area"))
+        {
+            if (GameManager.instance.IsOnGame() == false)
+                GameManager.instance.StartGame();
+        }
+        else
+        {
+            if (GameManager.instance.IsOnGame())
+                GameManager.instance.EndGame();
+        }
+    }
 }
