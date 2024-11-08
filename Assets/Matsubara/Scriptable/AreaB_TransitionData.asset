@@ -17,7 +17,7 @@ MonoBehaviour:
   - SceneInitial: A
     targetScene: Area_A
     spawnPosition: {x: 0, y: 0, z: 0}
-    transform: {fileID: 6435835386567100346, guid: 53ebad91a0a76d849a7d97aa73dc73a9, type: 3}
+    transform: {fileID: 3281099116222778869, guid: 09ea0269f88051f4a8f9d8a03fe6b2a2, type: 3}
   - SceneInitial: C
     targetScene: Area_C
     spawnPosition: {x: 0, y: 0, z: 0}
