@@ -127,10 +127,17 @@ public class Player : MonoBehaviour
             }
 
             // EventAreaの中にいる場合は、EventAreaの中でのみ移動可能
-            Vector3 pos = transform.position;
-            pos.x = Mathf.Clamp(pos.x, EventArea.transform.position.x - EventArea.transform.localScale.x / 3f, EventArea.transform.position.x + EventArea.transform.localScale.x / 3f);
-            pos.z = Mathf.Clamp(pos.z, EventArea.transform.position.z - EventArea.transform.localScale.z / 3f, EventArea.transform.position.z + EventArea.transform.localScale.z / 3f);
-            transform.position = pos;
+            if (isEventArea)
+            {
+                Vector3 pos = transform.position;
+                pos.x = Mathf.Clamp(pos.x, EventArea.transform.position.x - EventArea.transform.localScale.x / 3f, EventArea.transform.position.x + EventArea.transform.localScale.x / 3f);
+                pos.z = Mathf.Clamp(pos.z, EventArea.transform.position.z - EventArea.transform.localScale.z / 3f, EventArea.transform.position.z + EventArea.transform.localScale.z / 3f);
+                transform.position = pos;
+            }
+            else
+            {
+                Debug.Log("isEventAreaがnullです。");
+            }
 
             // Boostを回復(1秒間にboostRecoverySpeedずつ回復)
             currentBoost = Mathf.Min(maxBoost, currentBoost + boostRecoverySpeed * Time.deltaTime);
@@ -178,9 +185,16 @@ public class Player : MonoBehaviour
         transform.eulerAngles = angles;
 
         // マップ外に落ちてしまった時の処理(roadより下に落ちたら初期位置に戻す)
-        if (transform.position.y < road.transform.position.y - 1.0f)
+        if (road)
         {
-            transform.position = firstPos;
+            if (transform.position.y < road.transform.position.y - 1.0f)
+            {
+                transform.position = firstPos;
+            }
+        }
+        else
+        {
+            Debug.Log("roadがnullです。");
         }
 
         // F1を押すとDebugモードに切り替え
