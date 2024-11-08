@@ -31,13 +31,15 @@ public class SceneTransitionManager : MonoBehaviour
 
             }
 
+            playerStartPos = PlayerStartObj.transform.position; // 
+
+            SceneManager.sceneLoaded += OnSceneLoaded;  // シーンロード時の処理を追加
+
             instance = this;
             DontDestroyOnLoad(gameObject);  // シーン間でオブジェクトが破棄されないようにする
 
-            playerStartPos = PlayerStartObj.transform.position;
-
             // GameCheckPointManager取得
-            gameCheckPointManager =  GameObject.Find("GameCheckPointManager").GetComponent<GameCheckPointManager>();
+           gameCheckPointManager =  GameObject.Find("GameCheckPointManager").GetComponent<GameCheckPointManager>();
             
         }
         else
@@ -45,6 +47,10 @@ public class SceneTransitionManager : MonoBehaviour
             Destroy(gameObject);
         }
         
+    }
+
+    void Update()
+    {
     }
 
     // シーンを即座に遷移させる（同期的に）
@@ -103,15 +109,18 @@ public class SceneTransitionManager : MonoBehaviour
 
     private void OnEnable()
     {
+        Debug.Log("OnEnable");
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
     private void OnDisable()
     {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
+        Debug.Log("OnDisable");
+        // SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        Debug.Log("load");
         GameObject player = GameObject.FindWithTag("Player");
         if(player != null)
         {

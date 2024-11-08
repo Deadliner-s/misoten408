@@ -4,14 +4,22 @@ public class MenuController : MonoBehaviour
 {
     // メニュー画面のパネル（UI）
     public GameObject menuPanel;
+    
+    // メニューのクローンのインスタンス
+    private GameObject instance;
 
     // ゲームがポーズ中かどうかを管理するフラグ
     private bool isPaused = false;
 
     void Start()
     {
-        // メニューを非表示にしておく
-        menuPanel.SetActive(false);
+        // メニュー生成
+        if (!instance)
+        {
+            instance = Instantiate(menuPanel);
+            instance.SetActive(false);
+        }
+
     }
 
     void Update()
@@ -33,7 +41,8 @@ public class MenuController : MonoBehaviour
     // ゲームをポーズしてメニューを表示する
     void PauseGame()
     {
-        menuPanel.SetActive(true); // メニューを表示
+        if(instance)    instance.SetActive(true);   // メニュー表示
+
         Time.timeScale = 0f; // 時間を止める（ゲームをポーズ）
         isPaused = true;
     }
@@ -41,7 +50,8 @@ public class MenuController : MonoBehaviour
     // メニューを閉じてゲームに戻る
     void ResumeGame()
     {
-        menuPanel.SetActive(false); // メニューを非表示
+        if(instance)    instance.SetActive(false);  // メニュー非表示
+            
         Time.timeScale = 1f; // 時間を再開する（ゲームを再開）
         isPaused = false;
     }
