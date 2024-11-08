@@ -13,6 +13,7 @@ public class AreaTransitionTrigger : MonoBehaviour
     private void Start()
     {
         scene = SceneTransitionManager.instance;
+        
     }
 
     private void OnTriggerEnter(Collider other)
