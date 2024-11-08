@@ -8,6 +8,7 @@ TagManager:
   - EventArea
   - RideArea
   - TalkArea
+  - Fade
   layers:
   - Default
   - TransparentFX

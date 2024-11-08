@@ -46,3 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loadingScreen: {fileID: 7310527080830967947, guid: 18ba373936f6f944fa51703daa0326b6, type: 3}
   progressBar: {fileID: 44090262642930301, guid: a113ab29baabfad4691963879e74ce79, type: 3}
+  fadePanel: {fileID: 1765024076826518847, guid: f9aec75b4bb5ce94b87b76c723acd6e2, type: 3}
+  playerStartPos: {x: 500, y: 100, z: 0}
+  PlayerStartObj: {fileID: 112399935438848128, guid: d086e7d1b9a7f1d4fac16e9237d5de16, type: 3}
