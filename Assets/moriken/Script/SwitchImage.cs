@@ -4,17 +4,20 @@ using UnityEngine.UI;
 public class SwitchImage : MonoBehaviour
 {
     [SerializeField] GameObject canvas;
-    bool displayFlag;
+    [SerializeField] GameObject mapChip;
+   private bool displayFlag;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        canvas.SetActive(false);
+        if (mapChip != null)
+            mapChip.transform.localScale = new Vector3(135.0f, 2.0f, 135.0f);
+
         displayFlag = false;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (Input.GetKeyDown(KeyCode.M))
         {
@@ -22,10 +25,16 @@ public class SwitchImage : MonoBehaviour
             {
                 case false:
                     displayFlag = true;
+
+                    if(mapChip != null)
+                        mapChip.transform.localScale = new Vector3(35.0f,2.0f,35.0f);
                     break;
 
                 case true:
                     displayFlag = false;
+
+                    if (mapChip != null)
+                        mapChip.transform.localScale = new Vector3(135.0f, 2.0f, 135.0f);
                     break;
 
             }
