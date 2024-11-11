@@ -330,6 +330,7 @@ MonoBehaviour:
   boostRecoverySpeed: 4
   playerState: 0
   currentBoost: 100
+  isDebug: 0
 --- !u!114 &500016731691916261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -494,6 +495,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3374391277683978972}
     m_Modifications:
+    - target: {fileID: 2768649122638898897, guid: 84e2836e97055724890110dcc70ff66a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 2768649122638898897, guid: 84e2836e97055724890110dcc70ff66a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 35
+      objectReference: {fileID: 0}
     - target: {fileID: 2768649122638898897, guid: 84e2836e97055724890110dcc70ff66a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.1
