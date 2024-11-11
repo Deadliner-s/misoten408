@@ -42,7 +42,8 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 12
+  serializedVersion: 13
+  m_BakeOnSceneLoad: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -417,14 +418,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obj: {fileID: 519521524539233314, guid: f9d4a8c3649769440ba36f5d135bd858, type: 3}
   checkPoints:
-  - cp_name: aaaaaaaa
-    cp_num: 0
-    cp_description: bbbbbbbbbbbbb
+  - cp_name: "\u6708\u5C71\u30FB\u5F13\u5F35\u5E73\u30AA\u30FC\u30C8\u30AD\u30E3\u30F3\u30D7\u5834"
+    cp_num: 1
+    cp_description: "\u96EA\u56FD\u306A\u3089\u3067\u306F\u306E\u5927\u81EA\u7136\u306E\u4E2D\u3001\u7A4F\u3084\u304B\u3067\u3001\u3086\u3063\u305F\u308A\u3068\u3057\u305F\u3072\u3068\u6642\u3092\u3002"
     cp_position: {x: 520, y: -20, z: 949.2676}
     cp_isWorked: 1
-  - cp_name: cccccccc
-    cp_num: 1
-    cp_description: dddddddddd
+  - cp_name: "\u5F13\u5F35\u8336\u5C4B"
+    cp_num: 2
+    cp_description: "\u6708\u5C71\u3068\u671D\u65E5\u9023\u5CF0\u306B\u56F2\u307E\u308C\u305F\u5F13\u5F35\u5E73\u306B\u3042\u308A\u307E\u3059\u3002"
+    cp_position: {x: 510, y: -20, z: 949.2676}
+    cp_isWorked: 1
+  - cp_name: "\u6708\u5C71\u30DD\u30EC\u30DD\u30EC\u30D5\u30A1\u30FC\u30E0"
+    cp_num: 3
+    cp_description: "\u5C71\u5F62\u770C\u306E\u6708\u5C71\u5C71\u9E93\u306B\u3042\u308B\u5168\u5BA4\u30DA\u30C3\u30C8\u5BBF\u6CCA\u53EF\u80FD\u306A\u30B3\u30C6\u30FC\u30B8\u30BF\u30A4\u30D7\u306E\u5BBF\u6CCA\u65BD\u8A2D\u3067\u3059\u3002"
+    cp_position: {x: 510, y: -20, z: 949.2676}
+    cp_isWorked: 1
+  - cp_name: "\u5F13\u5F35\u5E73\u516C\u5712 \u81EA\u7136\u4F53\u9A13\u533A"
+    cp_num: 4
+    cp_description: "\u5C71\u5F62\u770C\u306E\u6708\u5C71\u5C71\u9E93\u306B\u3042\u308B\u5168\u5BA4\u30DA\u30C3\u30C8\u5BBF\u6CCA\u53EF\u80FD\u306A\u30B3\u30C6\u30FC\u30B8\u30BF\u30A4\u30D7\u306E\u5BBF\u6CCA\u65BD\u8A2D\u3067\u3059\u3002"
     cp_position: {x: 510, y: -20, z: 949.2676}
     cp_isWorked: 1
   stage: 2
@@ -517,7 +528,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj: {fileID: 519521524539233314, guid: f9d4a8c3649769440ba36f5d135bd858, type: 3}
-  checkPoints: []
+  checkPoints:
+  - cp_name: "\u30DA\u30F3\u30B7\u30E7\u30F3 \uFF32\u30E9\u30A4\u30BA"
+    cp_num: 1
+    cp_description: "\u5BD2\u6CB3\u6C5F\u5DDD\u3092\u76EE\u306E\u524D\u306B\u3001\u6708\u5C71\u30FB\u671D\u65E5\u9023\u5CF0\u3092\u671B\u3080\u9759\u304B\u306A\u5BBF\u3002"
+    cp_position: {x: 531.02, y: -32.53, z: 916.74}
+    cp_isWorked: 0
+  - cp_name: "\u671D\u65E5\u5C71\u306E\u5BB6"
+    cp_num: 2
+    cp_description: "\u6A4B\u306E\u305F\u3082\u3068\u306B\u5EFA\u3064\u3002\u98DF\u5802\u304B\u3089\u898B\u3048\u308B\u6708\u5C71\u3068\u5BD2\u6CB3\u6C5F\u5DDD\u306E\u666F\u89B3\u304C\u81EA\u6162\u306E\u5BBF\u3002"
+    cp_position: {x: 492.3, y: -32.01136, z: 875.76}
+    cp_isWorked: 0
+  - cp_name: "\u3075\u308B\u91CC\u6C11\u5BBF\u3055\u304F\u304A"
+    cp_num: 3
+    cp_description: "2\u968E\u304B\u3089\u671B\u3080\u6708\u5C71\u306E\u666F\u8272\u306F\u7D76\u666F\u3002\u65EC\u306E\u5C71\u83DC\u3001\u30AD\u30CE\u30B3\u6599\u7406\u3068\u5DDD\u9B5A\u6599\u7406\u304C\u98DF\u3079\u305F\u3044\u65B9\u306F\u662F\u975E\u3002"
+    cp_position: {x: 495.8, y: -30.98383, z: 786.2}
+    cp_isWorked: 0
+  - cp_name: "\u6A4B\u672C\u8358"
+    cp_num: 4
+    cp_description: "\u5927\u4E95\u6CA2\u6E29\u6CC9\u304C\u8FD1\u304F\u3001\u5730\u5143\u306E\u7D20\u6750\u3092\u3075\u3093\u3060\u3093\u306B\u4F7F\u7528\u3057\u305F\u6599\u7406\u304C\u81EA\u6162\u306E\u3001\u660E\u308B\u304F\u5BB6\u5EAD\u7684\u306A\u5BBF\u3002"
+    cp_position: {x: 516.32, y: -28.39017, z: 577.37}
+    cp_isWorked: 0
+  - cp_name: "\u5927\u4E95\u6CA2\u6E29\u6CC9\u6E6F\u3063\u305F\u308A\u9928"
+    cp_num: 5
+    cp_description: "\u671D\u65E5\u9023\u5CF0\u3068\u6708\u5C71\u3092\u671B\u307F\u306A\u304C\u3089\u5165\u6D74\u3067\u304D\u307E\u3059\u3002\u6E90\u6CC9100\uFF05\u306E\u6E6F\u306F\u808C\u304C\u30C4\u30EB\u30C4\u30EB\u306B\u306A\u308B\u3068\u8A55\u5224\u3002"
+    cp_position: {x: 521.3, y: -27.56, z: 511.8}
+    cp_isWorked: 0
+  - cp_name: "\u5927\u4E95\u6CA2\u81EA\u7136\u3068\u5320\u9928"
+    cp_num: 6
+    cp_description: "\u5730\u57DF\u306E\u7D20\u6750\u3092\u751F\u304B\u3057\u306A\u304C\u3089\u751F\u6210\u3055\u308C\u308B\u69D8\u3005\u306A\u201C\u3082\u306E\u3065\u304F\u308A\u201D\u306E\u5DE5\u623F\u3002"
+    cp_position: {x: 455.8, y: -24.1, z: 309.8}
+    cp_isWorked: 0
+  - cp_name: "\u5927\u4E95\u6CA2\u30AD\u30E3\u30F3\u30D7\u5834"
+    cp_num: 7
+    cp_description: "\u671D\u65E5\u9023\u5CF0\u306E\u9E93\u306B\u3042\u308B\u30AD\u30E3\u30F3\u30D7\u5834\u3067\u3001\u6A2A\u3092\u5BD2\u6CB3\u6C5F\u5DDD\u304C\u6D41\u308C\u3066\u3044\u308B\u3002"
+    cp_position: {x: 0, y: 0, z: 0}
+    cp_isWorked: 0
   stage: 4
 --- !u!4 &815947488
 Transform:
@@ -564,7 +610,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj: {fileID: 519521524539233314, guid: f9d4a8c3649769440ba36f5d135bd858, type: 3}
-  checkPoints: []
+  checkPoints:
+  - cp_name: "\u6708\u5C71\u30B9\u30AD\u30FC\u5834"
+    cp_num: 1
+    cp_description: "\u6708\u5C71\u30ED\u30FC\u30AB\u30EB\u30EB\u30FC\u30EB\u306F\u3001\u6708\u5C71\u74B0\u5883\u6574\u5099\u904B\u55B6\u5354\u8B70\u4F1A\u306B\u3088\u3063\u3066\u7B56\u5B9A\u3055\u308C\u3066\u3044\u307E\u3059\u3002"
+    cp_position: {x: 0, y: 0, z: 0}
+    cp_isWorked: 0
+  - cp_name: "\u6708\u5C71\u590F\u30B9\u30AD\u30FC\u3068\u767B\u5C71\u306E\u5BBF\u30ED\u30C3\u30C2\u3084\u3064\u306A\u307F"
+    cp_num: 2
+    cp_description: "\u6BCE\u5E744\u6708\u306B\u6708\u5C71\u30B9\u30AD\u30FC\u5834\u306E\u30AA\u30FC\u30D7\u30F3\u3068\u540C\u6642\u306B\u958B\u9928\u3057\u3066\u3044\u307E\u3059\u3002"
+    cp_position: {x: 0, y: 0, z: 0}
+    cp_isWorked: 0
+  - cp_name: "\u5C71\u5F62\u770C\u7ACB\u81EA\u7136\u535A\u7269\u5712"
+    cp_num: 3
+    cp_description: "\u81EA\u7136\u8C4A\u304B\u3067\u8272\u3005\u306A\u6606\u866B\u3084\u690D\u7269\u304C\u751F\u606F\u3057\u3066\u3044\u307E\u3059\u3002"
+    cp_position: {x: 0, y: 0, z: 0}
+    cp_isWorked: 0
+  - cp_name: "\u6E56\u7554\u306E\u5BBF \u4E94\u8272\u4EAD"
+    cp_num: 4
+    cp_description: 
+    cp_position: {x: 0, y: 0, z: 0}
+    cp_isWorked: 0
+  - cp_name: "\u3048\u3073\u3059\u3084\u65C5\u9928"
+    cp_num: 5
+    cp_description: "\u828B\u716E\u6C41\u304C\u7D76\u54C1\u3067\u5C71\u83DC\u6599\u7406\u597D\u304D\u306B\u306F\u305F\u307E\u3089\u306A\u3044\u5BBF\u3002"
+    cp_position: {x: 0, y: 0, z: 0}
+    cp_isWorked: 0
   stage: 1
 --- !u!4 &954405462
 Transform:
@@ -713,7 +784,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj: {fileID: 519521524539233314, guid: f9d4a8c3649769440ba36f5d135bd858, type: 3}
-  checkPoints: []
+  checkPoints:
+  - cp_name: "\u30EC\u30B9\u30C8\u30A4\u30F3\u82B1\u7B20"
+    cp_num: 1
+    cp_description: "\u5BD2\u6CB3\u6C5F\u30C0\u30E0\u306E\u307B\u3068\u308A\u3001\u98DF\u4E8B\u51E6\u3068\u5BBF\u6CCA\u6240\u3092\u517C\u306D\u305F\u65BD\u8A2D\u3002\u5C71\u83DC\u305D\u3070\u3001\u30E9\u30FC\u30E1\u30F3\u304C\u81EA\u6162\u3002"
+    cp_position: {x: 626.07, y: 81.07, z: 589.05}
+    cp_isWorked: 0
+  - cp_name: "\u6708\u5C71\u6E56\u30AB\u30CC\u30FC\u30B9\u30D7\u30EA\u30F3\u30C8\u7AF6\u6280\u5834"
+    cp_num: 2
+    cp_description: "\u5168\u56FD\u898F\u6A21\u306E\u30AB\u30CC\u30FC\u30EC\u30FC\u30B9\u304C\u958B\u50AC\u3067\u304D\u308B\u7AF6\u6280\u5834\u3002"
+    cp_position: {x: 0, y: 0, z: 0}
+    cp_isWorked: 0
+  - cp_name: "\u6708\u5C71\u795E\u793E"
+    cp_num: 3
+    cp_description: "\u666F\u8272\u304C\u7DBA\u9E97\u3067\u6751\u306E\u93AE\u5B88\u306E\u795E\u793E\u3067\u3059\u3002"
+    cp_position: {x: 0, y: 0, z: 0}
+    cp_isWorked: 0
   stage: 3
 --- !u!4 &1046703628
 Transform:
@@ -832,7 +918,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj: {fileID: 519521524539233314, guid: f9d4a8c3649769440ba36f5d135bd858, type: 3}
-  checkPoints: []
+  checkPoints:
+  - cp_name: "\u6642\u5206\u6642"
+    cp_num: 1
+    cp_description: "\u53E4\u6C11\u5BB6\u3067\u5DDD\u306E\u305B\u305B\u3089\u304E\u3092\u805E\u304D\u306A\u304C\u3089\u555C\u308B\u307E\u305C\u305D\u3070\u304C\u7D76\u54C1\u3067\u3059\u3002"
+    cp_position: {x: 0, y: 0, z: 0}
+    cp_isWorked: 0
+  - cp_name: "\uFF08\u6709\uFF09\u6708\u5C71\u6F2C\u7269"
+    cp_num: 2
+    cp_description: "\u6708\u5C71\u3068\u671D\u65E5\u9023\u5CF0\u306B\u56F2\u307E\u308C\u305F\u8C4A\u304B\u306A\u81EA\u7136\u306E\u4E2D\u3067\u80B2\u307E\u308C\u305F\u6F2C\u7269\u3067\u3059\u3002"
+    cp_position: {x: 0, y: 0, z: 0}
+    cp_isWorked: 0
+  - cp_name: "\u5473\u9999\u9053\uFF08\u307F\u304B\u3069\uFF09"
+    cp_num: 3
+    cp_description: "\u5927\u4E95\u6CA2\u306E\u98DF\u6750\u3092\u8A70\u3081\u8FBC\u3093\u3060\u5C71\u83DC\u30E9\u30FC\u30E1\u30F3\u3068\u3001\u54C1\u6570\u8C4A\u5BCC\u306A\u5C71\u83DC\u6599\u7406\u304C\u81EA\u6162\u3002"
+    cp_position: {x: 0, y: 0, z: 0}
+    cp_isWorked: 0
+  - cp_name: "\u30D4\u30E5\u30A2\u30B3\u30FC\u30DD\u30EC\u30FC\u30B7\u30E7\u30F3"
+    cp_num: 4
+    cp_description: 
+    cp_position: {x: 0, y: 0, z: 0}
+    cp_isWorked: 0
+  - cp_name: "\u5927\u795E\u5BAE"
+    cp_num: 5
+    cp_description: "\u6751\u306E\u93AE\u5B88\u306E\u795E\u793E"
+    cp_position: {x: 0, y: 0, z: 0}
+    cp_isWorked: 0
+  - cp_name: "\u9ECE\u660E\u306E\u9418"
+    cp_num: 6
+    cp_description: 
+    cp_position: {x: 0, y: 0, z: 0}
+    cp_isWorked: 0
   stage: 5
 --- !u!4 &1722769978
 Transform:
