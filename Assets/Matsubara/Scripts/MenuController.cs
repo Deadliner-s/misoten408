@@ -18,6 +18,7 @@ public class MenuController : MonoBehaviour
         {
             instance = Instantiate(menuPanel);
             instance.SetActive(false);
+            
         }
 
     }
