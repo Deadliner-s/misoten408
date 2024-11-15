@@ -463,7 +463,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 656901117}
-  - component: {fileID: 656901116}
+  - component: {fileID: 656901118}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -471,18 +471,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &656901116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 656901115}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0db6eb8d4a6f48c418d4cb1e60696d99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &656901117
 Transform:
   m_ObjectHideFlags: 0
@@ -498,6 +486,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &656901118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656901115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 230e489aeab902946908dec8ac777edc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &815947486
 GameObject:
   m_ObjectHideFlags: 0
@@ -788,8 +788,8 @@ MonoBehaviour:
   - cp_name: "\u30EC\u30B9\u30C8\u30A4\u30F3\u82B1\u7B20"
     cp_num: 1
     cp_description: "\u5BD2\u6CB3\u6C5F\u30C0\u30E0\u306E\u307B\u3068\u308A\u3001\u98DF\u4E8B\u51E6\u3068\u5BBF\u6CCA\u6240\u3092\u517C\u306D\u305F\u65BD\u8A2D\u3002\u5C71\u83DC\u305D\u3070\u3001\u30E9\u30FC\u30E1\u30F3\u304C\u81EA\u6162\u3002"
-    cp_position: {x: 626.07, y: 81.07, z: 589.05}
-    cp_isWorked: 0
+    cp_position: {x: 626.07, y: 83, z: 589.05}
+    cp_isWorked: 1
   - cp_name: "\u6708\u5C71\u6E56\u30AB\u30CC\u30FC\u30B9\u30D7\u30EA\u30F3\u30C8\u7AF6\u6280\u5834"
     cp_num: 2
     cp_description: "\u5168\u56FD\u898F\u6A21\u306E\u30AB\u30CC\u30FC\u30EC\u30FC\u30B9\u304C\u958B\u50AC\u3067\u304D\u308B\u7AF6\u6280\u5834\u3002"

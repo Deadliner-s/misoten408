@@ -92,8 +92,8 @@ public class GameCheckPointManager : MonoBehaviour
     public void CreateUI(int stageNum, int indexNum)
     {
         // UIì¬‚É•K—v‚Èî•ñ‚Ìæ“¾
-        string description = stageCheckPointManagers[stageNum - 1].checkPoints[indexNum].cp_description;
-        string name = stageCheckPointManagers[stageNum - 1].checkPoints[indexNum].cp_name;
+        string description = stageCheckPointManagers[stageNum - 1].checkPoints[indexNum - 1].cp_description;
+        string name = stageCheckPointManagers[stageNum - 1].checkPoints[indexNum - 1].cp_name;
 
         // UI‚Ì¶¬
         if (checkpointUI == null)
