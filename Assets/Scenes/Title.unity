@@ -4441,7 +4441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b697bec9919f9474495c8d0364544115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLimit: 10
+  timeLimit: 180
   time: 0
 --- !u!4 &2116485817
 Transform:

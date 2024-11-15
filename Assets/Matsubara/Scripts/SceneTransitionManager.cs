@@ -16,6 +16,8 @@ public class SceneTransitionManager : MonoBehaviour
     [SerializeField]
     private Vector3 playerStartPos = new Vector3(0.0f, 0.0f, 0.0f);
     [SerializeField]
+    private Quaternion playerStartRotate = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
+    [SerializeField]
     private GameObject PlayerStartObj;
     private GameCheckPointManager gameCheckPointManager;
 
@@ -32,6 +34,8 @@ public class SceneTransitionManager : MonoBehaviour
             }
 
             playerStartPos = PlayerStartObj.transform.position; // 
+            playerStartRotate = PlayerStartObj.transform.rotation; // 
+
 
             SceneManager.sceneLoaded += OnSceneLoaded;  // シーンロード時の処理を追加
 
@@ -67,6 +71,7 @@ public class SceneTransitionManager : MonoBehaviour
     public void LoadSceneAsyncPlayerSetpos(string sceneName, GameObject SpawnPos)
     {
         playerStartPos = SpawnPos.transform.position;
+        playerStartRotate = SpawnPos.transform.rotation;
         StartCoroutine(LoadSceneAsyncCoroutine(sceneName));
 
     }
@@ -122,6 +127,7 @@ public class SceneTransitionManager : MonoBehaviour
         if (player != null)
         {
             player.transform.position = playerStartPos;
+            player.transform.rotation = playerStartRotate;
         }
 
         // Areaと名のつくシーンに遷移した場合ゲームスタート
