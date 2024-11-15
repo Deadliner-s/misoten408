@@ -20,7 +20,7 @@ public class checkPoint : MonoBehaviour
         // ‰ñ“]ˆ—
         Transform transform = this.transform;
         Vector3 rotation = transform.eulerAngles;
-        rotation.y += 0.1f;
+        rotation.y += 0.2f;
         transform.eulerAngles = rotation;                       
     }
 
