@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0ed7ba2e4798db04cbbd62f93f869aa5
+guid: 1d76c9daa5bfb7644b5dbec9a6f8286e
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,7 +7,7 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: _bicycle_v2_L1_bicycle2
+      name: bikefin_UV1_aiStandardSurface1
     second: {fileID: 2100000, guid: fcbbd046840cbf940be9df9d754b4839, type: 2}
   materials:
     materialImportMode: 2
