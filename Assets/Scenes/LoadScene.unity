@@ -431,12 +431,12 @@ MonoBehaviour:
   - cp_name: "\u6708\u5C71\u30DD\u30EC\u30DD\u30EC\u30D5\u30A1\u30FC\u30E0"
     cp_num: 3
     cp_description: "\u5C71\u5F62\u770C\u306E\u6708\u5C71\u5C71\u9E93\u306B\u3042\u308B\u5168\u5BA4\u30DA\u30C3\u30C8\u5BBF\u6CCA\u53EF\u80FD\u306A\u30B3\u30C6\u30FC\u30B8\u30BF\u30A4\u30D7\u306E\u5BBF\u6CCA\u65BD\u8A2D\u3067\u3059\u3002"
-    cp_position: {x: 510, y: -20, z: 949.2676}
+    cp_position: {x: 540, y: -20, z: 949.2676}
     cp_isWorked: 1
   - cp_name: "\u5F13\u5F35\u5E73\u516C\u5712 \u81EA\u7136\u4F53\u9A13\u533A"
     cp_num: 4
     cp_description: "\u5C71\u5F62\u770C\u306E\u6708\u5C71\u5C71\u9E93\u306B\u3042\u308B\u5168\u5BA4\u30DA\u30C3\u30C8\u5BBF\u6CCA\u53EF\u80FD\u306A\u30B3\u30C6\u30FC\u30B8\u30BF\u30A4\u30D7\u306E\u5BBF\u6CCA\u65BD\u8A2D\u3067\u3059\u3002"
-    cp_position: {x: 510, y: -20, z: 949.2676}
+    cp_position: {x: 530, y: -20, z: 949.2676}
     cp_isWorked: 1
   stage: 2
 --- !u!4 &624958056
@@ -532,33 +532,33 @@ MonoBehaviour:
   - cp_name: "\u30DA\u30F3\u30B7\u30E7\u30F3 \uFF32\u30E9\u30A4\u30BA"
     cp_num: 1
     cp_description: "\u5BD2\u6CB3\u6C5F\u5DDD\u3092\u76EE\u306E\u524D\u306B\u3001\u6708\u5C71\u30FB\u671D\u65E5\u9023\u5CF0\u3092\u671B\u3080\u9759\u304B\u306A\u5BBF\u3002"
-    cp_position: {x: 531.02, y: -32.53, z: 916.74}
-    cp_isWorked: 0
+    cp_position: {x: 532.99, y: -30.58, z: 905.52}
+    cp_isWorked: 1
   - cp_name: "\u671D\u65E5\u5C71\u306E\u5BB6"
     cp_num: 2
     cp_description: "\u6A4B\u306E\u305F\u3082\u3068\u306B\u5EFA\u3064\u3002\u98DF\u5802\u304B\u3089\u898B\u3048\u308B\u6708\u5C71\u3068\u5BD2\u6CB3\u6C5F\u5DDD\u306E\u666F\u89B3\u304C\u81EA\u6162\u306E\u5BBF\u3002"
-    cp_position: {x: 492.3, y: -32.01136, z: 875.76}
-    cp_isWorked: 0
+    cp_position: {x: 494.01, y: -29.73, z: 867.16}
+    cp_isWorked: 1
   - cp_name: "\u3075\u308B\u91CC\u6C11\u5BBF\u3055\u304F\u304A"
     cp_num: 3
     cp_description: "2\u968E\u304B\u3089\u671B\u3080\u6708\u5C71\u306E\u666F\u8272\u306F\u7D76\u666F\u3002\u65EC\u306E\u5C71\u83DC\u3001\u30AD\u30CE\u30B3\u6599\u7406\u3068\u5DDD\u9B5A\u6599\u7406\u304C\u98DF\u3079\u305F\u3044\u65B9\u306F\u662F\u975E\u3002"
-    cp_position: {x: 495.8, y: -30.98383, z: 786.2}
-    cp_isWorked: 0
+    cp_position: {x: 502.89, y: -29.24, z: 790.12}
+    cp_isWorked: 1
   - cp_name: "\u6A4B\u672C\u8358"
     cp_num: 4
     cp_description: "\u5927\u4E95\u6CA2\u6E29\u6CC9\u304C\u8FD1\u304F\u3001\u5730\u5143\u306E\u7D20\u6750\u3092\u3075\u3093\u3060\u3093\u306B\u4F7F\u7528\u3057\u305F\u6599\u7406\u304C\u81EA\u6162\u306E\u3001\u660E\u308B\u304F\u5BB6\u5EAD\u7684\u306A\u5BBF\u3002"
-    cp_position: {x: 516.32, y: -28.39017, z: 577.37}
-    cp_isWorked: 0
+    cp_position: {x: 510.77, y: -26.23, z: 574.62}
+    cp_isWorked: 1
   - cp_name: "\u5927\u4E95\u6CA2\u6E29\u6CC9\u6E6F\u3063\u305F\u308A\u9928"
     cp_num: 5
     cp_description: "\u671D\u65E5\u9023\u5CF0\u3068\u6708\u5C71\u3092\u671B\u307F\u306A\u304C\u3089\u5165\u6D74\u3067\u304D\u307E\u3059\u3002\u6E90\u6CC9100\uFF05\u306E\u6E6F\u306F\u808C\u304C\u30C4\u30EB\u30C4\u30EB\u306B\u306A\u308B\u3068\u8A55\u5224\u3002"
-    cp_position: {x: 521.3, y: -27.56, z: 511.8}
-    cp_isWorked: 0
+    cp_position: {x: 502.58, y: -25.849, z: 506.18}
+    cp_isWorked: 1
   - cp_name: "\u5927\u4E95\u6CA2\u81EA\u7136\u3068\u5320\u9928"
     cp_num: 6
     cp_description: "\u5730\u57DF\u306E\u7D20\u6750\u3092\u751F\u304B\u3057\u306A\u304C\u3089\u751F\u6210\u3055\u308C\u308B\u69D8\u3005\u306A\u201C\u3082\u306E\u3065\u304F\u308A\u201D\u306E\u5DE5\u623F\u3002"
-    cp_position: {x: 455.8, y: -24.1, z: 309.8}
-    cp_isWorked: 0
+    cp_position: {x: 466.01, y: -22.783, z: 308.53}
+    cp_isWorked: 1
   - cp_name: "\u5927\u4E95\u6CA2\u30AD\u30E3\u30F3\u30D7\u5834"
     cp_num: 7
     cp_description: "\u671D\u65E5\u9023\u5CF0\u306E\u9E93\u306B\u3042\u308B\u30AD\u30E3\u30F3\u30D7\u5834\u3067\u3001\u6A2A\u3092\u5BD2\u6CB3\u6C5F\u5DDD\u304C\u6D41\u308C\u3066\u3044\u308B\u3002"
@@ -788,7 +788,7 @@ MonoBehaviour:
   - cp_name: "\u30EC\u30B9\u30C8\u30A4\u30F3\u82B1\u7B20"
     cp_num: 1
     cp_description: "\u5BD2\u6CB3\u6C5F\u30C0\u30E0\u306E\u307B\u3068\u308A\u3001\u98DF\u4E8B\u51E6\u3068\u5BBF\u6CCA\u6240\u3092\u517C\u306D\u305F\u65BD\u8A2D\u3002\u5C71\u83DC\u305D\u3070\u3001\u30E9\u30FC\u30E1\u30F3\u304C\u81EA\u6162\u3002"
-    cp_position: {x: 626.07, y: 83, z: 589.05}
+    cp_position: {x: 628.68, y: 83, z: 589.92}
     cp_isWorked: 1
   - cp_name: "\u6708\u5C71\u6E56\u30AB\u30CC\u30FC\u30B9\u30D7\u30EA\u30F3\u30C8\u7AF6\u6280\u5834"
     cp_num: 2
@@ -843,15 +843,15 @@ RectTransform:
   m_GameObject: {fileID: 1156202338}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 12.83, y: 7.9125414, z: 7.593916}
+  m_LocalScale: {x: 19.6, y: 12.087749, z: 11.600994}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 983837712}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 32.9}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 48}
+  m_SizeDelta: {x: -1820, y: -980}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1156202340
 MonoBehaviour:
@@ -873,7 +873,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 5215555278c098145a858122779987a9, type: 3}
+  m_Texture: {fileID: 2800000, guid: dde30c5d8391d5147b8a9d312837592e, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
