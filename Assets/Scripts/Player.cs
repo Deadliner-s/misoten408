@@ -43,10 +43,11 @@ public class Player : MonoBehaviour
     private bool isBoosting = false;                        // ブースト中かどうか
 
     private GameObject EventArea;                           // EventAreaのGameObject
+    private GameObject TalkingArea;                         // TalkAreaのGameObject
     private bool isEventArea = false;                       // EventAreaに入っているかどうか
     private bool isRideArea = false;                        // RideAreaに入っているかどうか
     private bool isTalkArea = false;                        // TalkAreaに入っているかどうか
-    private bool isTalking = false;                         // 会話中かどうか
+    public bool isTalking = false;                         // 会話中かどうか
 
     private GameObject road;                                // RoadのGameObject
     private Vector3 firstPos;                               // 初期位置
@@ -233,6 +234,7 @@ public class Player : MonoBehaviour
             // 歩いている状態でTalkAreaに入ったら、会話可能
             if (playerState == PlayerState.Walking)
             {
+                TalkingArea = other.gameObject;
                 isTalkArea = true;
             }
         }
@@ -295,20 +297,27 @@ public class Player : MonoBehaviour
     // 決定ボタンの入力
     public void OnInteract(InputAction.CallbackContext context)
     {
-        // Tag EventAreaに入っていたら、自転車から降りる
-        if (isEventArea)
+        if (context.performed)
         {
-            playerState = PlayerState.Walking;
-        }
-        // Tag TalkAreaに入っていたら、会話開始
-        if (isTalkArea)
-        {
-            isTalking = true;
-        }
-        // Tag RideAreaに入っていたら、自転車に乗る
-        if (isRideArea)
-        {
-            playerState = PlayerState.Driving;
+            // Tag EventAreaに入っていたら、自転車から降りる
+            if (isEventArea)
+            {
+                playerState = PlayerState.Walking;
+            }
+            // Tag TalkAreaに入っていたら、会話開始
+            if (isTalkArea)
+            {
+                if (isTalking == false)
+                    isTalking = true;
+                // 会話を進める処理をここに追加
+                TalkingArea.GetComponent<TalkingSystem>().NextText();
+            }
+
+            // Tag RideAreaに入っていたら、自転車に乗る
+            if (isRideArea)
+            {
+                playerState = PlayerState.Driving;
+            }
         }
     }
 }
