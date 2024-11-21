@@ -47,7 +47,6 @@ public class Player : MonoBehaviour
     private bool isEventArea = false;                       // EventAreaに入っているかどうか
     private bool isRideArea = false;                        // RideAreaに入っているかどうか
     private bool isTalkArea = false;                        // TalkAreaに入っているかどうか
-    public bool isTalking = false;                         // 会話中かどうか
 
     private GameObject road;                                // RoadのGameObject
     private Vector3 firstPos;                               // 初期位置
@@ -103,15 +102,8 @@ public class Player : MonoBehaviour
         }
         else if (playerState == PlayerState.Walking)
         {
-            // Debug用
-            // ESCでisTalkingをfalseにする
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                isTalking = false;
-            }
-
             // 会話中は移動不可
-            if (isTalking)
+            if (NPCDialogueManager.instance.isTalking)
                 return;
 
             // 移動方向を計算
@@ -307,10 +299,15 @@ public class Player : MonoBehaviour
             // Tag TalkAreaに入っていたら、会話開始
             if (isTalkArea)
             {
-                if (isTalking == false)
-                    isTalking = true;
-                // 会話を進める処理をここに追加
-                TalkingArea.GetComponent<TalkingSystem>().NextText();
+                if (NPCDialogueManager.instance.isTalking != true)
+                {
+                    NPCDialogueManager.instance.isTalking = true;
+
+                    // TalkAreaのEventNameを取得して会話を開始
+                    NPCDialogueManager.instance.StartEvent(TalkingArea.GetComponent<EventNameaa>().eventName.ToString());
+                }
+                else
+                    NPCDialogueManager.instance.NextDialogue();
             }
 
             // Tag RideAreaに入っていたら、自転車に乗る
