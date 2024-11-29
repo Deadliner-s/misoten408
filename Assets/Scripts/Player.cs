@@ -304,7 +304,8 @@ public class Player : MonoBehaviour
                     NPCDialogueManager.instance.isTalking = true;
 
                     // TalkAreaのEventNameを取得して会話を開始
-                    NPCDialogueManager.instance.StartEvent(TalkingArea.GetComponent<EventNameaa>().eventName.ToString());
+                    NPCDialogueManager.instance.StartEvent(TalkingArea.GetComponent<EventData>().eventName.ToString(), TalkingArea.GetComponent<EventData>().Cnt, TalkingArea.GetComponent<EventData>().icon);
+                    TalkingArea.GetComponent<EventData>().Cnt++;
                 }
                 else
                     NPCDialogueManager.instance.NextDialogue();
