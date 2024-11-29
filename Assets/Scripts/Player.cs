@@ -39,8 +39,8 @@ public class Player : MonoBehaviour
     private bool isGrounded = true;                         // 地面にいるかどうか
     private Vector3 inputDirection;                         // 入力方向
 
-    public float currentBoost;                             // 現在のBoost量
-    private bool isBoosting = false;                        // ブースト中かどうか
+    public float currentBoost;                              // 現在のBoost量
+    [HideInInspector] public bool isBoosting = false;       // ブースト中かどうか
 
     private GameObject EventArea;                           // EventAreaのGameObject
     private GameObject TalkingArea;                         // TalkAreaのGameObject
