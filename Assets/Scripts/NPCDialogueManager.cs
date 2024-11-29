@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NPCDialogueManager : MonoBehaviour
 {
@@ -14,6 +16,7 @@ public class NPCDialogueManager : MonoBehaviour
     public GameObject speakerText;              // 話者名を表示するText
     public GameObject nextButton;               // 次の会話に進むボタン
     public GameObject dialoguePanel;            // 会話全体のUIパネル
+    public GameObject image;                    // 画像を表示するためのGameObject
     public float typingSpeed = 0.05f;           // 文字送りの速度
 
     [Header("CSV File")]
@@ -26,6 +29,7 @@ public class NPCDialogueManager : MonoBehaviour
         public string Name;                     // 話している人
         public string Dialog;                   // 会話の内容
         public int NextID;                      // 次の会話のID
+        public int Cnt;                         // 話しかけた回数
     }
 
     private Dictionary<string, List<Dialogue>> dialogues = new Dictionary<string, List<Dialogue>>();
@@ -35,6 +39,8 @@ public class NPCDialogueManager : MonoBehaviour
 
     [NonSerialized]
     public bool isTalking = false;              // 会話中かどうかを判定するフラグ
+
+    private Texture2D icon;                     // 画像を表示するための変数
 
     private void Awake()
     {
@@ -54,6 +60,10 @@ public class NPCDialogueManager : MonoBehaviour
     {
         LoadCSV();
         dialoguePanel.SetActive(false); // 初期状態で非表示
+
+        // Textの初期化
+        speakerText.GetComponent<TMP_Text>().text = "";
+        dialogueText.GetComponent<TMP_Text>().text = "";
     }
 
     // CSVを読み込む
@@ -73,7 +83,8 @@ public class NPCDialogueManager : MonoBehaviour
                 ID = int.Parse(fields[1]),
                 Name = fields[2],
                 Dialog = fields[3],
-                NextID = int.Parse(fields[4])
+                NextID = int.Parse(fields[4]),
+                Cnt = int.Parse(fields[5])
             };
 
             if (!dialogues.ContainsKey(dialogue.EventName))
@@ -84,8 +95,11 @@ public class NPCDialogueManager : MonoBehaviour
     }
 
     // イベントを開始
-    public void StartEvent(string eventName)
+    public void StartEvent(string eventName, int Cnt, Texture2D tex)
     {
+        // TextAreaに設定された画像の取得
+        icon = tex;
+
         if (!dialogues.ContainsKey(eventName))
         {
             Debug.LogError("イベントが見つかりません: " + eventName);
@@ -93,7 +107,17 @@ public class NPCDialogueManager : MonoBehaviour
         }
 
         dialoguePanel.SetActive(true); // 会話UIを表示
-        currentDialogue = dialogues[eventName].Find(d => d.ID == 1);
+
+        // イベント名に対応する会話リストを取得
+        currentDialogue = dialogues[eventName].Find(d => d.ID == 1 && d.Cnt == Cnt);
+
+        // d.Cntが存在しない場合は、d.Cntが最大のものを取得(二回目以降に話しかけた場合は最後の会話を表示するため)
+        if (currentDialogue == null)
+        {
+            int maxCnt = dialogues[eventName].Max(d => d.Cnt);
+            currentDialogue = dialogues[eventName].Find(d => d.ID == 1 && d.Cnt == maxCnt);
+        }
+
         if (currentDialogue != null)
             DisplayDialogue();
     }
@@ -108,6 +132,19 @@ public class NPCDialogueManager : MonoBehaviour
         }
 
         speakerText.GetComponent<TMP_Text>().text = currentDialogue.Name;
+
+
+        // currentDialogue.Dialogの会話内容に「手に入れた!!」という文字列が含まれている場合は画像を表示する
+        if (currentDialogue.Dialog.Contains("手に入れた!!"))
+        {
+            // 画像を表示する処理
+            image.SetActive(true);
+            image.GetComponent<Image>().sprite = Sprite.Create(icon, new Rect(0, 0, icon.width, icon.height), Vector2.zero);
+        }
+        else
+        {
+            image.SetActive(false);
+        }
 
         // コルーチンを開始して文字送りを実行
         if (typingCoroutine != null)
