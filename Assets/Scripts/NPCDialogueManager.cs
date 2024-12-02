@@ -159,7 +159,22 @@ public class NPCDialogueManager : MonoBehaviour
         {
             // 文字送り中にボタンが押された場合は即座に全文を表示
             StopCoroutine(typingCoroutine);
-            dialogueText.GetComponent<TMP_Text>().text = currentDialogue.Dialog;
+            //dialogueText.GetComponent<TMP_Text>().text = currentDialogue.Dialog;
+
+            // Dialogの内容に「[○○]」という文字列が含まれている場合は[○○]の中身の色を赤色に変更し、その後の文字列を表示
+            if (currentDialogue.Dialog.Contains("[") && currentDialogue.Dialog.Contains("]"))
+            {
+                string[] split = currentDialogue.Dialog.Split(new string[] { "[" }, StringSplitOptions.None);
+                string[] split2 = split[1].Split(new string[] { "]" }, StringSplitOptions.None);
+                dialogueText.GetComponent<TMP_Text>().text = split[0];
+                dialogueText.GetComponent<TMP_Text>().text += "<color=red>" + split2[0] + "</color>";
+                dialogueText.GetComponent<TMP_Text>().text += split2[1];
+            }
+            else
+            {
+                dialogueText.GetComponent<TMP_Text>().text = currentDialogue.Dialog;
+            }
+
             isTyping = false;
 
             // 次ボタンを有効化
@@ -205,14 +220,54 @@ public class NPCDialogueManager : MonoBehaviour
     {
         dialogueText.GetComponent<TMP_Text>().text = ""; // 表示内容を初期化
         isTyping = true; // 文字送り中フラグを有効化
-        foreach (char letter in dialog.ToCharArray())
+
+        // Dialogの内容に「[○○]」という文字列が含まれている場合は[○○]の中身の色を赤色に変更し、その後の文字列を表示
+        if (dialog.Contains("[") && dialog.Contains("]"))
         {
-            dialogueText.GetComponent<TMP_Text>().text += letter; // 1文字追加
-            yield return new WaitForSeconds(typingSpeed); // 表示間隔を調整
+            // [○○]の前後で文字列を分割
+            string[] split = dialog.Split(new string[] { "[" }, StringSplitOptions.None);
+            string[] split2 = split[1].Split(new string[] { "]" }, StringSplitOptions.None);
+            string beforeBracket = split[0];
+            string insideBracket = split2[0];
+            string afterBracket = split2[1];
+
+            // [○○]の前の文字列を表示
+            foreach (char letter in beforeBracket.ToCharArray())
+            {
+                dialogueText.GetComponent<TMP_Text>().text += letter; // 1文字追加
+                yield return new WaitForSeconds(typingSpeed); // 表示間隔を調整
+            }
+
+            // [○○]の中身を赤色で表示
+            dialogueText.GetComponent<TMP_Text>().text += "<color=red>";
+            foreach (char letter in insideBracket.ToCharArray())
+            {
+                dialogueText.GetComponent<TMP_Text>().text += letter; // 1文字追加
+                yield return new WaitForSeconds(typingSpeed); // 表示間隔を調整
+            }
+
+            // [○○]の後の文字列を表示
+            dialogueText.GetComponent<TMP_Text>().text += "</color>";
+            foreach (char letter in afterBracket.ToCharArray())
+            {
+                dialogueText.GetComponent<TMP_Text>().text += letter; // 1文字追加
+                yield return new WaitForSeconds(typingSpeed); // 表示間隔を調整
+            }
         }
+        else
+        {
+            // [○○]が含まれていない場合はそのまま文字列を表示
+            foreach (char letter in dialog.ToCharArray())
+            {
+                dialogueText.GetComponent<TMP_Text>().text += letter; // 1文字追加
+                yield return new WaitForSeconds(typingSpeed); // 表示間隔を調整
+            }
+        }
+
         isTyping = false; // 文字送り終了
 
         // 次ボタンを有効化
         //nextButton.SetActive(currentDialogue.NextID != 0);
     }
+
 }
