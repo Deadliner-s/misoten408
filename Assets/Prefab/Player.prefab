@@ -350,6 +350,10 @@ MonoBehaviour:
   speedFactor: 0.5
   maxDistance: 10
   smoothTime: 0.3
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  collisionBuffer: -3
 --- !u!1001 &1581203393767683750
 PrefabInstance:
   m_ObjectHideFlags: 0
