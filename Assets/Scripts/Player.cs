@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
@@ -304,8 +305,12 @@ public class Player : MonoBehaviour
                     NPCDialogueManager.instance.isTalking = true;
 
                     // TalkAreaのEventNameを取得して会話を開始
-                    NPCDialogueManager.instance.StartEvent(TalkingArea.GetComponent<EventData>().eventName.ToString(), TalkingArea.GetComponent<EventData>().Cnt, TalkingArea.GetComponent<EventData>().icon);
-                    TalkingArea.GetComponent<EventData>().Cnt++;
+                    NPCDialogueManager.instance.StartEvent(TalkingArea.GetComponent<TalkArea>().eventName.ToString(), 
+                        NPCDialogueManager.instance.runtimeEventSetting.DataList.FirstOrDefault(data => data.eventName == TalkingArea.GetComponent<TalkArea>().eventName).cnt,
+                        NPCDialogueManager.instance.runtimeEventSetting.DataList.FirstOrDefault(data => data.eventName == TalkingArea.GetComponent<TalkArea>().eventName).tex,
+                        NPCDialogueManager.instance.runtimeEventSetting.DataList.FirstOrDefault(data => data.eventName == TalkingArea.GetComponent<TalkArea>().eventName).checkPoint);
+                    // 話しかけた回数を増やす
+                    NPCDialogueManager.instance.runtimeEventSetting.DataList.FirstOrDefault(data => data.eventName == TalkingArea.GetComponent<TalkArea>().eventName).cnt++;
                 }
                 else
                     NPCDialogueManager.instance.NextDialogue();
