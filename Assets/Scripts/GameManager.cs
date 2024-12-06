@@ -74,7 +74,10 @@ public class GameManager : MonoBehaviour
         return onGame;
     }
 
-
+    public void SetTimer(float t)
+    {
+        timeLimit = t;
+    }
 
     
 }

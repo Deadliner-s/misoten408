@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
@@ -25,9 +26,21 @@ public class MenuManager : MonoBehaviour
                 menuUIInstance = Instantiate(menuUI);
                 DontDestroyOnLoad(menuUIInstance); // menuUIがMenuManagerの子でない場合に保持
                 menuUIInstance.SetActive(false);    // 最初は非表示
+
+                // Title_Buttonを取得し、動的に関数を追加
+                Button titleButton = menuUIInstance.GetComponentInChildren<Button>();
+                if (titleButton != null)
+                {
+                    titleButton.onClick.AddListener(ReturnToTitle);
+                }
+                else
+                {
+                    Debug.LogError("Title_Button が見つかりませんでした。");
+                }
+
+
             }
         }
-
     }
 
     private void Update()
@@ -46,13 +59,11 @@ public class MenuManager : MonoBehaviour
         {
             // 表示
             ShowMenu();
-
         }
         else
         {
             // 非表示
             HideMenu();
-
         }
 
     }
@@ -64,7 +75,7 @@ public class MenuManager : MonoBehaviour
         {
             menuUIInstance.SetActive(true);
             Time.timeScale = 0f;    // ポーズ
-        }
+        }   
     }
 
     // メニューを非表示にするメソッド
@@ -75,5 +86,12 @@ public class MenuManager : MonoBehaviour
             menuUIInstance.SetActive(false);
             Time.timeScale = 1f;   // 再開
         }
+    }
+
+    private void ReturnToTitle()
+    {
+        SceneTransitionManager.instance.LoadSceneAsync("Title");
+        menuUIInstance.SetActive(true);
+        Time.timeScale = 1f;    // ゲーム再開
     }
 }

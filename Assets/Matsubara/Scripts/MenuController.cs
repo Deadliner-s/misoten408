@@ -31,12 +31,14 @@ public class MenuController : MonoBehaviour
             if (isPaused)
             {
                 ResumeGame(); // メニューが表示されている場合はゲームに戻る
+                
             }
             else
             {
                 PauseGame(); // メニューが表示されていない場合はメニューを開く
             }
         }
+
     }
 
     // ゲームをポーズしてメニューを表示する
