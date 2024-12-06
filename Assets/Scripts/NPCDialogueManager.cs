@@ -30,6 +30,7 @@ public class NPCDialogueManager : MonoBehaviour
         public string Dialog;                   // 会話の内容
         public int NextID;                      // 次の会話のID
         public int Cnt;                         // 話しかけた回数
+        public int CheckPoint;                  // チェックポイントを通過したか
     }
 
     private Dictionary<string, List<Dialogue>> dialogues = new Dictionary<string, List<Dialogue>>();
@@ -40,7 +41,12 @@ public class NPCDialogueManager : MonoBehaviour
     [NonSerialized]
     public bool isTalking = false;              // 会話中かどうかを判定するフラグ
 
-    private Texture2D icon;                     // 画像を表示するための変数
+    private Texture2D Tex;                      // 画像を表示するための変数
+
+    [Header("EventSetting")]
+    public EventSetting originalEventSetting;
+    [NonSerialized]
+    public EventSetting runtimeEventSetting;
 
     private void Awake()
     {
@@ -64,6 +70,9 @@ public class NPCDialogueManager : MonoBehaviour
         // Textの初期化
         speakerText.GetComponent<TMP_Text>().text = "";
         dialogueText.GetComponent<TMP_Text>().text = "";
+
+        // ランタイム用インスタンスを作成
+        runtimeEventSetting = originalEventSetting.CreateRuntimeInstance();
     }
 
     // CSVを読み込む
@@ -84,7 +93,8 @@ public class NPCDialogueManager : MonoBehaviour
                 Name = fields[2],
                 Dialog = fields[3],
                 NextID = int.Parse(fields[4]),
-                Cnt = int.Parse(fields[5])
+                Cnt = int.Parse(fields[5]),
+                CheckPoint = int.Parse(fields[6])
             };
 
             if (!dialogues.ContainsKey(dialogue.EventName))
@@ -95,10 +105,10 @@ public class NPCDialogueManager : MonoBehaviour
     }
 
     // イベントを開始
-    public void StartEvent(string eventName, int Cnt, Texture2D tex)
+    public void StartEvent(string eventName, int Cnt, Texture2D tex, int checkPoint)
     {
         // TextAreaに設定された画像の取得
-        icon = tex;
+        Tex = tex;
 
         if (!dialogues.ContainsKey(eventName))
         {
@@ -106,16 +116,19 @@ public class NPCDialogueManager : MonoBehaviour
             return;
         }
 
-        dialoguePanel.SetActive(true); // 会話UIを表示
+        // 会話UIを表示
+        dialoguePanel.SetActive(true);
 
-        // イベント名に対応する会話リストを取得
-        currentDialogue = dialogues[eventName].Find(d => d.ID == 1 && d.Cnt == Cnt);
+        // イベント名に対応する会話リストを取得(会話IDが一言目 、喋りかけた回数がCnt、チェックポイントがcheckPointのものを取得)
+        currentDialogue = dialogues[eventName].Find(d => d.ID == 1 && d.Cnt == Cnt && d.CheckPoint == checkPoint);
 
         // d.Cntが存在しない場合は、d.Cntが最大のものを取得(二回目以降に話しかけた場合は最後の会話を表示するため)
         if (currentDialogue == null)
         {
+            // eventNameの最大のCntを取得
             int maxCnt = dialogues[eventName].Max(d => d.Cnt);
-            currentDialogue = dialogues[eventName].Find(d => d.ID == 1 && d.Cnt == maxCnt);
+            // 最大のCntを持つ会話を取得
+            currentDialogue = dialogues[eventName].Find(d => d.ID == 1 && d.Cnt == maxCnt && d.CheckPoint == checkPoint);
         }
 
         if (currentDialogue != null)
@@ -131,15 +144,15 @@ public class NPCDialogueManager : MonoBehaviour
             return;
         }
 
+        // 話している人
         speakerText.GetComponent<TMP_Text>().text = currentDialogue.Name;
-
 
         // currentDialogue.Dialogの会話内容に「手に入れた!!」という文字列が含まれている場合は画像を表示する
         if (currentDialogue.Dialog.Contains("手に入れた!!"))
         {
             // 画像を表示する処理
             image.SetActive(true);
-            image.GetComponent<Image>().sprite = Sprite.Create(icon, new Rect(0, 0, icon.width, icon.height), Vector2.zero);
+            image.GetComponent<Image>().sprite = Sprite.Create(Tex, new Rect(0, 0, Tex.width, Tex.height), Vector2.zero);
         }
         else
         {
@@ -190,7 +203,7 @@ public class NPCDialogueManager : MonoBehaviour
             }
 
             string eventName = currentDialogue.EventName;
-            currentDialogue = dialogues[eventName].Find(d => d.ID == currentDialogue.NextID);
+            currentDialogue = dialogues[eventName].Find(d => d.ID == currentDialogue.NextID && d.CheckPoint == currentDialogue.CheckPoint);
             DisplayDialogue();
         }
     }
@@ -270,4 +283,13 @@ public class NPCDialogueManager : MonoBehaviour
         //nextButton.SetActive(currentDialogue.NextID != 0);
     }
 
+
+    // 指定したイベントのCheckPointを1(True)に変更
+    public void SetCheckPoint(EventData.EventNameEnum eventName)
+    {
+        // 喋りかけた回数Cntをリセット
+        runtimeEventSetting.DataList.FirstOrDefault(data => data.eventName == eventName).cnt = 0;
+        // trueにチェックポイントを通過設定
+        runtimeEventSetting.DataList.FirstOrDefault(data => data.eventName == eventName).checkPoint = 1;
+    }
 }
