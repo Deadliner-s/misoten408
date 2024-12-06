@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DataList:
   - eventName: 0
-    icon: {fileID: 2800000, guid: fe50549cc4db31946807b4ae9328e390, type: 3}
+    tex: {fileID: 2800000, guid: fe50549cc4db31946807b4ae9328e390, type: 3}
     cnt: 0
     checkPoint: 0
