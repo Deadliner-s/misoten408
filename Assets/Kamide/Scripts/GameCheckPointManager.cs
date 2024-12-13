@@ -99,7 +99,7 @@ public class GameCheckPointManager : MonoBehaviour
         if (checkpointUI == null)
         {
             checkpointUI = Instantiate(cp_UI);
-            checkpointUI.transform.Find("backGround1/Description").GetComponent<TextMeshProUGUI>().text = description;
+            checkpointUI.transform.Find("backGround2/Description").GetComponent<TextMeshProUGUI>().text = description;
             checkpointUI.transform.Find("backGround2/checkPointName").GetComponent<TextMeshProUGUI>().text = name;
         }
     }
