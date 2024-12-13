@@ -33,4 +33,15 @@ public class ButtonHandler : MonoBehaviour
 
     }
 
+    // ゲームを終了する関数
+    public void QuitGame()
+    {
+        // エディターで実行中の場合の終了処理
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        // ビルド後のアプリケーションを終了
+        Application.Quit();
+#endif
+    }
 }
