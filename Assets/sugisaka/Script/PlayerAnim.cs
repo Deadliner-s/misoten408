@@ -28,7 +28,7 @@ public class PlayerAnim : MonoBehaviour
     private float LateRotatY;
     private float Ynum;
     private float RotatY;
-    private float distans;
+    [SerializeField] private float distans;
 
     // アニメーションのコンポーネント
     private Animator anim;
@@ -106,17 +106,20 @@ public class PlayerAnim : MonoBehaviour
         switch (direction)
         {
             case PlayerDirection.None:
-                if (RotatY != LateRotatY && distans > 2.0f)
+                if (RotatY != LateRotatY)
                 {
-                    if (RotatY > LateRotatY)
+                    if (distans > 2.0f || -2.0 > distans)
                     {
-                        direction = PlayerDirection.Right;
-                        Ynum += 2f * Time.deltaTime;
-                    }
-                    else
-                    {
-                        direction = PlayerDirection.Left;
-                        Ynum -= 2f * Time.deltaTime;
+                        if (RotatY > LateRotatY)
+                        {
+                            direction = PlayerDirection.Right;
+                            Ynum += 2f * Time.deltaTime;
+                        }
+                        else
+                        {
+                            direction = PlayerDirection.Left;
+                            Ynum -= 2f * Time.deltaTime;
+                        }
                     }
                 }
                 break;
@@ -133,7 +136,7 @@ public class PlayerAnim : MonoBehaviour
                 }
                 break;
             case PlayerDirection.Left:
-                if (RotatY == LateRotatY || distans < 2.0f)
+                if (RotatY == LateRotatY || distans > -2.0f)
                 {   // 傾けを戻す
                     if (Ynum < 0) Ynum += 2f * Time.deltaTime;
                     if (Ynum >= 0)　direction = PlayerDirection.None;
