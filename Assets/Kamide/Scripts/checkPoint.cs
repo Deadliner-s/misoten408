@@ -8,7 +8,8 @@ public class checkPoint : MonoBehaviour
     public int cp_num = 0;                  // チェックポイントの番号
     [Header("ステージ番号")]
     public int stage = 0;
-    private bool isUIAppeared = false;   
+    private bool isUIAppeared = false;
+    private bool isEnterCheckPointArea = false;
 
     void Start()
     {        
@@ -21,23 +22,39 @@ public class checkPoint : MonoBehaviour
         Transform transform = this.transform;
         Vector3 rotation = transform.eulerAngles;
         rotation.y += 0.2f;
-        transform.eulerAngles = rotation;                       
+        transform.eulerAngles = rotation;  
+        
+        // ボタン入力
+        if (isEnterCheckPointArea &&
+            (Input.GetKeyDown("joystick button 1") || Input.GetKeyDown(KeyCode.Return)))
+        {
+            if (isUIAppeared == false)
+            {
+                // UI表示
+                GameObject.Find("GameCheckPointManager").GetComponent<GameCheckPointManager>().CreateUI(stage, cp_num);
+
+                // フラグの切り替え
+                isUIAppeared = true;
+            }
+            else
+            {
+                // UI削除
+                GameObject.Find("GameCheckPointManager").GetComponent<GameCheckPointManager>().DestroyUI();
+
+                // フラグの切り替え
+                isUIAppeared = false;
+            }
+
+        }
     }
 
     private void OnTriggerEnter(Collider collider)
     {
         // タグによって触れられるオブジェクトを指定
-        if (collider.tag == "Player" && isUIAppeared == false)
-        {            
-            // UI表示
-            GameObject.Find("GameCheckPointManager").GetComponent<GameCheckPointManager>().CreateUI(stage, cp_num);
-
-            // ゲージ回復処理
-
-            // スコア加算
-            
-            // フラグ切り替え
-            isUIAppeared = true;                        
+        if (collider.tag == "Player")
+        {
+            // フラグの切り替え
+            isEnterCheckPointArea = true;           
         }
     }
 
@@ -46,20 +63,12 @@ public class checkPoint : MonoBehaviour
         // タグによって判定
         if (collider.tag == "Player" && isUIAppeared == true)
         {
-            // Object取得
-            GameObject gameCPM =  GameObject.Find("GameCheckPointManager");
-
-            // フラグ切り替え
-            //gameCPM.GetComponent<GameCheckPointManager>().ChangeFlag(stage, cp_num, false);
-
-            // UIの削除
-            gameCPM.GetComponent<GameCheckPointManager>().DestroyUI();
-
-            // このオブジェクトの削除
-            //Destroy(this);
+            // UI削除
+            GameObject.Find("GameCheckPointManager").GetComponent<GameCheckPointManager>().DestroyUI();
 
             // フラグの切り替え
             isUIAppeared = false;
+            isEnterCheckPointArea = false;
         }
     }
 }

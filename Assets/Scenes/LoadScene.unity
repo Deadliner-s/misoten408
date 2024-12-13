@@ -788,13 +788,13 @@ MonoBehaviour:
   - cp_name: "\u30EC\u30B9\u30C8\u30A4\u30F3\u82B1\u7B20"
     cp_num: 1
     cp_description: "\u5BD2\u6CB3\u6C5F\u30C0\u30E0\u306E\u307B\u3068\u308A\u3001\u98DF\u4E8B\u51E6\u3068\u5BBF\u6CCA\u6240\u3092\u517C\u306D\u305F\u65BD\u8A2D\u3002\u5C71\u83DC\u305D\u3070\u3001\u30E9\u30FC\u30E1\u30F3\u304C\u81EA\u6162\u3002"
-    cp_position: {x: 628.68, y: 83, z: 589.92}
+    cp_position: {x: 618.71, y: 84, z: 583.15}
     cp_isWorked: 1
   - cp_name: "\u6708\u5C71\u6E56\u30AB\u30CC\u30FC\u30B9\u30D7\u30EA\u30F3\u30C8\u7AF6\u6280\u5834"
     cp_num: 2
     cp_description: "\u5168\u56FD\u898F\u6A21\u306E\u30AB\u30CC\u30FC\u30EC\u30FC\u30B9\u304C\u958B\u50AC\u3067\u304D\u308B\u7AF6\u6280\u5834\u3002"
-    cp_position: {x: 0, y: 0, z: 0}
-    cp_isWorked: 0
+    cp_position: {x: 750, y: 69.5, z: 575.2}
+    cp_isWorked: 1
   - cp_name: "\u6708\u5C71\u795E\u793E"
     cp_num: 3
     cp_description: "\u666F\u8272\u304C\u7DBA\u9E97\u3067\u6751\u306E\u93AE\u5B88\u306E\u795E\u793E\u3067\u3059\u3002"
