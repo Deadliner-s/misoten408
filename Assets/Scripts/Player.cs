@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.VFX;
 
 public class Player : MonoBehaviour
 {
@@ -32,6 +33,10 @@ public class Player : MonoBehaviour
     [Header("Boostの回復速度(1秒間にnずつ)")]
     public float boostRecoverySpeed = 4f;                   // Boostの回復速度
 
+    [Header("自転車のモデル")]
+    public GameObject bicycleModel;                         // 自転車のモデル
+    private GameObject bicycle;                             // 自転車のGameObject
+
     [Header("プレイヤーの状態")]
     public PlayerState playerState = PlayerState.Driving;   // 現在のプレイヤーの状態
 
@@ -45,6 +50,8 @@ public class Player : MonoBehaviour
 
     private GameObject EventArea;                           // EventAreaのGameObject
     private GameObject TalkingArea;                         // TalkAreaのGameObject
+    private GameObject RideArea;                            // RideAreaのGameObject
+    private GameObject CircleEffect;                        // CircleEffectのGameObject
     private bool isEventArea = false;                       // EventAreaに入っているかどうか
     private bool isRideArea = false;                        // RideAreaに入っているかどうか
     private bool isTalkArea = false;                        // TalkAreaに入っているかどうか
@@ -98,6 +105,11 @@ public class Player : MonoBehaviour
                 if (isBoosting)
                 {
                     currentBoost = Mathf.Max(0, currentBoost - Time.deltaTime);
+
+                    if (currentBoost <= 0.0f)
+                    {
+                        isBoosting = false;
+                    }
                 }
             }
         }
@@ -218,6 +230,9 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("EventArea"))
         {
+            // Playerから近くのTad,RideAreaのオブジェクトを取得
+            RideArea = GameObject.FindWithTag("RideArea");
+
             // EventAreaに入ったら、EventAreaのGameObjectを取得(移動制限のため)
             EventArea = other.gameObject;
             isEventArea = true;
@@ -285,6 +300,9 @@ public class Player : MonoBehaviour
             // ブースト終了
             isBoosting = false;
         }
+
+
+
     }
 
     // 決定ボタンの入力
@@ -296,6 +314,16 @@ public class Player : MonoBehaviour
             if (isEventArea)
             {
                 playerState = PlayerState.Walking;
+
+                // 自転車をスポーンさせる
+                if (bicycle == null)
+                    SpawnBicycle();
+
+                // EventAreaの子オブジェクトCircleを取得
+                CircleEffect = EventArea.transform.Find("Circle").gameObject;
+                // エフェクトを止める
+                CircleEffect.GetComponent<VisualEffect>().Stop();
+
             }
             // Tag TalkAreaに入っていたら、会話開始
             if (isTalkArea)
@@ -319,8 +347,28 @@ public class Player : MonoBehaviour
             // Tag RideAreaに入っていたら、自転車に乗る
             if (isRideArea)
             {
+                // エフェクトを再生
+                CircleEffect.GetComponent<VisualEffect>().Play();
+
                 playerState = PlayerState.Driving;
+                DestroyBicycle();
             }
         }
     }
+
+    // 自転車から降りる(Walking)になった時自転車をスポーンさせる
+    public void SpawnBicycle()
+    {
+        // RideAreaの位置(少しずらした位置)に自転車をスポーン
+        bicycle = Instantiate(bicycleModel, RideArea.transform.position + new Vector3(0.2f, -0.3f, -0.40f), RideArea.transform.rotation);
+    }
+
+    // 自転車に乗る(Driving)になった時自転車を削除する
+    public void DestroyBicycle()
+    {
+        // 自転車を削除
+        Destroy(bicycle);
+    }
+
+
 }
