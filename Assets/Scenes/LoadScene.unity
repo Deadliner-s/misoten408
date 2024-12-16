@@ -800,6 +800,21 @@ MonoBehaviour:
     cp_description: "\u666F\u8272\u304C\u7DBA\u9E97\u3067\u6751\u306E\u93AE\u5B88\u306E\u795E\u793E\u3067\u3059\u3002"
     cp_position: {x: 0, y: 0, z: 0}
     cp_isWorked: 0
+  - cp_name: "\u6708\u5C71\u6E56\u6E56\u5357\u4F11\u61A9\u6240"
+    cp_num: 4
+    cp_description: "\u6A4B\u306E\u4E0A\u306B\u3042\u308B\u3061\u3087\u3063\u3068\u3057\u305F\u4F11\u61A9\u6240\u3067\u3059\u3002\u6708\u5C71\u6E56\u304C\u4E00\u671B\u3067\u304D\u308B\u30B9\u30DD\u30C3\u30C8\u3067\u3059\u3002"
+    cp_position: {x: 582.18, y: 68.4, z: 418.69}
+    cp_isWorked: 1
+  - cp_name: "\u5BD2\u6CB3\u6C5F\u30C0\u30E0\u5C55\u671B\u5E83\u5834"
+    cp_num: 5
+    cp_description: "\u65E5\u672C\u4E00\u306E\u5927\u5674\u6C34\u304C\u898B\u308C\u307E\u3059"
+    cp_position: {x: 1165.4, y: 76.58, z: 618.5}
+    cp_isWorked: 1
+  - cp_name: "\u6708\u5C71\u6E56\u6C34\u306E\u6587\u5316\u9928"
+    cp_num: 6
+    cp_description: "\u6587\u5316\u9928\u306E1F\u306F\u6C34\u65CF\u9928\u3084\u5199\u771F\u3001\u8CC7\u6599\u9928\u306B\u306A\u3063\u3066\u3044\u3066\u6587\u5316\u9928\u306E2F\u306F\u30C0\u30E0\u30AB\u30EC\u30FC\u304C\u3042\u308A\u7518\u53E3\u3067\u7F8E\u5473\u3057\u3044\u3067\u3059."
+    cp_position: {x: 1231.8, y: 74.7, z: 628}
+    cp_isWorked: 1
   stage: 3
 --- !u!4 &1046703628
 Transform:
