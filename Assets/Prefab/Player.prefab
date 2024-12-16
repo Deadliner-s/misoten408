@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 238664104137138045}
   - component: {fileID: 3149653489993646824}
   - component: {fileID: 2317802154578534216}
-  - component: {fileID: 500016731691916261}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -184,7 +183,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 500016731691916261}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerCamera, Assembly-CSharp
         m_MethodName: OnLook
         m_Mode: 0
@@ -327,33 +326,11 @@ MonoBehaviour:
   jumpHeight: 2
   maxBoost: 100
   boostRecoverySpeed: 4
+  bicycleModel: {fileID: 0}
   playerState: 0
   currentBoost: 100
   isBoosting: 0
   isDebug: 0
---- !u!114 &500016731691916261
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1802766375104278680}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 148a5244d23c06f4c9e8f232869f00e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lookSpeed: 2
-  maxPitch: 50
-  minPitch: -25
-  baseDistance: 5
-  speedFactor: 0.5
-  maxDistance: 10
-  smoothTime: 0.3
-  collisionMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  collisionBuffer: -3
 --- !u!1001 &4661191908751123236
 PrefabInstance:
   m_ObjectHideFlags: 0
