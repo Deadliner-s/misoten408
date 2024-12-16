@@ -112,8 +112,6 @@ public class Player : MonoBehaviour
                     }
                 }
             }
-            //SE
-            SoundManager.instance.PlaySE("bike2");
         }
         else if (playerState == PlayerState.Walking)
         {
