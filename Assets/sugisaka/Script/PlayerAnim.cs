@@ -85,16 +85,25 @@ public class PlayerAnim : MonoBehaviour
                     anim.SetBool("Idle", true);
                     anim.SetBool("Walk", false);
                     anim.SetBool("Boost", false);
+                    SoundManager.instance.StopSE("bike");
                     break;
                 case AnimState.Walk:
                     anim.SetBool("Idle", false);
                     anim.SetBool("Walk", true);
                     anim.SetBool("Boost", false);
+                    if (nowState != AnimState.Boost)
+                    {
+                        SoundManager.instance.PlaySE("bike");
+                    }
                     break;
                 case AnimState.Boost:
                     anim.SetBool("Idle", false);
                     anim.SetBool("Walk", true);
                     anim.SetBool("Boost", true);
+                    if (nowState != AnimState.Walk)
+                    {
+                        SoundManager.instance.PlaySE("bike");
+                    }
                     break;
             }
         }
