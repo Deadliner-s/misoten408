@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8d0a6bd950d85fd45bf7a419b54a7592
+guid: f3912a0f2c2e25d45b6bccb580be4e93
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cycle_0
+      name: staminagage1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 104
-        height: 85
+        width: 2296
+        height: 311
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -125,8 +125,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 471610e7bd6fc06438dcf440122e5398
-      internalID: -2124188079
+      spriteID: d50410350b09b6140b1ed7c46bc3d69a
+      internalID: -2075255241
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 351d3c555e61aa5408092f9662cda518
+    spriteID: 03f11129a4f746d4891826e942be1006
     internalID: 0
     vertices: []
     indices: 
@@ -145,7 +145,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      cycle_0: -2124188079
+      staminagage1_0: -2075255241
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
