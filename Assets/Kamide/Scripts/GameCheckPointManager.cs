@@ -1,7 +1,8 @@
+using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class GameCheckPointManager : MonoBehaviour
 {
@@ -13,21 +14,29 @@ public class GameCheckPointManager : MonoBehaviour
     public GameObject cp_UI;
     GameObject checkpointUI;        // チェックポイントUI格納用
     bool canCreateAll = false;      // チェックポイント生成フラグ
+    Vector3 StartDeckPos;
+    Vector3 EndHandPos;
+    bool isFinished;
+    bool isDestroy;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {        
+    {
         // このオブジェクトを破壊しないようにする
         DontDestroyOnLoad(this);
+
+        // フラグ初期化
+        isFinished = false;
+        isDestroy = false;   
     }
 
     private void FixedUpdate()
     {
         if (canCreateAll)
-        {            
+        {
             // 配列範囲判定
             if (currentStageNum > 0 && currentStageNum <= stageCheckPointManagers.Length + 1)
-            {                
+            {
                 // チェックポイントの生成
                 stageCheckPointManagers[currentStageNum - 1].GetComponent<StageCheckPointManager>().CreateAllCheckPoints();
             }
@@ -39,6 +48,18 @@ public class GameCheckPointManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isFinished == true && isDestroy == true)
+        {
+            if(checkpointUI != null)
+            {
+               
+
+                // UIの削除
+                Destroy(checkpointUI);
+                isDestroy = false;
+                isFinished = false;
+            }
+        }
     }
 
     /// <summary>
@@ -53,7 +74,7 @@ public class GameCheckPointManager : MonoBehaviour
         stageCheckPointManagers[stage - 1].GetComponent<StageCheckPointManager>().checkPoints[cp_num].cp_isWorked = isWorked;
 
         // 現在のステージにチェックポイントがある場合
-        if (stage == currentStageNum &&  isWorked == true)
+        if (stage == currentStageNum && isWorked == true)
         {
             stageCheckPointManagers[stage - 1].GetComponent<StageCheckPointManager>().CreateCheckPoint(cp_num);
         }
@@ -81,7 +102,7 @@ public class GameCheckPointManager : MonoBehaviour
         currentStageNum = stage;
 
         // フラグの切り替え
-        canCreateAll = true;        
+        canCreateAll = true;
     }
 
     /// <summary>
@@ -101,19 +122,48 @@ public class GameCheckPointManager : MonoBehaviour
             checkpointUI = Instantiate(cp_UI);
             checkpointUI.transform.Find("backGround2/Description").GetComponent<TextMeshProUGUI>().text = description;
             checkpointUI.transform.Find("backGround2/checkPointName").GetComponent<TextMeshProUGUI>().text = name;
-        }
+       
+            // UI移動処理
+            StartDeckPos = checkpointUI.transform.GetChild(0).localPosition;
+            EndHandPos = new Vector3(-530, StartDeckPos.y, StartDeckPos.z);
+            StartCoroutine(MoveUI());
+
+            // フラグの切り替え
+            isFinished = false;
+        }       
     }
 
     /// <summary>
     /// チェックポイントUIの削除
     /// </summary>
     public void DestroyUI()
-    {      
-        if (checkpointUI != null)
-        {
-            // 削除処理
-            Destroy(checkpointUI);
-            checkpointUI = null;
+    {
+        if (checkpointUI != null && isFinished)
+        {      
+            // フラグの切り替え
+            isDestroy = true;
+            isFinished = false;
+
+            // UI移動処理
+            StartDeckPos = checkpointUI.transform.GetChild(0).localPosition;
+            EndHandPos = new Vector3(-1400, StartDeckPos.y, StartDeckPos.z);
+            StartCoroutine(MoveUI());           
         }
     }
+
+    private IEnumerator MoveUI()
+    {       
+        float animDuration = 0.5f; // アニメーションの総時間
+        float startTime = Time.time;
+        while (Time.time - startTime < animDuration)
+        {
+            float journeyFraction = (Time.time - startTime) / animDuration;
+            journeyFraction = Mathf.SmoothStep(0f, 1f, journeyFraction);
+            checkpointUI.transform.GetChild(0).localPosition = Vector3.Lerp(StartDeckPos, EndHandPos, journeyFraction);
+            yield return null;
+        }
+
+        isFinished = true;       
+    }
+
 }
