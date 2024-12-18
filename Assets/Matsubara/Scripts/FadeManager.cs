@@ -65,7 +65,6 @@ public class FadeManager : MonoBehaviour
 
     public void FadeOut()
     {
-        Debug.Log("Ç”Ç•Å[Ç«Ç†Ç§Ç∆");
         isFadeIn = false;
         isFadeOut = true;
     }
