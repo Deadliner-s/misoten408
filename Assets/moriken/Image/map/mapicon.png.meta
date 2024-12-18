@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4d27b60ceee142b4086a28cfd7a7f194
+guid: 2aecead66d673ed46bb7116404a7135b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sutaminagage2_0
+      name: mapicon_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 2095
-        height: 279
+        x: 62
+        y: 65
+        width: 400
+        height: 963
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -125,8 +125,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a267e4950a7c7144bda3ad77a88342c
-      internalID: -2014529139
+      spriteID: 7465c322cbe58a848b82b8d7a7fbc787
+      internalID: 866935965
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 9ad526885e6e83b4a84aafc2f0592a08
+    spriteID: e8efea94901afe141a24ce5efaf02fd5
     internalID: 0
     vertices: []
     indices: 
@@ -145,7 +145,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      sutaminagage2_0: -2014529139
+      mapicon_0: 866935965
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
