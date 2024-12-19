@@ -85,7 +85,7 @@ public class PlayerAnim : MonoBehaviour
                     anim.SetBool("Idle", true);
                     anim.SetBool("Walk", false);
                     anim.SetBool("Boost", false);
-                    SoundManager.instance.StopSE("bike");
+                    SoundManager.instance.StopBGM("bike");
                     break;
                 case AnimState.Walk:
                     anim.SetBool("Idle", false);
@@ -93,7 +93,7 @@ public class PlayerAnim : MonoBehaviour
                     anim.SetBool("Boost", false);
                     if (nowState != AnimState.Boost)
                     {
-                        SoundManager.instance.PlaySE("bike");
+                        SoundManager.instance.PlayBGM("bike");
                     }
                     break;
                 case AnimState.Boost:
@@ -102,7 +102,7 @@ public class PlayerAnim : MonoBehaviour
                     anim.SetBool("Boost", true);
                     if (nowState != AnimState.Walk)
                     {
-                        SoundManager.instance.PlaySE("bike");
+                        SoundManager.instance.PlayBGM("bike");
                     }
                     break;
             }

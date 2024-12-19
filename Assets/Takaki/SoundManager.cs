@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,6 +13,9 @@ public class BGM
     [Tooltip("音量")]
     [Range(0f, 1f)]
     public float volume = 1f;
+    [Tooltip("ピッチ")]
+    [Range(-3f, 3f)]
+    public float pitch = 1f;
     [Tooltip("ループ")]
     public bool loop = true;
     [HideInInspector]
@@ -76,6 +80,7 @@ public class SoundManager : MonoBehaviour
             bgm.audiosource = gameObject.AddComponent<AudioSource>();
             bgm.audiosource.clip = bgm.clip;
             bgm.audiosource.volume = bgm.volume;
+            bgm.audiosource.pitch = bgm.pitch;
             bgm.audiosource.loop = bgm.loop;
         }
         foreach (SE se in se)
