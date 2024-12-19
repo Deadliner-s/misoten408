@@ -230,8 +230,19 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("EventArea"))
         {
-            // Playerから近くのTad,RideAreaのオブジェクトを取得
-            RideArea = GameObject.FindWithTag("RideArea");
+            // RideAreaのタグが付いているオブジェクトを取得
+            GameObject[] rideAreas = GameObject.FindGameObjectsWithTag("RideArea");
+            // Playerから一番近いRideAreaを取得
+            float minDistance = float.MaxValue;
+            foreach (GameObject rideArea in rideAreas)
+            {
+                float distance = Vector3.Distance(transform.position, rideArea.transform.position);
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                    RideArea = rideArea;
+                }
+            }
 
             // EventAreaに入ったら、EventAreaのGameObjectを取得(移動制限のため)
             EventArea = other.gameObject;
@@ -248,7 +259,8 @@ public class Player : MonoBehaviour
         }
         if (other.CompareTag("RideArea"))
         {
-            isRideArea = true;
+            if (playerState == PlayerState.Walking)
+                isRideArea = true;
         }
     }
 
@@ -300,9 +312,6 @@ public class Player : MonoBehaviour
             // ブースト終了
             isBoosting = false;
         }
-
-
-
     }
 
     // 決定ボタンの入力
@@ -323,8 +332,8 @@ public class Player : MonoBehaviour
                 CircleEffect = EventArea.transform.Find("Circle").gameObject;
                 // エフェクトを止める
                 CircleEffect.GetComponent<VisualEffect>().Stop();
-
             }
+
             // Tag TalkAreaに入っていたら、会話開始
             if (isTalkArea)
             {
@@ -345,7 +354,7 @@ public class Player : MonoBehaviour
             }
 
             // Tag RideAreaに入っていたら、自転車に乗る
-            if (isRideArea)
+            if (isRideArea && playerState == PlayerState.Walking)
             {
                 // エフェクトを再生
                 CircleEffect.GetComponent<VisualEffect>().Play();
@@ -369,6 +378,4 @@ public class Player : MonoBehaviour
         // 自転車を削除
         Destroy(bicycle);
     }
-
-
 }
