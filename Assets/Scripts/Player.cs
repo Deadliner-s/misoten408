@@ -378,4 +378,14 @@ public class Player : MonoBehaviour
         // 自転車を削除
         Destroy(bicycle);
     }
+
+    // Mapを拡縮する入力
+    public void OnZoom(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Debug.Log("MapZoom");
+        }
+    }
+
 }
