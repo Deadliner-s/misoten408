@@ -230,8 +230,19 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("EventArea"))
         {
-            // Playerから近くのTad,RideAreaのオブジェクトを取得
-            RideArea = GameObject.FindWithTag("RideArea");
+            // RideAreaのタグが付いているオブジェクトを取得
+            GameObject[] rideAreas = GameObject.FindGameObjectsWithTag("RideArea");
+            // Playerから一番近いRideAreaを取得
+            float minDistance = float.MaxValue;
+            foreach (GameObject rideArea in rideAreas)
+            {
+                float distance = Vector3.Distance(transform.position, rideArea.transform.position);
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                    RideArea = rideArea;
+                }
+            }
 
             // EventAreaに入ったら、EventAreaのGameObjectを取得(移動制限のため)
             EventArea = other.gameObject;
