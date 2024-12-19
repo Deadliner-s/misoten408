@@ -62,6 +62,10 @@ public class Player : MonoBehaviour
     [Header("デバッグ用(F1押すとクリエみたいになる、自転車乗ってる時だけ)")]
     public bool isDebug = false;                            // デバッグモードかどうか
 
+    [SerializeField] private GameObject canvas;             // Zoomに使用するCanvas
+    [SerializeField] private GameObject mapChip;            // マップチップのGameObject
+    private bool displayFlag;                               // ZoomMapを表示しているか
+
     void Start()
     {
         cameraTransform = Camera.main.transform;            // カメラのTransformを取得
@@ -213,6 +217,9 @@ public class Player : MonoBehaviour
             // Dragを無効にする
             this.GetComponent<Rigidbody>().linearDamping = isDebug ? 10 : 0;
         }
+
+        // ミニマップの切り替え
+        canvas.SetActive(displayFlag);
     }
 
     // 地面に接触した時の処理
@@ -384,7 +391,23 @@ public class Player : MonoBehaviour
     {
         if (context.performed)
         {
-            Debug.Log("MapZoom");
+            switch (displayFlag)
+            {
+                case false:
+                    displayFlag = true;
+
+                    if (mapChip != null)
+                        mapChip.transform.localScale = new Vector3(35.0f, 2.0f, 35.0f);
+                    break;
+
+                case true:
+                    displayFlag = false;
+
+                    if (mapChip != null)
+                        mapChip.transform.localScale = new Vector3(135.0f, 2.0f, 135.0f);
+                    break;
+
+            }
         }
     }
 
