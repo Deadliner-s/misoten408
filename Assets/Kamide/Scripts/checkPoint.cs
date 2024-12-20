@@ -25,8 +25,8 @@ public class checkPoint : MonoBehaviour
         transform.eulerAngles = rotation;  
         
         // ƒ{ƒ^ƒ““ü—Í
-        if (isEnterCheckPointArea && NPCDialogueManager.instance.isTalking &&
-            (Input.GetKeyDown("joystick button 0") || Input.GetKeyDown(KeyCode.Return)))
+        if (isEnterCheckPointArea && NPCDialogueManager.instance.isTalking == false &&
+            (Input.GetKeyDown("joystick button 3") || Input.GetKeyDown(KeyCode.Return)))
         {
             if (isUIAppeared == false)
             {
