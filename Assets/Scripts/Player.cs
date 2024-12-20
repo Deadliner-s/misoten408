@@ -45,6 +45,10 @@ public class Player : MonoBehaviour
     private bool isGrounded = true;                         // 地面にいるかどうか
     private Vector3 inputDirection;                         // 入力方向
 
+    [Header("各プレイヤーモデル")]
+    public GameObject playerbicycleModel;                          // 自転車ありのプレイヤーモデル
+    public GameObject playerwalkModel;                          // 歩きプレイヤーモデル
+
     public float currentBoost;                              // 現在のBoost量
     [HideInInspector] public bool isBoosting = false;       // ブースト中かどうか
 
@@ -73,6 +77,10 @@ public class Player : MonoBehaviour
         playerState = PlayerState.Driving;                  // プレイヤーの状態をDrivingに設定
         road = GameObject.FindGameObjectWithTag("Ground");  // RoadのGameObjectを取得
         firstPos = transform.position;                      // 初期位置を取得
+
+        // プレイヤーモデルの変更
+        playerbicycleModel.SetActive(true);
+        playerwalkModel.SetActive(false);
     }
 
     void Update()
@@ -377,6 +385,10 @@ public class Player : MonoBehaviour
     {
         // RideAreaの位置(少しずらした位置)に自転車をスポーン
         bicycle = Instantiate(bicycleModel, RideArea.transform.position + new Vector3(0.2f, -0.3f, -0.40f), RideArea.transform.rotation);
+
+        // プレイヤーモデルの変更
+        playerbicycleModel.SetActive(false);
+        playerwalkModel.SetActive(true);
     }
 
     // 自転車に乗る(Driving)になった時自転車を削除する
@@ -384,6 +396,10 @@ public class Player : MonoBehaviour
     {
         // 自転車を削除
         Destroy(bicycle);
+
+        // プレイヤーモデルの変更
+        playerbicycleModel.SetActive(true);
+        playerwalkModel.SetActive(false);
     }
 
     // Mapを拡縮する入力
