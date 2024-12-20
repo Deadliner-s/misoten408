@@ -3,8 +3,8 @@ using UnityEngine.UI;
 
 public class SwitchImage : MonoBehaviour
 {
-    [SerializeField] GameObject canvas;
-    [SerializeField] GameObject mapChip;
+    [SerializeField] private GameObject canvas;
+    [SerializeField] private GameObject mapChip;
    private bool displayFlag;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
