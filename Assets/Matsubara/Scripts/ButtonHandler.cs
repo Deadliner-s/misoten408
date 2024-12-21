@@ -1,9 +1,14 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ButtonHandler : MonoBehaviour
 {
     SceneTransitionManager sceneManager;
+
+    [SerializeField] private GameObject firstButton;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -12,6 +17,9 @@ public class ButtonHandler : MonoBehaviour
             sceneManager = SceneTransitionManager.instance;
         else
             Debug.LogWarning("SceneManager instance is null!");
+
+        // 最初に選択するボタンを設定
+        EventSystem.current.SetSelectedGameObject(firstButton);
 
     }
     
@@ -43,5 +51,10 @@ public class ButtonHandler : MonoBehaviour
         // ビルド後のアプリケーションを終了
         Application.Quit();
 #endif
+    }
+
+    public void SelectButton(GameObject button)
+    {
+        EventSystem.current.SetSelectedGameObject(button);
     }
 }
