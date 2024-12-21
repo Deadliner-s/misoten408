@@ -17,9 +17,9 @@ public class ButtonHandler : MonoBehaviour
             sceneManager = SceneTransitionManager.instance;
         else
             Debug.LogWarning("SceneManager instance is null!");
-
-        // 最初に選択するボタンを設定
-        EventSystem.current.SetSelectedGameObject(firstButton);
+        if(firstButton != null)
+            // 最初に選択するボタンを設定
+            EventSystem.current.SetSelectedGameObject(firstButton);
 
     }
     
