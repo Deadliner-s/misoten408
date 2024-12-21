@@ -61,10 +61,13 @@ public class checkPoint : MonoBehaviour
     private void OnTriggerExit(Collider collider)
     {
         // タグによって判定
-        if (collider.tag == "Player" && isUIAppeared == true)
+        if (collider.tag == "Player")
         {
-            // UI削除
-            GameObject.Find("GameCheckPointManager").GetComponent<GameCheckPointManager>().DestroyUI();
+            if (isUIAppeared == true)
+            {
+                // UI削除
+                GameObject.Find("GameCheckPointManager").GetComponent<GameCheckPointManager>().DestroyUI();
+            }
 
             // フラグの切り替え
             isUIAppeared = false;
