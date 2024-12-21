@@ -68,6 +68,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private GameObject canvas;             // Zoomに使用するCanvas
     [SerializeField] private GameObject mapChip;            // マップチップのGameObject
+    [SerializeField] private GameObject playerIcon;            // マップチップのGameObject
     private bool displayFlag;                               // ZoomMapを表示しているか
 
     void Start()
@@ -409,18 +410,26 @@ public class Player : MonoBehaviour
         {
             switch (displayFlag)
             {
+                // ズームしていないとき
                 case false:
                     displayFlag = true;
 
                     if (mapChip != null)
                         mapChip.transform.localScale = new Vector3(35.0f, 2.0f, 35.0f);
+
+                    if (playerIcon != null)
+                        playerIcon.transform.localScale = new Vector3(0.05f, 0.1f, 1.0f);
                     break;
 
+                // ズームしているとき
                 case true:
                     displayFlag = false;
 
                     if (mapChip != null)
                         mapChip.transform.localScale = new Vector3(135.0f, 2.0f, 135.0f);
+
+                    if (playerIcon != null)
+                        playerIcon.transform.localScale = new Vector3(0.25f, 0.5f, 1.0f);
                     break;
 
             }
