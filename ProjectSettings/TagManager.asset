@@ -9,6 +9,12 @@ TagManager:
   - RideArea
   - TalkArea
   - Fade
+  - ScoreItem
+  - syougaibutu
+  - item1
+  - item2
+  - item3
+  - Goal
   layers:
   - Default
   - TransparentFX
