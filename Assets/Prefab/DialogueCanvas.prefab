@@ -628,6 +628,7 @@ MonoBehaviour:
   typingSpeed: 0.05
   csvFile: {fileID: 4900000, guid: 41819a34ba5011f4c9d9edeb2e756884, type: 3}
   originalEventSetting: {fileID: 11400000, guid: 3c24fb4ce74aff046b529d05be95b5f5, type: 2}
+  originalRunEventSetting: {fileID: 11400000, guid: 5088cf9aa2167ba4bac193e1a3d008af, type: 2}
 --- !u!1 &8481948082529788074
 GameObject:
   m_ObjectHideFlags: 0
