@@ -24,6 +24,9 @@ public class ScoreSystem : MonoBehaviour
             currentkoin += 1;   //コインカウント
             UpdateScoreUI();    // UIを更新
             Destroy(other.gameObject); // アイテムを削除
+
+
+            RunGameManager.instance.coin += currentkoin; // コインの獲得総数を更新
         }
         // 障害物タグのオブジェクトに触れた場合
         if (other.CompareTag("syougaibutu"))
@@ -31,6 +34,7 @@ public class ScoreSystem : MonoBehaviour
             currentScore -= 50; // スコアを減算
             UpdateScoreUI();    // UIを更新
 
+            RunGameManager.instance.coin += currentkoin; // コインの獲得総数を更新
         }
         // item1タグのオブジェクトに触れた場合
         if (other.CompareTag("item1"))
@@ -39,6 +43,8 @@ public class ScoreSystem : MonoBehaviour
             UpdateScoreUI();    // UIを更新
             Destroy(other.gameObject); // アイテムを削除
 
+            RunGameManager.instance.coin += currentkoin; // コインの獲得総数を更新
+            RunGameManager.instance.item1 += 1; // アイテムの獲得総数を更新
         }
         // item2タグのオブジェクトに触れた場合
         if (other.CompareTag("item2"))
@@ -47,6 +53,8 @@ public class ScoreSystem : MonoBehaviour
             UpdateScoreUI();    // UIを更新
             Destroy(other.gameObject); // アイテムを削除
 
+            RunGameManager.instance.coin += currentkoin; // コインの獲得総数を更新
+            RunGameManager.instance.item2 += 1; // アイテムの獲得総数を更新
         }
         // item3タグのオブジェクトに触れた場合
         if (other.CompareTag("item3"))
@@ -55,6 +63,8 @@ public class ScoreSystem : MonoBehaviour
             UpdateScoreUI();    // UIを更新
             Destroy(other.gameObject); // アイテムを削除
 
+            RunGameManager.instance.coin += currentkoin; // コインの獲得総数を更新
+            RunGameManager.instance.item3 += 1; // アイテムの獲得総数を更新
         }
 
     }
@@ -66,6 +76,5 @@ public class ScoreSystem : MonoBehaviour
             scoreText.text = "Score: " + currentScore;
         }
     }
-    
 }
 

@@ -22,7 +22,9 @@ public class EventData
     public EventNameEnum eventName;    // イベント名
     [Header("お土産の画像")]
     public Texture2D tex;              // 貰えるお土産の画像
+    [Header("話しかけた回数")]
     public int cnt;                    // 話しかけた回数
+    [Header("チェックポイントを通過したか")]
     public int checkPoint;             // チェックポイントを通過したか
 }
 

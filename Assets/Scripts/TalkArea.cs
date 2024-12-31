@@ -14,10 +14,6 @@ public class TalkArea : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Debug用F2を押すと強制的にチェックポイントを通過
-        if (Input.GetKeyDown(KeyCode.F2))
-        {
-            NPCDialogueManager.instance.SetCheckPoint(EventData.EventNameEnum.パターゴルフ);
-        }
+
     }
 }
