@@ -8,7 +8,9 @@ public class ScoreSystem : MonoBehaviour
     public int currentitem1 = 0;        // 固定値加算アイテム
     public int currentitem2 = 0;        // 所持コインを1.3倍にする倍率加算アイテム
     public int currentitem3 = 0;        // 獲得したコイン枚数に応じて加算するアイテム
-    public Text scoreText;               // スコアを表示するUI
+    public Text scoreText;              // スコアを表示するUI
+    public GameObject coinEffect;       // コインを取った時のエフェクト
+    public GameObject itemEffect;       // アイテムを取った時のエフェクト
 
     private void Start()
     {
@@ -23,6 +25,7 @@ public class ScoreSystem : MonoBehaviour
             currentScore += 10;  // スコアを加算
             currentkoin += 1;   //コインカウント
             UpdateScoreUI();    // UIを更新
+            Instantiate(coinEffect, other.transform.position, coinEffect.transform.rotation);  // エフェクト生成
             Destroy(other.gameObject); // アイテムを削除
 
 
@@ -41,6 +44,7 @@ public class ScoreSystem : MonoBehaviour
         {
             currentScore += 200; // スコアを加算（100）
             UpdateScoreUI();    // UIを更新
+            Instantiate(itemEffect, other.transform.position, itemEffect.transform.rotation);  // エフェクト生成
             Destroy(other.gameObject); // アイテムを削除
 
             RunGameManager.instance.coin += currentkoin; // コインの獲得総数を更新
@@ -51,6 +55,7 @@ public class ScoreSystem : MonoBehaviour
         {
             currentScore = currentScore / 10 * 12; ; // スコアを1.2倍にする
             UpdateScoreUI();    // UIを更新
+            Instantiate(itemEffect, other.transform.position, itemEffect.transform.rotation);  // エフェクト生成
             Destroy(other.gameObject); // アイテムを削除
 
             RunGameManager.instance.coin += currentkoin; // コインの獲得総数を更新
@@ -61,6 +66,7 @@ public class ScoreSystem : MonoBehaviour
         {
             currentScore = currentScore + currentkoin * 2; // コイン１枚ごとに2増加
             UpdateScoreUI();    // UIを更新
+            Instantiate(itemEffect, other.transform.position, itemEffect.transform.rotation);  // エフェクト生成
             Destroy(other.gameObject); // アイテムを削除
 
             RunGameManager.instance.coin += currentkoin; // コインの獲得総数を更新

@@ -129,6 +129,7 @@ MonoBehaviour:
   laneDistance: 3.7
   lateralSpeed: 12
   forwardSpeed: 10
+  decelerationRate: 0.1
   jumpHeight: 3
   jumpDuration: 0.5
 --- !u!114 &2907999185837270790
@@ -144,7 +145,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentScore: 0
+  currentkoin: 0
+  currentitem1: 0
+  currentitem2: 0
+  currentitem3: 0
   scoreText: {fileID: 0}
+  coinEffect: {fileID: 7283411970643824777, guid: 5517245b57bfc4f449cba07429ee234e, type: 3}
+  itemEffect: {fileID: 5779577695104512837, guid: f1efc650ac3508443bf4f1bc28219af3, type: 3}
 --- !u!54 &4342978799644269488
 Rigidbody:
   m_ObjectHideFlags: 0
