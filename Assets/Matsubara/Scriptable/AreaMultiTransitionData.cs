@@ -6,7 +6,7 @@ public class AreaMultiTransitionData : ScriptableObject
     [System.Serializable]
     public class TransitionInfo
     {
-        public string SceneInitial;      // 遷移方向や条件を示す（例: "North", "South", etc.）
+        public string SceneName;      // 遷移方向や条件を示す（例: "North", "South", etc.）
         public string targetScene;    // 遷移先のシーン名
         public Vector3 spawnPosition; // 遷移先のスポーン位置
         public GameObject transform;

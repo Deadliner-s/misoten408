@@ -22,21 +22,14 @@ public class AreaTransitionTrigger : MonoBehaviour
         {
             foreach(var transitions in transitionData.transitions)
             {
-                if (transitions.SceneInitial == AreaNo)
+                if (transitions.SceneName == AreaNo)
                 {
-                    scene.LoadSceneAsyncPlayerSetpos(transitions.targetScene, transitions.transform);
-                    //GameObject player = GameObject.FindGameObjectWithTag("Player");
-                    //player.transform.position = transitions.transform.transform.position;
-                    
+                    if (transitions.transform != null)
+                        scene.LoadSceneAsyncPlayerSetpos(transitions.targetScene, transitions.transform);
+                    else
+                        scene.LoadSceneAsync(transitions.targetScene);
                 }
-
             }
-            // 必要であれば、遷移先でのプレイヤーのスポーン位置も設定
-            // other.transform.position = transitionData.spawnPosition;
         }
-
-      
     }
-
-
 }

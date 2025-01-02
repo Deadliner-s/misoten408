@@ -10,11 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 685c9de43350daa4aab28edd759fe26e, type: 3}
-  m_Name: AreaA_TransitionData
+  m_Name: AreaC_TransitionData
   m_EditorClassIdentifier: 
-  areaName: Area_A
+  areaName: 
   transitions:
-  - SceneInitial: B
+  - SceneName: B
     targetScene: Area_B
     spawnPosition: {x: 0, y: 0, z: 0}
-    transform: {fileID: 6435835386567100346, guid: 53ebad91a0a76d849a7d97aa73dc73a9, type: 3}
+    transform: {fileID: 5388310962858376111, guid: f03a9fe7a5149b24595140c01f81e6c6, type: 3}
+  - SceneName: D
+    targetScene: Area_D
+    spawnPosition: {x: 0, y: 0, z: 0}
+    transform: {fileID: 2825174495668042767, guid: f59699562c32fbc4092eab845797dc5f, type: 3}
