@@ -1,7 +1,12 @@
+using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    // 入力
+    private Vector2 input;
+
     // 移動速度
     public float moveSpeed = 5f;
 
@@ -10,6 +15,16 @@ public class PlayerMovement : MonoBehaviour
 
     // カメラの参照
     public Camera mainCamera;
+
+    // NPCと会話できるAreaに入ったかどうか
+    private bool isEnterArea = false;
+
+    // 難易度選択のAreaに入ったかどうか
+    private bool isEnterDifficultyLevelArea = false;
+
+    // InteractできるArea
+    private GameObject interactArea;
+
 
     void Start()
     {
@@ -22,9 +37,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        // 入力を取得
-        float moveX = Input.GetAxis("Horizontal"); // A, Dキーで左右移動
-        float moveZ = Input.GetAxis("Vertical");   // W, Sキーで前後移動
+        if (NPCDialogueManager.instance.isTalking)
+        {
+            return;
+        }
 
         // 入力方向をカメラ基準で変換
         Vector3 cameraForward = mainCamera.transform.forward; // カメラの前方向
@@ -39,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
         cameraRight.Normalize();
 
         // 移動方向を計算
-        Vector3 moveDirection = cameraForward * moveZ + cameraRight * moveX;
+        Vector3 moveDirection = cameraForward * input.y + cameraRight * input.x;
 
         // 移動処理
         if (moveDirection.magnitude > 0.1f) // 入力がある場合のみ処理
@@ -50,6 +66,78 @@ public class PlayerMovement : MonoBehaviour
             // プレイヤーの向きを移動方向に合わせる
             Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        }
+    }
+
+    // Areaに入ったときの処理
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("NPCArea"))
+        {
+            isEnterArea = true;
+            interactArea = other.gameObject;
+        }
+        else if (other.CompareTag("DifficultyLevelArea"))
+        {
+            isEnterDifficultyLevelArea = true;
+            interactArea = other.gameObject;
+        }
+
+    }
+
+    // Areaから出たときの処理
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("RunGameNPCArea"))
+        {
+            isEnterArea = false;
+            interactArea = null;
+        }
+        else if (other.CompareTag("DifficultyLevelArea"))
+        {
+            isEnterDifficultyLevelArea = false;
+            interactArea = null;
+        }
+    }
+
+    // 移動の入力
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        input = context.ReadValue<Vector2>();
+    }
+
+    // 決定ボタンの入力
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            // NPCと会話できるAreaに入った場合
+            if (isEnterArea)
+            {
+                if (NPCDialogueManager.instance.isTalking != true)
+                {
+                    NPCDialogueManager.instance.isTalking = true;
+
+                    // RunGameNPCAreaのEventNameを取得して会話を開始
+                    NPCDialogueManager.instance.StartEvent(interactArea.GetComponent<RunGameNPCArea>().eventName.ToString(),
+                        NPCDialogueManager.instance.runtimeRunEventSetting.DataList.FirstOrDefault(data => data.eventName == interactArea.GetComponent<RunGameNPCArea>().eventName).cnt,
+                        null,
+                        NPCDialogueManager.instance.runtimeRunEventSetting.DataList.FirstOrDefault(data => data.eventName == interactArea.GetComponent<RunGameNPCArea>().eventName).checkPoint);
+                    // 話しかけた回数を増やす
+                    NPCDialogueManager.instance.runtimeRunEventSetting.DataList.FirstOrDefault(data => data.eventName == interactArea.GetComponent<RunGameNPCArea>().eventName).cnt++;
+
+                }
+                else
+                    NPCDialogueManager.instance.NextDialogue();
+
+            }
+            // 難易度選択のAreaに入った場合
+            else if (isEnterDifficultyLevelArea)
+            {
+                // interactAreaを使うか何とかして難易度別の処理を実装↓
+            }
+
+
         }
     }
 }
