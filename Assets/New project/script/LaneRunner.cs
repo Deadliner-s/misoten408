@@ -24,6 +24,9 @@ public class LaneRunner : MonoBehaviour
     private bool isJumping = false;
     private bool isMoving = false; // 移動中の判定
 
+    // アニメーション関連
+    public LaneAni laneAni;
+
     // 目標位置
     private Vector3 targetPosition;
 
@@ -37,6 +40,9 @@ public class LaneRunner : MonoBehaviour
 
         // 元の前進速度を保存
         originalForwardSpeed = forwardSpeed;
+
+        // プレイヤーの子オブジェクトのアニメーションを取得
+        laneAni = GetComponentInChildren<LaneAni>();
     }
 
     void Update()
@@ -50,11 +56,13 @@ public class LaneRunner : MonoBehaviour
                 {
                     currentLane--;
                     isMoving = true;
+                    laneAni.LaneChangeAni(0);
                 }
                 else if (Input.GetKeyDown(KeyCode.D) && currentLane < 2)
                 {
                     currentLane++;
                     isMoving = true;
+                    laneAni.LaneChangeAni(1);
                 }
             }
 
