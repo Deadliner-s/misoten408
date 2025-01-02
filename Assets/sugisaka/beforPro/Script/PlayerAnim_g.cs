@@ -14,7 +14,7 @@ public class PlayerAnim_g : MonoBehaviour
     public AnimState state;
 
     private GameObject player;
-    private Player playerCS;
+    private PlayerMovement playerCS;
 
     // アニメーションのコンポーネント
     private Animator anim;
@@ -26,7 +26,7 @@ public class PlayerAnim_g : MonoBehaviour
         // 親オブジェクト取得
         player = transform.parent.gameObject;
         // Playerコンポーネントを取得
-        playerCS = player.GetComponent<Player>();
+        playerCS = player.GetComponent<PlayerMovement>();
 
         // アニメーターコンポーネントを取得
         anim = GetComponent<Animator>();
