@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable] // インスペクターに表示するために必要
-public class RunEventData
+public class RunGameEventData
 {
-    public enum RunEventNameEnum
+    public enum RunGameEventNameEnum
     {
-
+        None,
         HomeA解放,
         HomeA中級解放,
         HomeA上級解放,
@@ -22,7 +22,7 @@ public class RunEventData
     }
 
     [Header("イベント名")]
-    public RunEventNameEnum eventName;      // イベント名
+    public RunGameEventNameEnum eventName;      // イベント名
     [Header("話しかけた回数")]
     public int cnt;                         // 話しかけた回数
     [Header("Home、難易度を解除 クエストをクリアしたか")]
@@ -30,13 +30,13 @@ public class RunEventData
 }
 
 
-[CreateAssetMenu(fileName = "RunEventSetting", menuName = "Scriptable Objects/RunEventSetting")]
-public class RunEventSetting : ScriptableObject
+[CreateAssetMenu(fileName = "RunGameEventSetting", menuName = "Scriptable Objects/RunGameEventSetting")]
+public class RunGameEventSetting : ScriptableObject
 {
-    public List<RunEventData> DataList;
+    public List<RunGameEventData> DataList;
 
     // ランタイム中のみのインスタンスを作成
-    public RunEventSetting CreateRuntimeInstance()
+    public RunGameEventSetting CreateRuntimeInstance()
     {
         return Instantiate(this);
     }

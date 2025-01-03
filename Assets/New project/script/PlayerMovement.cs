@@ -25,6 +25,8 @@ public class PlayerMovement : MonoBehaviour
     // Interact‚Å‚«‚éArea
     private GameObject interactArea;
 
+    // “ïˆÕ“xArea‚Åƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½‚©
+    private bool isPressedButton = false;
 
     void Start()
     {
@@ -37,7 +39,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (NPCDialogueManager.instance.isTalking)
+        // ‰ï˜b’†‚Ü‚½‚Í‘JˆÚŠJn‚ÍˆÚ“®‚Å‚«‚È‚¢
+        if (NPCDialogueManager.instance.isTalking || isPressedButton)
         {
             return;
         }
@@ -72,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
     // Area‚É“ü‚Á‚½‚Æ‚«‚Ìˆ—
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("NPCArea"))
+        if (other.CompareTag("RunGameNPCArea"))
         {
             isEnterArea = true;
             interactArea = other.gameObject;
@@ -82,7 +85,6 @@ public class PlayerMovement : MonoBehaviour
             isEnterDifficultyLevelArea = true;
             interactArea = other.gameObject;
         }
-
     }
 
     // Area‚©‚ço‚½‚Æ‚«‚Ìˆ—
@@ -118,6 +120,12 @@ public class PlayerMovement : MonoBehaviour
                 {
                     NPCDialogueManager.instance.isTalking = true;
 
+                    // ğŒ‚ğ–‚½‚µ‚Ä‚¢‚éê‡A•Ç‚ğ‰ğœ
+                    interactArea.GetComponent<RunGameNPCArea>().SetUnlockedWall();
+
+                    // ğŒ‚ğ–‚½‚µ‚Ä‚¢‚éê‡ACoin‚ğŠl“¾•item‚ğÁ”ï
+                    interactArea.GetComponent<RunGameNPCArea>().GetCoinAndUseItem();
+
                     // RunGameNPCArea‚ÌEventName‚ğæ“¾‚µ‚Ä‰ï˜b‚ğŠJn
                     NPCDialogueManager.instance.StartEvent(interactArea.GetComponent<RunGameNPCArea>().eventName.ToString(),
                         NPCDialogueManager.instance.runtimeRunEventSetting.DataList.FirstOrDefault(data => data.eventName == interactArea.GetComponent<RunGameNPCArea>().eventName).cnt,
@@ -132,12 +140,58 @@ public class PlayerMovement : MonoBehaviour
 
             }
             // “ïˆÕ“x‘I‘ğ‚ÌArea‚É“ü‚Á‚½ê‡
-            else if (isEnterDifficultyLevelArea)
+            else if (isEnterDifficultyLevelArea && !isPressedButton)
             {
-                // interactArea‚ğg‚¤‚©‰½‚Æ‚©‚µ‚Ä“ïˆÕ“x•Ê‚Ìˆ—‚ğÀ‘•«
+                isPressedButton = true;
+
+                // Home–ˆ‚Ì“ïˆÕ“x‚©‚ç‚Ì‘JˆÚ
+                // “ïˆÕ“x‚ÌObject‚ğæ“¾‚µ‚ÄA‚»‚Ì“ïˆÕ“x‚É‰‚¶‚Ä‘JˆÚ
+                if (interactArea.GetComponent<DifficultyArea>().difficultyLevel == RunGameManager.DifficultyLevel.C_‰‹‰)
+                {
+                    // C‚Ì‰‹‰‚É‘JˆÚ
+                    Debug.Log("C‚Ì‰‹‰‚É‘JˆÚ");
+                }
+                else if (interactArea.GetComponent<DifficultyArea>().difficultyLevel == RunGameManager.DifficultyLevel.C_’†‹‰)
+                {
+                    // C‚Ì’†‹‰‚É‘JˆÚ
+                    Debug.Log("C‚Ì’†‹‰‚É‘JˆÚ");
+                }
+                else if (interactArea.GetComponent<DifficultyArea>().difficultyLevel == RunGameManager.DifficultyLevel.C_ã‹‰)
+                {
+                    // C‚Ìã‹‰‚É‘JˆÚ
+                    Debug.Log("C‚Ìã‹‰‚É‘JˆÚ");
+                }
+                else if (interactArea.GetComponent<DifficultyArea>().difficultyLevel == RunGameManager.DifficultyLevel.A_‰‹‰)
+                {
+                    // A‚Ì‰‹‰‚É‘JˆÚ
+                    Debug.Log("A‚Ì‰‹‰‚É‘JˆÚ");
+                }
+                else if (interactArea.GetComponent<DifficultyArea>().difficultyLevel == RunGameManager.DifficultyLevel.A_’†‹‰)
+                {
+                    // A‚Ì’†‹‰‚É‘JˆÚ
+                    Debug.Log("A‚Ì’†‹‰‚É‘JˆÚ");
+                }
+                else if (interactArea.GetComponent<DifficultyArea>().difficultyLevel == RunGameManager.DifficultyLevel.A_ã‹‰)
+                {
+                    // A‚Ìã‹‰‚É‘JˆÚ
+                    Debug.Log("A‚Ìã‹‰‚É‘JˆÚ");
+                }
+                else if (interactArea.GetComponent<DifficultyArea>().difficultyLevel == RunGameManager.DifficultyLevel.B_‰‹‰)
+                {
+                    // B‚Ì‰‹‰‚É‘JˆÚ
+                    Debug.Log("B‚Ì‰‹‰‚É‘JˆÚ");
+                }
+                else if (interactArea.GetComponent<DifficultyArea>().difficultyLevel == RunGameManager.DifficultyLevel.B_’†‹‰)
+                {
+                    // B‚Ì’†‹‰‚É‘JˆÚ
+                    Debug.Log("B‚Ì’†‹‰‚É‘JˆÚ");
+                }
+                else if (interactArea.GetComponent<DifficultyArea>().difficultyLevel == RunGameManager.DifficultyLevel.B_ã‹‰)
+                {
+                    // B‚Ìã‹‰‚É‘JˆÚ
+                    Debug.Log("B‚Ìã‹‰‚É‘JˆÚ");
+                }
             }
-
-
         }
     }
 }

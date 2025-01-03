@@ -49,9 +49,9 @@ public class NPCDialogueManager : MonoBehaviour
     public EventSetting runtimeEventSetting;
 
     [Header("RunGameNPCSetting")]
-    public RunEventSetting originalRunEventSetting;
+    public RunGameEventSetting originalRunEventSetting;
     [NonSerialized]
-    public RunEventSetting runtimeRunEventSetting;
+    public RunGameEventSetting runtimeRunEventSetting;
 
     private void Awake()
     {
@@ -78,6 +78,7 @@ public class NPCDialogueManager : MonoBehaviour
 
         // ランタイム用インスタンスを作成
         runtimeEventSetting = originalEventSetting.CreateRuntimeInstance();
+        runtimeRunEventSetting = originalRunEventSetting.CreateRuntimeInstance();
     }
 
     void Update()
@@ -308,11 +309,26 @@ public class NPCDialogueManager : MonoBehaviour
     }
 
     // Home解放後、難易度解放後、Questクリア後に会話の内容を変えるための関数(CheckPointを流用)
-    public void SetCheckPoint_RunGame(RunEventData.RunEventNameEnum eventName)
+    public void SetCheckPoint_RunGame(RunGameEventData.RunGameEventNameEnum eventName)
     {
         // 喋りかけた回数Cntをリセット
         runtimeRunEventSetting.DataList.FirstOrDefault(data => data.eventName == eventName).cnt = 0;
         // trueにチェックポイントを通過設定
         runtimeRunEventSetting.DataList.FirstOrDefault(data => data.eventName == eventName).checkPoint = 1;
     }
+
+    // 初回に話しかけた場合はTrueを返す
+    public bool GetFirstTalk_RunGame(RunGameEventData.RunGameEventNameEnum eventName)
+    {
+        // 喋りかけた回数Cntが0&チェックポイントが通過していない場合はTrueを返す
+        if (runtimeRunEventSetting.DataList.FirstOrDefault(data => data.eventName == eventName).cnt == 0 && runtimeRunEventSetting.DataList.FirstOrDefault(data => data.eventName == eventName).checkPoint == 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 }
