@@ -4,6 +4,20 @@ public class RunGameManager : MonoBehaviour
 {
     public static RunGameManager instance;
 
+    public enum DifficultyLevel
+    {
+        None,
+        C_‰‹‰,
+        C_’†‹‰,
+        C_ã‹‰,
+        A_‰‹‰,
+        A_’†‹‰,
+        A_ã‹‰,
+        B_‰‹‰,
+        B_’†‹‰,
+        B_ã‹‰
+    }
+
     [Header("HomeC")]
     public bool C_intermediate;
     public bool C_Advanced;

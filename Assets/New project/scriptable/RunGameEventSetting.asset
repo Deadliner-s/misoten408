@@ -10,12 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5653c9cae3876514a84c024cbd73d0c4, type: 3}
-  m_Name: RunEventSetting
+  m_Name: RunGameEventSetting
   m_EditorClassIdentifier: 
   DataList:
-  - eventName: 0
-    cnt: 0
-    checkPoint: 0
   - eventName: 1
     cnt: 0
     checkPoint: 0
@@ -44,5 +41,8 @@ MonoBehaviour:
     cnt: 0
     checkPoint: 0
   - eventName: 10
+    cnt: 0
+    checkPoint: 0
+  - eventName: 8
     cnt: 0
     checkPoint: 0
