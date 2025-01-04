@@ -70,6 +70,7 @@ public class LaneRunner : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) && isGrounded && !isMoving)
             {
                 StartJump();
+                SoundManager.instance.PlaySE("jump");
             }
 
             // ƒWƒƒƒ“ƒvˆ—
