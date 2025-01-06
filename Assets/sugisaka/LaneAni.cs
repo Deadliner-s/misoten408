@@ -21,6 +21,9 @@ public class LaneAni : MonoBehaviour
             case 1:
                 animator.SetTrigger("right");
                 break;
+            case 2:
+                animator.SetTrigger("jump");
+                break;
         }
     }
 }
