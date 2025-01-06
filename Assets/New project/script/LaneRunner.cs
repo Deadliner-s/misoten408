@@ -80,6 +80,7 @@ public class LaneRunner : MonoBehaviour
             if (isJumping)
             {
                 HandleJump();
+                hasReachedGoal = true;
             }
 
             // ƒŒ[ƒ“ˆÚ“®ˆ—

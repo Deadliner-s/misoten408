@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -141,5 +142,11 @@ public class SceneTransitionManager : MonoBehaviour
             if (GameManager.instance.IsOnGame())
                 GameManager.instance.EndGame();
         }
+    }
+
+    public void SetPlayerPos(Vector3 pos, Quaternion rotate)
+    {
+        playerStartPos = pos;
+        playerStartRotate = rotate;
     }
 }

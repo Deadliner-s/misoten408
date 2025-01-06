@@ -1042,6 +1042,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sound
       objectReference: {fileID: 0}
+    - target: {fileID: 6906820271163787708, guid: 8da3734da117c2440aa4d6efa2612f5d, type: 3}
+      propertyPath: se.Array.data[0].name
+      value: coin
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
