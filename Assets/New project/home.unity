@@ -389,6 +389,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5632217784210242161, guid: 377b34f633902aa47afc921799f38b28, type: 3}
+      propertyPath: playerPos
+      value: 
+      objectReference: {fileID: 3616866157241445988, guid: 0c7c1882425fe8d41b7a8866efc38e62, type: 3}
+    - target: {fileID: 5632217784210242161, guid: 377b34f633902aa47afc921799f38b28, type: 3}
       propertyPath: difficultyLevel
       value: 3
       objectReference: {fileID: 0}
@@ -3194,6 +3198,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5632217784210242161, guid: 377b34f633902aa47afc921799f38b28, type: 3}
+      propertyPath: playerPos
+      value: 
+      objectReference: {fileID: 3616866157241445988, guid: 0c7c1882425fe8d41b7a8866efc38e62, type: 3}
+    - target: {fileID: 5632217784210242161, guid: 377b34f633902aa47afc921799f38b28, type: 3}
       propertyPath: difficultyLevel
       value: 1
       objectReference: {fileID: 0}
@@ -5446,6 +5454,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5632217784210242161, guid: 377b34f633902aa47afc921799f38b28, type: 3}
+      propertyPath: playerPos
+      value: 
+      objectReference: {fileID: 3616866157241445988, guid: 0c7c1882425fe8d41b7a8866efc38e62, type: 3}
     - target: {fileID: 5632217784210242161, guid: 377b34f633902aa47afc921799f38b28, type: 3}
       propertyPath: difficultyLevel
       value: 2

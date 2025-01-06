@@ -32,6 +32,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/New project/homeB.unity
     guid: 43d0e6bf8d1b78a41988a792df8341ad
+  - enabled: 1
+    path: Assets/New project/Game1.unity
+    guid: 763b933d68dbe864194a66ecf8fcdb14
+  - enabled: 1
+    path: Assets/New project/Game1-2.unity
+    guid: b0cdfdc4af289674fb9d8ecb2d8b2076
+  - enabled: 1
+    path: Assets/New project/Game1-3.unity
+    guid: 68894e7b3e2d2d043bc1c3cbef16f296
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

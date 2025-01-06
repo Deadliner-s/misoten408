@@ -7,7 +7,9 @@ public class ButtonHandler : MonoBehaviour
 {
     SceneTransitionManager sceneManager;
 
-    [SerializeField] private GameObject firstButton;
+    [SerializeField] private GameObject firstButton;    //　開始時に選択状態にするボタン
+
+    private string sceneName = "Area_C";   // 移動するシーン名
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -27,7 +29,7 @@ public class ButtonHandler : MonoBehaviour
     {
         if(sceneManager != null)
         {
-            sceneManager.LoadSceneAsync("Area_C");
+            sceneManager.LoadSceneAsync(sceneName);
         }
 
     }
@@ -56,5 +58,10 @@ public class ButtonHandler : MonoBehaviour
     public void SelectButton(GameObject button)
     {
         EventSystem.current.SetSelectedGameObject(button);
+    }
+
+    public void SetSceneButton(string nextSceneName)
+    {
+        sceneName = nextSceneName;
     }
 }
