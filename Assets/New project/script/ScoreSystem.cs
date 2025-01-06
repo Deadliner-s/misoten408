@@ -49,7 +49,7 @@ public class ScoreSystem : MonoBehaviour
             Destroy(other.gameObject); // アイテムを削除
 
             SoundManager.instance.PlaySE("item1"); //SE
-
+            currentitem1 += 1;  // アイテムの獲得数を加算
             RunGameManager.instance.coin += currentkoin; // コインの獲得総数を更新
             RunGameManager.instance.item1 += 1; // アイテムの獲得総数を更新
         }
@@ -63,6 +63,7 @@ public class ScoreSystem : MonoBehaviour
 
             SoundManager.instance.PlaySE("item2"); //SE
 
+            currentitem2 += 1;  // アイテムの獲得数を加算
             RunGameManager.instance.coin += currentkoin; // コインの獲得総数を更新
             RunGameManager.instance.item2 += 1; // アイテムの獲得総数を更新
         }
@@ -76,6 +77,7 @@ public class ScoreSystem : MonoBehaviour
 
             SoundManager.instance.PlaySE("item3"); //SE
 
+            currentitem3 += 1;  // アイテムの獲得数を加算
             RunGameManager.instance.coin += currentkoin; // コインの獲得総数を更新
             RunGameManager.instance.item3 += 1; // アイテムの獲得総数を更新
         }

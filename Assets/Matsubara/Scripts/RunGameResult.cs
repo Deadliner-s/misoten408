@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +13,9 @@ public class RunGameResult : MonoBehaviour
     [SerializeField] private TextMeshProUGUI item2Text; // アイテム2の数を表示するUIテキスト
     [SerializeField] private TextMeshProUGUI item3Text; // アイテム3の数を表示するUIテキスト
 
+    [SerializeField] private Button button;
+    [SerializeField] private GameObject playerStartPos;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,6 +26,8 @@ public class RunGameResult : MonoBehaviour
             Debug.LogError("ScoreSystemが見つかりませんでした。シーンに追加してください。");
             return;
         }
+
+        resultCanvas.GetComponentInChildren<Button>().onClick.AddListener(ReturnHome);
     }
     public void UpdateResultDisplay()
     {       
@@ -31,9 +37,14 @@ public class RunGameResult : MonoBehaviour
             resultCanvas.SetActive(true);
         }
         // スコアシステムから値を取得してUIに表示
-        coinText.text = "Coins: " + RunGameManager.instance.coin;
-        item1Text.text = "Item 1: " + RunGameManager.instance.item1;
-        item2Text.text = "Item 2: " + RunGameManager.instance.item2;
-        item3Text.text = "Item 3: " + RunGameManager.instance.item3;
+        coinText.text = "Coins: " + scoreSystem.currentkoin;
+        item1Text.text = "Item 1: " + scoreSystem.currentitem1;
+        item2Text.text = "Item 2: " + scoreSystem.currentitem2;
+        item3Text.text = "Item 3: " + scoreSystem.currentitem3;
+    }
+
+    private void ReturnHome()
+    {
+        SceneTransitionManager.instance.LoadSceneAsyncPlayerSetpos("home", playerStartPos);
     }
 }

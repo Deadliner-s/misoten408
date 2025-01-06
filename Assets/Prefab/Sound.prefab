@@ -52,7 +52,7 @@ MonoBehaviour:
     loop: 1
     audiosource: {fileID: 0}
   se:
-  - name: cion
+  - name: coin
     clip: {fileID: 8300000, guid: 58cd9c13bd387f1489073e332841e646, type: 3}
     volume: 0.3
     pitch: 2
