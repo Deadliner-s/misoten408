@@ -11,6 +11,7 @@ public class ScoreSystem : MonoBehaviour
     public Text scoreText;              // スコアを表示するUI
     public GameObject coinEffect;       // コインを取った時のエフェクト
     public GameObject itemEffect;       // アイテムを取った時のエフェクト
+    public GameObject missEffect;       // 障害物に当たった時のエフェクト
 
     private void Start()
     {
@@ -37,6 +38,8 @@ public class ScoreSystem : MonoBehaviour
         {
             currentScore -= 50; // スコアを減算
             UpdateScoreUI();    // UIを更新
+            GameObject effect = Instantiate(missEffect, transform.position, missEffect.transform.rotation);  // エフェクト生成                        
+            effect.transform.SetParent(transform);
 
             RunGameManager.instance.coin += currentkoin; // コインの獲得総数を更新
         }

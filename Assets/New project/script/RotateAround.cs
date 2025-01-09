@@ -8,6 +8,7 @@ public class RotateAround : MonoBehaviour
     void Update()
     {
         // Y²‚ğ’†S‚É‰ñ“]‚³‚¹‚é
-        transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
+        // transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
+        transform.Rotate(0, rotationSpeed * Time.deltaTime, 0);
     }
 }
