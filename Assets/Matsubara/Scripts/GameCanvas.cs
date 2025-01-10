@@ -15,7 +15,13 @@ public class GameCanvas : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        scoreSystem = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<ScoreSystem>();
+
+        if (scoreSystem == null)
+        {
+            Debug.LogError("ScoreSystemが見つかりませんでした。シーンに追加してください。");
+            return;
+        }
     }
 
     // Update is called once per frame
