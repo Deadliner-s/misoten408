@@ -30,8 +30,6 @@ public class ScoreSystem : MonoBehaviour
             Destroy(other.gameObject); // アイテムを削除
 
             SoundManager.instance.PlaySE("coin"); //SE
-
-            RunGameManager.instance.coin += currentkoin; // コインの獲得総数を更新
         }
         // 障害物タグのオブジェクトに触れた場合
         if (other.CompareTag("syougaibutu"))
@@ -40,8 +38,6 @@ public class ScoreSystem : MonoBehaviour
             UpdateScoreUI();    // UIを更新
             GameObject effect = Instantiate(missEffect, transform.position, missEffect.transform.rotation);  // エフェクト生成                        
             effect.transform.SetParent(transform);
-
-            RunGameManager.instance.coin += currentkoin; // コインの獲得総数を更新
         }
         // item1タグのオブジェクトに触れた場合
         if (other.CompareTag("item1"))
@@ -53,7 +49,6 @@ public class ScoreSystem : MonoBehaviour
 
             SoundManager.instance.PlaySE("item1"); //SE
             currentitem1 += 1;  // アイテムの獲得数を加算
-            RunGameManager.instance.coin += currentkoin; // コインの獲得総数を更新
             RunGameManager.instance.item1 += 1; // アイテムの獲得総数を更新
         }
         // item2タグのオブジェクトに触れた場合
@@ -67,7 +62,6 @@ public class ScoreSystem : MonoBehaviour
             SoundManager.instance.PlaySE("item2"); //SE
 
             currentitem2 += 1;  // アイテムの獲得数を加算
-            RunGameManager.instance.coin += currentkoin; // コインの獲得総数を更新
             RunGameManager.instance.item2 += 1; // アイテムの獲得総数を更新
         }
         // item3タグのオブジェクトに触れた場合
@@ -81,7 +75,6 @@ public class ScoreSystem : MonoBehaviour
             SoundManager.instance.PlaySE("item3"); //SE
 
             currentitem3 += 1;  // アイテムの獲得数を加算
-            RunGameManager.instance.coin += currentkoin; // コインの獲得総数を更新
             RunGameManager.instance.item3 += 1; // アイテムの獲得総数を更新
         }
 
@@ -93,6 +86,14 @@ public class ScoreSystem : MonoBehaviour
         {
             scoreText.text = "Score: " + currentScore;
         }
+    }
+
+
+    // Sceneが切り替わる度に呼ばれる
+    private void OnDisable()
+    {
+        // スコア(コイン)をGameManagerに保存
+        RunGameManager.instance.coin += currentScore;
     }
 }
 
