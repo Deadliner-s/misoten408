@@ -17,12 +17,8 @@ MonoBehaviour:
   - SceneName: A
     targetScene: homeA
     spawnPosition: {x: 0, y: 0, z: 0}
-    transform: {fileID: 0}
+    transform: {fileID: 7594331468941629222, guid: 9ddc4e9a83c9f10498773c7308b1ca95, type: 3}
   - SceneName: B
     targetScene: homeB
     spawnPosition: {x: 0, y: 0, z: 0}
-    transform: {fileID: 0}
-  - SceneName: 1
-    targetScene: Game1
-    spawnPosition: {x: 0, y: 0, z: 0}
-    transform: {fileID: 0}
+    transform: {fileID: 1352628215739817503, guid: 485d5d0cacdab8e468ab70e6162be7b7, type: 3}

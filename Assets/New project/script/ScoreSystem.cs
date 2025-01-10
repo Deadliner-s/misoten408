@@ -11,6 +11,7 @@ public class ScoreSystem : MonoBehaviour
     public Text scoreText;              // スコアを表示するUI
     public GameObject coinEffect;       // コインを取った時のエフェクト
     public GameObject itemEffect;       // アイテムを取った時のエフェクト
+    public GameObject missEffect;       // 障害物に当たった時のエフェクト
 
     private void Start()
     {
@@ -28,6 +29,7 @@ public class ScoreSystem : MonoBehaviour
             Instantiate(coinEffect, other.transform.position, coinEffect.transform.rotation);  // エフェクト生成
             Destroy(other.gameObject); // アイテムを削除
 
+            SoundManager.instance.PlaySE("coin"); //SE
 
             RunGameManager.instance.coin += currentkoin; // コインの獲得総数を更新
         }
@@ -36,6 +38,8 @@ public class ScoreSystem : MonoBehaviour
         {
             currentScore -= 50; // スコアを減算
             UpdateScoreUI();    // UIを更新
+            GameObject effect = Instantiate(missEffect, transform.position, missEffect.transform.rotation);  // エフェクト生成                        
+            effect.transform.SetParent(transform);
 
             RunGameManager.instance.coin += currentkoin; // コインの獲得総数を更新
         }
@@ -47,6 +51,8 @@ public class ScoreSystem : MonoBehaviour
             Instantiate(itemEffect, other.transform.position, itemEffect.transform.rotation);  // エフェクト生成
             Destroy(other.gameObject); // アイテムを削除
 
+            SoundManager.instance.PlaySE("item1"); //SE
+            currentitem1 += 1;  // アイテムの獲得数を加算
             RunGameManager.instance.coin += currentkoin; // コインの獲得総数を更新
             RunGameManager.instance.item1 += 1; // アイテムの獲得総数を更新
         }
@@ -58,6 +64,9 @@ public class ScoreSystem : MonoBehaviour
             Instantiate(itemEffect, other.transform.position, itemEffect.transform.rotation);  // エフェクト生成
             Destroy(other.gameObject); // アイテムを削除
 
+            SoundManager.instance.PlaySE("item2"); //SE
+
+            currentitem2 += 1;  // アイテムの獲得数を加算
             RunGameManager.instance.coin += currentkoin; // コインの獲得総数を更新
             RunGameManager.instance.item2 += 1; // アイテムの獲得総数を更新
         }
@@ -69,6 +78,9 @@ public class ScoreSystem : MonoBehaviour
             Instantiate(itemEffect, other.transform.position, itemEffect.transform.rotation);  // エフェクト生成
             Destroy(other.gameObject); // アイテムを削除
 
+            SoundManager.instance.PlaySE("item3"); //SE
+
+            currentitem3 += 1;  // アイテムの獲得数を加算
             RunGameManager.instance.coin += currentkoin; // コインの獲得総数を更新
             RunGameManager.instance.item3 += 1; // アイテムの獲得総数を更新
         }

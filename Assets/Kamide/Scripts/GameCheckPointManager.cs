@@ -51,9 +51,7 @@ public class GameCheckPointManager : MonoBehaviour
         if (isFinished == true && isDestroy == true)
         {
             if(checkpointUI != null)
-            {
-               
-
+            {               
                 // UI�̍폜
                 Destroy(checkpointUI);
                 isDestroy = false;

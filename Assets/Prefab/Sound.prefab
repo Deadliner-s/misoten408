@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5617840085487624687
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3726797710276707240}
+  - component: {fileID: 6906820271163787708}
+  m_Layer: 0
+  m_Name: Sound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3726797710276707240
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5617840085487624687}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6906820271163787708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5617840085487624687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aab2c004a5bb6104b9c519a6b273c95b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bgm:
+  - name: bike
+    clip: {fileID: 8300000, guid: 03d9991534a37764d914557bccdd0ba4, type: 3}
+    volume: 0.1
+    pitch: 1.5
+    loop: 1
+    audiosource: {fileID: 0}
+  se:
+  - name: coin
+    clip: {fileID: 8300000, guid: 58cd9c13bd387f1489073e332841e646, type: 3}
+    volume: 0.3
+    pitch: 2
+    loop: 1
+    audiosource: {fileID: 0}
+  - name: item1
+    clip: {fileID: 8300000, guid: 6d6c45c5b862e0647b8799a6fb4b8dc1, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 1
+    audiosource: {fileID: 0}
+  - name: item2
+    clip: {fileID: 8300000, guid: 6d6c45c5b862e0647b8799a6fb4b8dc1, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 1
+    audiosource: {fileID: 0}
+  - name: item3
+    clip: {fileID: 8300000, guid: 6d6c45c5b862e0647b8799a6fb4b8dc1, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 1
+    audiosource: {fileID: 0}
+  - name: jump
+    clip: {fileID: 8300000, guid: 75916fcc2aee3b1469afaac1b34cf18a, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    audiosource: {fileID: 0}

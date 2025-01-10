@@ -17,6 +17,7 @@ TagManager:
   - Goal
   - DifficultyLevelArea
   - RunGameNPCArea
+  - CameraChange
   layers:
   - Default
   - TransparentFX

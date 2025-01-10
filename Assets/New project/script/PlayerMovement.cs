@@ -1,6 +1,7 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -150,6 +151,10 @@ public class PlayerMovement : MonoBehaviour
                 {
                     // C‚Ì‰‹‰‚É‘JˆÚ
                     Debug.Log("C‚Ì‰‹‰‚É‘JˆÚ");
+                    SceneTransitionManager.instance.LoadSceneAsyncPlayerSetpos(
+                        "Game1", 
+                        interactArea.GetComponent<DifficultyArea>().GetPlayerPos()
+                        );
                 }
                 else if (interactArea.GetComponent<DifficultyArea>().difficultyLevel == RunGameManager.DifficultyLevel.C_’†‹‰)
                 {

@@ -30,6 +30,9 @@ public class LaneRunner : MonoBehaviour
     // 目標位置
     private Vector3 targetPosition;
 
+    // リザルトのCanvas
+    [SerializeField] private GameObject ResurtCanvas;
+
     void Start()
     {
         // 初期の目標位置を設定
@@ -70,12 +73,15 @@ public class LaneRunner : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) && isGrounded && !isMoving)
             {
                 StartJump();
+                laneAni.LaneChangeAni(2);
+                SoundManager.instance.PlaySE("jump");
             }
 
             // ジャンプ処理
             if (isJumping)
             {
                 HandleJump();
+                //hasReachedGoal = true;
             }
 
             // レーン移動処理
@@ -91,6 +97,9 @@ public class LaneRunner : MonoBehaviour
         {
             // ゴール到達時の減速処理
             HandleDeceleration();
+
+            // リザルト表示
+            ResurtCanvas.GetComponent<RunGameResult>().UpdateResultDisplay();
         }
     }
 
