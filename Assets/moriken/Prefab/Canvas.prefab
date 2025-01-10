@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6c241cea33db5348a79884cf5c7d04a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seconds: 160
+  seconds: 30
   bicycle: {fileID: 8851282900751854216}
 --- !u!1 &8200846368879668542
 GameObject:
