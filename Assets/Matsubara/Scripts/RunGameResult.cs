@@ -37,10 +37,10 @@ public class RunGameResult : MonoBehaviour
             resultCanvas.SetActive(true);
         }
         // スコアシステムから値を取得してUIに表示
-        coinText.text  = "Coins : " + scoreSystem.currentkoin;
-        item1Text.text = "Item 1: " + scoreSystem.currentitem1;
-        item2Text.text = "Item 2: " + scoreSystem.currentitem2;
-        item3Text.text = "Item 3: " + scoreSystem.currentitem3;
+        coinText.text  = scoreSystem.currentScore.ToString();
+        item1Text.text = scoreSystem.currentitem1.ToString();
+        item2Text.text = scoreSystem.currentitem2.ToString();
+        item3Text.text = scoreSystem.currentitem3.ToString();
     }
 
     private void ReturnHome()
