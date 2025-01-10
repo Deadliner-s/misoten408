@@ -331,4 +331,10 @@ public class NPCDialogueManager : MonoBehaviour
         }
     }
 
+    // RuntimeEventSetting&RuntimeRunEventSetting‚ğ‰Šú‰»
+    public void ResetEvent()
+    {
+        runtimeEventSetting = originalEventSetting.CreateRuntimeInstance();
+        runtimeRunEventSetting = originalRunEventSetting.CreateRuntimeInstance();
+    }
 }

@@ -121,10 +121,10 @@ public class PlayerMovement : MonoBehaviour
                     NPCDialogueManager.instance.isTalking = true;
 
                     // 条件を満たしている場合、壁を解除
-                    interactArea.GetComponent<RunGameNPCArea>().SetUnlockedWall();
+                    interactArea.GetComponent<RunGameNPCArea>().UnlockedWall();
 
                     // 条件を満たしている場合、Coinを獲得＆itemを消費
-                    interactArea.GetComponent<RunGameNPCArea>().GetCoinAndUseItem();
+                    interactArea.GetComponent<RunGameNPCArea>().UseItemAndGetCoin();
 
                     // RunGameNPCAreaのEventNameを取得して会話を開始
                     NPCDialogueManager.instance.StartEvent(interactArea.GetComponent<RunGameNPCArea>().eventName.ToString(),
