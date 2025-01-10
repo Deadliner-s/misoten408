@@ -1,7 +1,10 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class LaneRunner : MonoBehaviour
 {
+    private Vector2 input;    // 入力
+
     // レーン情報
     private int currentLane = 1; // 0: 左, 1: 中央 (初期), 2: 右
     public float laneDistance = 2.0f; // レーン間の距離
@@ -55,13 +58,13 @@ public class LaneRunner : MonoBehaviour
             // 入力処理 (ジャンプ中または移動中は左右移動を無効化)
             if (!isJumping && !isMoving)
             {
-                if (Input.GetKeyDown(KeyCode.A) && currentLane > 0)
+                if (input.x < 0 && currentLane > 0)
                 {
                     currentLane--;
                     isMoving = true;
                     laneAni.LaneChangeAni(0);
                 }
-                else if (Input.GetKeyDown(KeyCode.D) && currentLane < 2)
+                else if (input.x > 0 && currentLane < 2)
                 {
                     currentLane++;
                     isMoving = true;
@@ -69,13 +72,13 @@ public class LaneRunner : MonoBehaviour
                 }
             }
 
-            // 入力処理 (ジャンプ中および移動中でない場合のみジャンプ可能)
-            if (Input.GetKeyDown(KeyCode.Space) && isGrounded && !isMoving)
-            {
-                StartJump();
-                laneAni.LaneChangeAni(2);
-                SoundManager.instance.PlaySE("jump");
-            }
+            //// 入力処理 (ジャンプ中および移動中でない場合のみジャンプ可能)
+            //if (Input.GetKeyDown(KeyCode.Space) && isGrounded && !isMoving)
+            //{
+            //    StartJump();
+            //    laneAni.LaneChangeAni(2);
+            //    SoundManager.instance.PlaySE("jump");
+            //}
 
             // ジャンプ処理
             if (isJumping)
@@ -174,4 +177,24 @@ public class LaneRunner : MonoBehaviour
             hasReachedGoal = true;
         }
     }
+
+
+    // 移動
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        input = context.ReadValue<Vector2>();
+    }
+
+    // ジャンプ
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if (context.performed && isGrounded && !isMoving)
+        {
+            StartJump();
+            laneAni.LaneChangeAni(2);
+            SoundManager.instance.PlaySE("jump");
+        }
+    }
+
+
 }
