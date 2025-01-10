@@ -15,14 +15,17 @@ public class GameTimer : MonoBehaviour
     private Vector3 bicycleNowPos;                       // åªç›ÇÃé©ì]é‘ÇÃPosition
     private float maxDistanceX;                          // é©ì]é‘ÇÃXç¿ïWÇÃç≈èâÇ©ÇÁç≈å„ÇÃä‘ÇÃãóó£
 
+    [SerializeField] private float bicyclePosX;
+    [SerializeField] private float bicyclePosY;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         progressGauge = gameObject.GetComponent<Image>();
         maxTime = seconds *  60.0f;
 
-        bicycleStartPos = bicycleNowPos = new Vector3(-381.0f,426.0f,0.0f);
-        bicycleEndPos = new Vector3(465.0f,426.0f,0.0f);
+        bicycleStartPos = bicycleNowPos = new Vector3(bicyclePosX, bicyclePosY, 0.0f);
+        bicycleEndPos = new Vector3(465.0f, bicyclePosY, 0.0f);
         bicycle.rectTransform.localPosition = bicycleStartPos;
 
         maxDistanceX = -bicycleStartPos.x + bicycleEndPos.x;
