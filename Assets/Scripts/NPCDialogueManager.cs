@@ -83,11 +83,7 @@ public class NPCDialogueManager : MonoBehaviour
 
     void Update()
     {
-        // ƒ^ƒCƒgƒ‹‚É–ß‚Á‚½‚ÉruntimeEventSetting‚ğ‰Šú‰»
-        //if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Title")
-        //{
-        //    runtimeEventSetting = originalEventSetting.CreateRuntimeInstance();
-        //}
+
     }
 
     // CSV‚ğ“Ç‚İ‚Ş
@@ -331,4 +327,10 @@ public class NPCDialogueManager : MonoBehaviour
         }
     }
 
+    // RuntimeEventSetting&RuntimeRunEventSetting‚ğ‰Šú‰»
+    public void ResetEvents()
+    {
+        runtimeEventSetting = originalEventSetting.CreateRuntimeInstance();
+        runtimeRunEventSetting = originalRunEventSetting.CreateRuntimeInstance();
+    }
 }
