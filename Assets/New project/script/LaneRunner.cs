@@ -36,6 +36,9 @@ public class LaneRunner : MonoBehaviour
     // リザルトのCanvas
     [SerializeField] private GameObject ResurtCanvas;
 
+    // ゲーム中表示されるCanvas
+    [SerializeField] private GameObject gameCanvas;
+
     void Start()
     {
         // 初期の目標位置を設定
@@ -100,6 +103,9 @@ public class LaneRunner : MonoBehaviour
         {
             // ゴール到達時の減速処理
             HandleDeceleration();
+
+            // ゲームcanvasを非表示
+            gameCanvas.GetComponent<GameCanvas>().HideCanvas();
 
             // リザルト表示
             ResurtCanvas.GetComponent<RunGameResult>().UpdateResultDisplay();

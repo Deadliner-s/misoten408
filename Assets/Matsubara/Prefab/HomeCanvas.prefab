@@ -26,8 +26,8 @@ RectTransform:
   m_GameObject: {fileID: 1381924617702534769}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1069032828703269880}
   m_Father: {fileID: 987441139188446086}
@@ -89,12 +89,12 @@ RectTransform:
   m_GameObject: {fileID: 1898205295778823544}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 2392684919817214935}
   - {fileID: 3085272948542197343}
   - {fileID: 6015693381723280149}
-  - {fileID: 2392684919817214935}
   m_Father: {fileID: 987441139188446086}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
@@ -292,7 +292,7 @@ GameObject:
   - component: {fileID: 7535864734372871211}
   - component: {fileID: 2608993236143091310}
   m_Layer: 5
-  m_Name: item2Text
+  m_Name: item3Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -346,7 +346,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u30A2\u30A4\u30C6\u30E0  2 : \n"
+  m_text: '3
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 43795486bb39ec043961a6fc1c00f3fa, type: 2}
   m_sharedMaterial: {fileID: 3438211369208867351, guid: 43795486bb39ec043961a6fc1c00f3fa, type: 2}
@@ -504,7 +506,7 @@ GameObject:
   - component: {fileID: 9196554621271295658}
   - component: {fileID: 6618556073765306401}
   m_Layer: 5
-  m_Name: item3Text
+  m_Name: item1Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -558,7 +560,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u30A2\u30A4\u30C6\u30E0  3 :\u3000 \n"
+  m_text: '1
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 43795486bb39ec043961a6fc1c00f3fa, type: 2}
   m_sharedMaterial: {fileID: 3438211369208867351, guid: 43795486bb39ec043961a6fc1c00f3fa, type: 2}
@@ -641,7 +645,7 @@ GameObject:
   - component: {fileID: 1326541244990916585}
   - component: {fileID: 4998668322346393752}
   m_Layer: 5
-  m_Name: item1Text
+  m_Name: item2Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -695,7 +699,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u30A2\u30A4\u30C6\u30E0  1 : \n"
+  m_text: 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 43795486bb39ec043961a6fc1c00f3fa, type: 2}
   m_sharedMaterial: {fileID: 3438211369208867351, guid: 43795486bb39ec043961a6fc1c00f3fa, type: 2}
@@ -1033,9 +1037,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinText: {fileID: 8703179890941350460}
-  item1Text: {fileID: 4998668322346393752}
-  item2Text: {fileID: 2608993236143091310}
-  item3Text: {fileID: 6618556073765306401}
+  item1Text: {fileID: 6618556073765306401}
+  item2Text: {fileID: 4998668322346393752}
+  item3Text: {fileID: 2608993236143091310}
 --- !u!1 &8413545836125133379
 GameObject:
   m_ObjectHideFlags: 0
