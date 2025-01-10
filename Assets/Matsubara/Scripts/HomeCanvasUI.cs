@@ -18,9 +18,11 @@ public class HomeCanvasUI : MonoBehaviour
     void Update()
     {
         // スコアシステムから値を取得してUIに表示
-        coinText.text  = "Coins: " + RunGameManager.instance.coin;
-        item1Text.text = "Item1: " + RunGameManager.instance.item1;
-        item2Text.text = "Item2: " + RunGameManager.instance.item2;
-        item3Text.text = "Item3: " + RunGameManager.instance.item3;
+        coinText.text  = RunGameManager.instance.coin.ToString();
+        item1Text.text = RunGameManager.instance.item1.ToString();
+        item2Text.text = RunGameManager.instance.item2.ToString();
+        item3Text.text = RunGameManager.instance.item3.ToString();
+
+
     }
 }
