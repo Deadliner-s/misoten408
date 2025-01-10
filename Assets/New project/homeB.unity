@@ -167,6 +167,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4333764019231445283, guid: 377b34f633902aa47afc921799f38b28, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4850282917765205221, guid: 377b34f633902aa47afc921799f38b28, type: 3}
       propertyPath: m_Name
       value: DifficultyArea (2)
@@ -935,6 +939,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RunGameEventArea (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7485351685909996198, guid: 07a1dc2b10e99864e8a86b9969dc31e0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1281,9 +1289,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: DifficultyArea
       objectReference: {fileID: 0}
+    - target: {fileID: 5009583352333920375, guid: 377b34f633902aa47afc921799f38b28, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5284284590126301462, guid: 377b34f633902aa47afc921799f38b28, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5632217784210242161, guid: 377b34f633902aa47afc921799f38b28, type: 3}
       propertyPath: difficultyLevel
@@ -1532,6 +1544,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 771718193219736735, guid: 07a1dc2b10e99864e8a86b9969dc31e0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4296334872445661014, guid: 07a1dc2b10e99864e8a86b9969dc31e0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.58
@@ -2007,6 +2023,10 @@ PrefabInstance:
       propertyPath: difficultyLevel
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 5969632793051113220, guid: 377b34f633902aa47afc921799f38b28, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2020,6 +2040,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3784999734443743375, guid: 07a1dc2b10e99864e8a86b9969dc31e0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4296334872445661014, guid: 07a1dc2b10e99864e8a86b9969dc31e0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.72
