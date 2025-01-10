@@ -14228,8 +14228,8 @@ MonoBehaviour:
   limitTime: 3
   animTime: 0.5
   info:
-    name: "\u540D\u524D"
-    description: "\u8AAC\u660E"
+    name: "\u671D\u65E5\u5C71\u306E\u5BB6"
+    description: "\u6A4B\u306E\u305F\u3082\u3068\u306B\u5EFA\u3064\u3002\u98DF\u5802\u304B\u3089\u898B\u3048\u308B\u6708\u5C71\u3068\u5BD2\u6CB3\u6C5F\u5DDD\u306E\u666F\u89B3\u304C\u81EA\u6162\u306E\u5BBF\u3002"
   UI: {fileID: 2333349213526674072, guid: 542f804ff91458b40a798af7a75236d5, type: 3}
 --- !u!4 &855199484
 Transform:

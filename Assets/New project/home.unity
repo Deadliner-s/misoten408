@@ -6707,8 +6707,8 @@ MonoBehaviour:
   limitTime: 3
   animTime: 0.5
   info:
-    name: "\u540D\u524D"
-    description: "\u8AAC\u660E"
+    name: "\u30EC\u30B9\u30C8\u30A4\u30F3\u82B1\u7B20"
+    description: "\u5BD2\u6CB3\u6C5F\u30C0\u30E0\u306E\u307B\u3068\u308A\u3001\u98DF\u4E8B\u51E6\u3068\u5BBF\u6CCA\u6240\u3092\u517C\u306D\u305F\u65BD\u8A2D\u3002\u5C71\u83DC\u305D\u3070\u3001\u30E9\u30FC\u30E1\u30F3\u304C\u81EA\u6162\u3002"
   UI: {fileID: 2333349213526674072, guid: 542f804ff91458b40a798af7a75236d5, type: 3}
 --- !u!4 &1909365680
 Transform:
