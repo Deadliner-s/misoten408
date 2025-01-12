@@ -1079,8 +1079,10 @@ MonoBehaviour:
   buttonData:
   - button: {fileID: 1216286556}
     timer: 600
+    startpos: {fileID: 112399935438848128, guid: d086e7d1b9a7f1d4fac16e9237d5de16, type: 3}
   - button: {fileID: 415190890}
     timer: 72000
+    startpos: {fileID: 4434650232164559320, guid: 685f308e4eef81a4e9fd5b0b535b8ba9, type: 3}
 --- !u!1 &415190888
 GameObject:
   m_ObjectHideFlags: 0
@@ -3096,7 +3098,7 @@ MonoBehaviour:
         m_MethodName: SelectButton
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 1216286554}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
