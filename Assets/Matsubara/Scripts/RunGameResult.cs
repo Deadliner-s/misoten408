@@ -15,6 +15,7 @@ public class RunGameResult : MonoBehaviour
 
     [SerializeField] private Button button;
     [SerializeField] private GameObject playerStartPos;
+    [SerializeField] private string sceneName;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -45,6 +46,6 @@ public class RunGameResult : MonoBehaviour
 
     private void ReturnHome()
     {
-        SceneTransitionManager.instance.LoadSceneAsyncPlayerSetpos("home", playerStartPos);
+        SceneTransitionManager.instance.LoadSceneAsyncPlayerSetpos(sceneName, playerStartPos);
     }
 }
