@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 38, y: 378}
+  m_AnchoredPosition: {x: 38, y: 460}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &146515151792753093
@@ -110,7 +110,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 38, y: 378}
+  m_AnchoredPosition: {x: 38, y: 460}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5320423253883555570
@@ -163,8 +163,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6c241cea33db5348a79884cf5c7d04a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seconds: 30
+  seconds: 160
   bicycle: {fileID: 8851282900751854216}
+  bicyclePosX: -435
+  bicyclePosY: 482
 --- !u!1 &8200846368879668542
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,7 +201,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -381, y: 426}
+  m_AnchoredPosition: {x: -381, y: 490}
   m_SizeDelta: {x: 122.875, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7330362443910171226
@@ -253,7 +255,7 @@ GameObject:
   - component: {fileID: 2713679471744362306}
   - component: {fileID: 240949194184208207}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UICanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
