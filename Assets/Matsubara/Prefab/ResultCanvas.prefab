@@ -760,8 +760,8 @@ MonoBehaviour:
   resultCanvas: {fileID: 1432644313621965071}
   coinText: {fileID: 3111968080624219135}
   item1Text: {fileID: 75973231538840754}
-  item2Text: {fileID: 3903334840568577057}
-  item3Text: {fileID: 3405222095605697743}
+  item2Text: {fileID: 3405222095605697743}
+  item3Text: {fileID: 3903334840568577057}
   button: {fileID: 430113982049573301}
   playerStartPos: {fileID: 4434650232164559320, guid: 685f308e4eef81a4e9fd5b0b535b8ba9, type: 3}
 --- !u!1 &4629694011224230160
