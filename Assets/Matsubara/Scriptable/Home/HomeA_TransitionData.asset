@@ -17,4 +17,8 @@ MonoBehaviour:
   - SceneName: 0
     targetScene: home
     spawnPosition: {x: 0, y: 0, z: 0}
-    transform: {fileID: 0}
+    transform: {fileID: 4434650232164559320, guid: 685f308e4eef81a4e9fd5b0b535b8ba9, type: 3}
+  - SceneName: B
+    targetScene: homeB
+    spawnPosition: {x: 0, y: 0, z: 0}
+    transform: {fileID: 1352628215739817503, guid: 485d5d0cacdab8e468ab70e6162be7b7, type: 3}

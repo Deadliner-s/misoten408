@@ -10,11 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 685c9de43350daa4aab28edd759fe26e, type: 3}
-  m_Name: HomeB_TransitionData 1
+  m_Name: HomeB_TransitionData
   m_EditorClassIdentifier: 
   areaName: homeB
   transitions:
   - SceneName: 0
     targetScene: home
     spawnPosition: {x: 0, y: 0, z: 0}
-    transform: {fileID: 0}
+    transform: {fileID: 4434650232164559320, guid: 685f308e4eef81a4e9fd5b0b535b8ba9, type: 3}
+  - SceneName: A
+    targetScene: homeA
+    spawnPosition: {x: 0, y: 0, z: 0}
+    transform: {fileID: 7594331468941629222, guid: 9ddc4e9a83c9f10498773c7308b1ca95, type: 3}
