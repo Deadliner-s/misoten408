@@ -155,46 +155,87 @@ public class PlayerMovement : MonoBehaviour
                         "Game1", 
                         interactArea.GetComponent<DifficultyArea>().GetPlayerPos()
                         );
+
                 }
                 else if (interactArea.GetComponent<DifficultyArea>().difficultyLevel == RunGameManager.DifficultyLevel.C_’†‹‰)
                 {
                     // C‚Ì’†‹‰‚É‘JˆÚ
                     Debug.Log("C‚Ì’†‹‰‚É‘JˆÚ");
+                    SceneTransitionManager.instance.LoadSceneAsyncPlayerSetpos(
+                        "Game1-2",
+                        interactArea.GetComponent<DifficultyArea>().GetPlayerPos()
+                        );
+
                 }
                 else if (interactArea.GetComponent<DifficultyArea>().difficultyLevel == RunGameManager.DifficultyLevel.C_ã‹‰)
                 {
                     // C‚Ìã‹‰‚É‘JˆÚ
                     Debug.Log("C‚Ìã‹‰‚É‘JˆÚ");
+                    SceneTransitionManager.instance.LoadSceneAsyncPlayerSetpos(
+                        "Game1-3",
+                        interactArea.GetComponent<DifficultyArea>().GetPlayerPos()
+                        );
+
                 }
                 else if (interactArea.GetComponent<DifficultyArea>().difficultyLevel == RunGameManager.DifficultyLevel.A_‰‹‰)
                 {
                     // A‚Ì‰‹‰‚É‘JˆÚ
                     Debug.Log("A‚Ì‰‹‰‚É‘JˆÚ");
+                    SceneTransitionManager.instance.LoadSceneAsyncPlayerSetpos(
+                        "Game2-1",
+                        interactArea.GetComponent<DifficultyArea>().GetPlayerPos()
+                        );
+
                 }
                 else if (interactArea.GetComponent<DifficultyArea>().difficultyLevel == RunGameManager.DifficultyLevel.A_’†‹‰)
                 {
                     // A‚Ì’†‹‰‚É‘JˆÚ
                     Debug.Log("A‚Ì’†‹‰‚É‘JˆÚ");
+                    SceneTransitionManager.instance.LoadSceneAsyncPlayerSetpos(
+                        "Game2-2",
+                        interactArea.GetComponent<DifficultyArea>().GetPlayerPos()
+                        );
+
                 }
                 else if (interactArea.GetComponent<DifficultyArea>().difficultyLevel == RunGameManager.DifficultyLevel.A_ã‹‰)
                 {
                     // A‚Ìã‹‰‚É‘JˆÚ
                     Debug.Log("A‚Ìã‹‰‚É‘JˆÚ");
+                    SceneTransitionManager.instance.LoadSceneAsyncPlayerSetpos(
+                        "Game2-3",
+                        interactArea.GetComponent<DifficultyArea>().GetPlayerPos()
+                        );
+
                 }
                 else if (interactArea.GetComponent<DifficultyArea>().difficultyLevel == RunGameManager.DifficultyLevel.B_‰‹‰)
                 {
                     // B‚Ì‰‹‰‚É‘JˆÚ
                     Debug.Log("B‚Ì‰‹‰‚É‘JˆÚ");
+                    SceneTransitionManager.instance.LoadSceneAsyncPlayerSetpos(
+                        "Game3-1",
+                        interactArea.GetComponent<DifficultyArea>().GetPlayerPos()
+                        );
+
                 }
                 else if (interactArea.GetComponent<DifficultyArea>().difficultyLevel == RunGameManager.DifficultyLevel.B_’†‹‰)
                 {
                     // B‚Ì’†‹‰‚É‘JˆÚ
                     Debug.Log("B‚Ì’†‹‰‚É‘JˆÚ");
+                    SceneTransitionManager.instance.LoadSceneAsyncPlayerSetpos(
+                        "Game3-2",
+                        interactArea.GetComponent<DifficultyArea>().GetPlayerPos()
+                        );
+
                 }
                 else if (interactArea.GetComponent<DifficultyArea>().difficultyLevel == RunGameManager.DifficultyLevel.B_ã‹‰)
                 {
                     // B‚Ìã‹‰‚É‘JˆÚ
                     Debug.Log("B‚Ìã‹‰‚É‘JˆÚ");
+                    SceneTransitionManager.instance.LoadSceneAsyncPlayerSetpos(
+                        "Game3-3",
+                        interactArea.GetComponent<DifficultyArea>().GetPlayerPos()
+                        );
+
                 }
             }
         }

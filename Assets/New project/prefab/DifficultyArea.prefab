@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   difficultyLevel: 0
-  playerPos: {fileID: 0}
+  playerPos: {fileID: 3616866157241445988, guid: 0c7c1882425fe8d41b7a8866efc38e62, type: 3}
 --- !u!1 &5284284590126301462
 GameObject:
   m_ObjectHideFlags: 0
