@@ -29,6 +29,7 @@ public class LaneRunner : MonoBehaviour
 
     // アニメーション関連
     public LaneAni laneAni;
+    private bool isGoalAni = false;
 
     // 目標位置
     private Vector3 targetPosition;
@@ -166,9 +167,17 @@ public class LaneRunner : MonoBehaviour
         forwardSpeed = Mathf.Max(0, forwardSpeed - decelerationRate * Time.deltaTime);
 
         // 停止後に前進処理を無効化
-        if (forwardSpeed <= 0)
+        if (forwardSpeed <= 0 && isGoalAni == false)
         {
+            isGoalAni = true;
             forwardSpeed = 0;
+
+            // 子オブジェクトを取得
+            GameObject child = transform.GetChild(0).gameObject;
+            // 子オブジェクトを90度回転
+            child.transform.Rotate(0, 90, 0);
+            // ゴールアニメーション
+            laneAni.LaneChangeAni(3);
         }
 
         // ゴール到達後の前進処理

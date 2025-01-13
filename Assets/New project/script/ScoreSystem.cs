@@ -1,3 +1,4 @@
+using UniGLTF;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +13,8 @@ public class ScoreSystem : MonoBehaviour
     public GameObject coinEffect;       // コインを取った時のエフェクト
     public GameObject itemEffect;       // アイテムを取った時のエフェクト
     public GameObject missEffect;       // 障害物に当たった時のエフェクト
+
+    public GameObject child;             // コインのオブジェクト
 
     private void Start()
     {
@@ -36,7 +39,10 @@ public class ScoreSystem : MonoBehaviour
         {
             currentScore -= 50; // スコアを減算
             UpdateScoreUI();    // UIを更新
-            GameObject effect = Instantiate(missEffect, transform.position, missEffect.transform.rotation);  // エフェクト生成                        
+            GameObject effect = Instantiate(missEffect, transform.position, missEffect.transform.rotation);  // エフェクト生成
+            // 子オブジェクトを取得してLuggageのアニメーションを再生
+            child = other.transform.GetChildByName("Luggage_motion").gameObject;
+            child.GetComponent<Animator>().SetTrigger("break");
             effect.transform.SetParent(transform);
         }
         // item1タグのオブジェクトに触れた場合
