@@ -82,3 +82,9 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     audiosource: {fileID: 0}
+  - name: syougaibutu
+    clip: {fileID: 8300000, guid: df67307d8bc9e074e9731d4dbe5fa741, type: 3}
+    volume: 0.4
+    pitch: 1.5
+    loop: 1
+    audiosource: {fileID: 0}

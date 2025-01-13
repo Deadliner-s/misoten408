@@ -44,6 +44,8 @@ public class ScoreSystem : MonoBehaviour
             child = other.transform.GetChildByName("Luggage_motion").gameObject;
             child.GetComponent<Animator>().SetTrigger("break");
             effect.transform.SetParent(transform);
+
+            SoundManager.instance.PlaySE("syougaibutu"); //SE
         }
         // item1タグのオブジェクトに触れた場合
         if (other.CompareTag("item1"))
