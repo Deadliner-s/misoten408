@@ -11,7 +11,25 @@ public class UnlockIcon : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Unlock();
 
+        sprite = gameObject.GetComponent<SpriteRenderer>();
+        sprite.enabled = false;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        Unlock();
+
+        if (unlockFlag)
+        {
+            sprite.enabled = true;
+        }
+    }
+
+    private  void Unlock()
+    {
         // •Ï”‚É“ü‚Á‚Ä‚¢‚é–¼‘O‚É‚æ‚Á‚ÄØ‚è‘Ö‚¦
         switch (flagName)
         {
@@ -44,18 +62,6 @@ public class UnlockIcon : MonoBehaviour
             default:
                 unlockFlag = true;
                 break;
-        }
-
-        sprite = gameObject.GetComponent<SpriteRenderer>();
-        sprite.enabled = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (unlockFlag)
-        {
-            sprite.enabled = true;
         }
     }
 }
