@@ -130,11 +130,12 @@ MonoBehaviour:
   laneDistance: 3.7
   lateralSpeed: 12
   forwardSpeed: 10
-  decelerationRate: 0.1
+  decelerationRate: 2
   jumpHeight: 3
   jumpDuration: 0.5
   laneAni: {fileID: 0}
   ResurtCanvas: {fileID: 0}
+  gameCanvas: {fileID: 0}
 --- !u!114 &2907999185837270790
 MonoBehaviour:
   m_ObjectHideFlags: 0
