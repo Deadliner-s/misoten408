@@ -43,6 +43,6 @@ MonoBehaviour:
   - eventName: 10
     cnt: 0
     checkPoint: 0
-  - eventName: 8
+  - eventName: 11
     cnt: 0
     checkPoint: 0

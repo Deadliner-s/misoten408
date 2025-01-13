@@ -105,17 +105,23 @@ public class RunGameNPCArea : MonoBehaviour
     // 壁の解除状態の設定
     private void SetWallUnlocked()
     {
-        // HomeC
-        if (RunGameManager.instance.A_Home)
+        // Home
+        if (eventName == RunGameEventData.RunGameEventNameEnum.HomeA解放)
         {
-            wall.SetActive(false);
-            // HomeCの場合、AとBの壁の解除状態を確認
+            if (RunGameManager.instance.A_Home)
+                wall.SetActive(false);
             if (RunGameManager.instance.B_Home)
                 GameObject.Find("Wall_ToB").SetActive(false);
         }
-        // HomeA
-        else if (RunGameManager.instance.B_Home)
-            wall.SetActive(false);
+        else if (eventName == RunGameEventData.RunGameEventNameEnum.HomeB解放)
+        {
+            if (RunGameManager.instance.B_Home)
+                wall.SetActive(false);
+            //if (RunGameManager.instance.A_Home)
+            //    GameObject.Find("Wall_ToA").SetActive(false);
+        }
+
+
         // 難易度
         else if (RunGameManager.instance.A_intermediate)
             wall.SetActive(false);
