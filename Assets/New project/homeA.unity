@@ -3522,6 +3522,10 @@ PrefabInstance:
       propertyPath: m_AABB.m_Extent.z
       value: 0.13016465
       objectReference: {fileID: 0}
+    - target: {fileID: 4870552773557632513, guid: 5071dd9b2e72b1a46aa168141b7108d4, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: dd773202a30b05f41ae6de0625758926, type: 2}
     - target: {fileID: 5159078012444724336, guid: 5071dd9b2e72b1a46aa168141b7108d4, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.17
@@ -12231,6 +12235,10 @@ PrefabInstance:
       propertyPath: m_AABB.m_Extent.z
       value: 0.14594291
       objectReference: {fileID: 0}
+    - target: {fileID: 4870552773557632513, guid: a128f5cd80157ec469d408b9448a6741, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: dd773202a30b05f41ae6de0625758926, type: 2}
     - target: {fileID: 5159078012444724336, guid: a128f5cd80157ec469d408b9448a6741, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.3693503
@@ -16683,6 +16691,10 @@ PrefabInstance:
       propertyPath: m_AABB.m_Extent.z
       value: 0.15997866
       objectReference: {fileID: 0}
+    - target: {fileID: 4870552773557632513, guid: 498a744a3c4a2ad42b7e5acd5671b349, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: dd773202a30b05f41ae6de0625758926, type: 2}
     - target: {fileID: 5159078012444724336, guid: 498a744a3c4a2ad42b7e5acd5671b349, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.3693503
@@ -19160,6 +19172,10 @@ PrefabInstance:
       propertyPath: m_AABB.m_Extent.z
       value: 0.14527918
       objectReference: {fileID: 0}
+    - target: {fileID: 4870552773557632513, guid: 48cf78d17bba7cc4981afbfe3f0d90d9, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: dd773202a30b05f41ae6de0625758926, type: 2}
     - target: {fileID: 5159078012444724336, guid: 48cf78d17bba7cc4981afbfe3f0d90d9, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.17
@@ -21712,6 +21728,10 @@ PrefabInstance:
       propertyPath: m_AABB.m_Extent.z
       value: 0.15997866
       objectReference: {fileID: 0}
+    - target: {fileID: 4870552773557632513, guid: 498a744a3c4a2ad42b7e5acd5671b349, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: dd773202a30b05f41ae6de0625758926, type: 2}
     - target: {fileID: 5159078012444724336, guid: 498a744a3c4a2ad42b7e5acd5671b349, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.17
@@ -27015,6 +27035,10 @@ PrefabInstance:
       propertyPath: m_AABB.m_Extent.z
       value: 0.16006935
       objectReference: {fileID: 0}
+    - target: {fileID: 4870552773557632513, guid: e2bc7f044c4297246b34fa23791ac2f0, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: dd773202a30b05f41ae6de0625758926, type: 2}
     - target: {fileID: 5159078012444724336, guid: e2bc7f044c4297246b34fa23791ac2f0, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.17
