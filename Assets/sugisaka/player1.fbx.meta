@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bba082e6e5775004184005f67214ad5e
+guid: 4ea3836862014944887f578ef8b76d0d
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,13 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Player
-    second: {fileID: 2100000, guid: 9785ff3c198788540946b7e74d2e0793, type: 2}
+      name: bag
+    second: {fileID: 3516887107214377460, guid: 430fa93f27881714280f05495c4bd3f0, type: 3}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: bag
-    second: {fileID: 2100000, guid: 309c044bc69f3534eb2163be7c66cc47, type: 2}
+      name: bikefin_UV1_aiStandardSurface1
+    second: {fileID: 2100000, guid: fcbbd046840cbf940be9df9d754b4839, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
