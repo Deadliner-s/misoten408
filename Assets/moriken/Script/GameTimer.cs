@@ -25,14 +25,14 @@ public class GameTimer : MonoBehaviour
         maxTime = seconds *  60.0f;
 
         bicycleStartPos = bicycleNowPos = new Vector3(bicyclePosX, bicyclePosY, 0.0f);
-        bicycleEndPos = new Vector3(465.0f, bicyclePosY, 0.0f);
+        bicycleEndPos = new Vector3(422.0f, bicyclePosY, 0.0f);
         bicycle.rectTransform.localPosition = bicycleStartPos;
 
         maxDistanceX = -bicycleStartPos.x + bicycleEndPos.x;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         // ÉQÅ[ÉWÇìÆÇ©Ç∑èàóù
         time += 1 / maxTime;
