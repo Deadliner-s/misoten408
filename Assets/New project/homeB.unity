@@ -1352,6 +1352,10 @@ PrefabInstance:
       value: 175.987
       objectReference: {fileID: 0}
     - target: {fileID: 5422905870800859835, guid: 07a1dc2b10e99864e8a86b9969dc31e0, type: 3}
+      propertyPath: item3
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5422905870800859835, guid: 07a1dc2b10e99864e8a86b9969dc31e0, type: 3}
       propertyPath: eventName
       value: 11
       objectReference: {fileID: 0}
