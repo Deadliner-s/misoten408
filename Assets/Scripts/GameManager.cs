@@ -34,6 +34,10 @@ public class GameManager : MonoBehaviour
     {
         // FPS固定
         Application.targetFrameRate = 60;
+
+        // マウスカーソル非表示
+        Cursor.visible = false;
+
     }
 
     // Update is called once per frame
@@ -53,6 +57,13 @@ public class GameManager : MonoBehaviour
                 onGame = false;
             }
         }
+
+        // カーソル切り替え
+        if (Input.GetKeyDown(KeyCode.F12))
+        {
+            Cursor.visible = !Cursor.visible;
+        }
+
     }
 
     // ゲーム開始
