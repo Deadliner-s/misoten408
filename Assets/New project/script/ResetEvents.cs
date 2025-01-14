@@ -17,10 +17,14 @@ public class ResetEvents : MonoBehaviour
     // Scene‚ªØ‚è‘Ö‚í‚é“x‚ÉŒÄ‚Î‚ê‚é
     private void OnDisable()
     {
-        if (RunGameManager.instance != null)
+        if (NPCDialogueManager.instance != null)
         {
             NPCDialogueManager.instance.ResetEvents();
         }
 
+        if (RunGameManager.instance != null)
+        {
+            RunGameManager.instance.ResetScore();
+        }
     }
 }

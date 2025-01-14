@@ -64,4 +64,24 @@ public class RunGameManager : MonoBehaviour
     {
         
     }
+
+    // スコアをリセットする
+    public void ResetScore()
+    {
+        // 壁のフラグをfalseに
+        C_intermediate = false;
+        C_Advanced = false;
+        A_Home = false;
+        A_intermediate = false;
+        A_Advanced = false;
+        B_Home = false;
+        B_intermediate = false;
+        B_Advanced = false;
+
+        // コインとアイテムの数を0に
+        coin = 0;
+        item1 = 0;
+        item2 = 0;
+        item3 = 0;
+    }
 }
