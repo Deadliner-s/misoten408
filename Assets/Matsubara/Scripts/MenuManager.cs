@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
@@ -49,7 +50,7 @@ public class MenuManager : MonoBehaviour
     private void Update()
     {
         // Escapeキーが押されたらメニューの表示/非表示を切り替える
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) || Gamepad.current.startButton.wasPressedThisFrame)
         {
             ToggleMenu();
         }
