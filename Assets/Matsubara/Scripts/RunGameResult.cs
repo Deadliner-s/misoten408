@@ -2,6 +2,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class RunGameResult : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class RunGameResult : MonoBehaviour
     [SerializeField] private TextMeshProUGUI item2Text; // アイテム2の数を表示するUIテキスト
     [SerializeField] private TextMeshProUGUI item3Text; // アイテム3の数を表示するUIテキスト
 
-    [SerializeField] private Button button;
+    [SerializeField] private GameObject button;
     [SerializeField] private GameObject playerStartPos;
     [SerializeField] private string sceneName;
 
@@ -29,7 +30,10 @@ public class RunGameResult : MonoBehaviour
         }
 
         resultCanvas.GetComponentInChildren<Button>().onClick.AddListener(ReturnHome);
+       
     }
+    
+
     public void UpdateResultDisplay()
     {       
         // リザルトキャンバスをアクティブ化
