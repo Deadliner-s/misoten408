@@ -11,6 +11,10 @@ public class ButtonHandler : MonoBehaviour
 
     private string sceneName = "Area_C";   // 移動するシーン名
 
+    [SerializeField] Button[] buttons;
+    private int currentIndex = 0;
+    private float inputCoolDown = 0.2f;
+    private float lastInputTime = 0.0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,8 +27,44 @@ public class ButtonHandler : MonoBehaviour
             // 最初に選択するボタンを設定
             EventSystem.current.SetSelectedGameObject(firstButton);
 
+        
     }
-    
+
+    private void Update()
+    {
+        if (Time.time - lastInputTime < inputCoolDown)
+        {
+            return;
+
+            // 垂直方向の入力
+            float verticalInput = Input.GetAxis("Vertical");
+
+            if (verticalInput > 0.5f)
+            {
+                currentIndex = Mathf.Clamp(currentIndex - 1, 0, buttons.Length - 1);
+                SelectButton(currentIndex);
+                lastInputTime = Time.time;
+            }
+            else if (verticalInput < -0.5f)
+            {
+                currentIndex = Mathf.Clamp(currentIndex + 1, 0, buttons.Length - 1);
+                SelectButton(currentIndex);
+                lastInputTime = Time.time;
+            }
+
+        }
+
+
+    }
+
+    private void OnEnable()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        if (firstButton != null)
+            // 最初に選択するボタンを設定
+            EventSystem.current.SetSelectedGameObject(firstButton);
+
+    }
     public void TitleOnButtonCllick()
     {
         if(sceneManager != null)
@@ -59,7 +99,10 @@ public class ButtonHandler : MonoBehaviour
     {
         EventSystem.current.SetSelectedGameObject(button);
     }
-
+    public void SelectButton(int index)
+    {
+        EventSystem.current.SetSelectedGameObject(buttons[index].gameObject);
+    }
     public void SetSceneButton(string nextSceneName)
     {
         sceneName = nextSceneName;
